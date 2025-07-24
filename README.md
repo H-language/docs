@@ -1,4 +1,5 @@
 # <glow>H</glow>ydrogen <glow>Lang</glow>uage Documentation
+<G><i>created by </G><E>ENDESGA</E><G> - started in 2020 - made in NZ - CC0 - FOSS forever</i></G>
 
 -------
 ## a quick overview
@@ -11,6 +12,15 @@ Hydrogen Language provides:
 - Single header file implementation
 - Unified file and folder IO
 - Modern functions and data-structures
+
+### the H mini-manifesto & some personal statements:
+Why go to all the effort of making a programming language when it's not even readable to the average person? What's the point of gatekeeping "talking to computers" behind walls of unintuitive symbols? It's hard enough learning the rules, logic, workflows to program. Why make it harder with symbols and pairs of symbols that require remembering rather than simply reading? Programmers forget how difficult it was to initially understand how to code, and brush it off as "you'll learn and struggle too". But why not just bring the barrier of entry down by making a language completely readable without symbol-decryption?
+
+My answer to this is an abstraction layer I've been crafting and honing for many years.
+This is designed for younger me, who struggled to read and understand code for a very long time. The over-use of symbols in programming languages has frustrated me since the moment I started learning. Only after many years of intense study, practice, and fixation have I finally got enough knowledge to create a solution.
+
+A lot of passion, care, and strong intention has gone into all of this.
+Make what you wish existed.
 
 -------
 ## Contents
