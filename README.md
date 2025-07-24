@@ -1,0 +1,2 @@
+# docs
+Hydrogen Language Documentation
