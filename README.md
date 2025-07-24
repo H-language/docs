@@ -17,9 +17,9 @@ Hydrogen Language provides:
 
 Simply include `H.h` in your C project:
 
-```c
-#include "H.h"
-```
+<pre>
+<M>#include</M> <Y>"</Y><C>H.h</C><Y>"</Y>
+</pre>
 
 Then compile with <b>GCC</b> (MinGW), or <glow>TCC</glow>.
 
