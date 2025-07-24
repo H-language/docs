@@ -181,27 +181,27 @@ repeat( n )
 ```
 
 ### with/when Statements
-```
-with( val ) // jump to a when() depending on what it is
-{
-    when( 1, 2, 3 )
-    {
-    	// code
-    	skip;
-    }
+<pre>
+<M>with</M><Y>(</Y> val <Y>)</Y> <G>// jump to a when() depending on what it is</G>
+<C>{</C>
+    <M>when</M><Y>(</Y> <C>1</C>, <C>2</C>, <C>3</C> <Y>)</Y>
+    <C>{</C>
+    	<G>// code</G>
+    	<M>skip</M>;
+    <C>}</C>
     
-    when( 4 )
-    {
-    	// code
-    } // there's no skip, so it continues:
+    <M>when</M><Y>(</Y> <C>4</C> <Y>)</Y>
+    <C>{</C>
+    	<G>// code</G>
+    <C>}</C> <G>// there's no skip, so it continues:</G>
     
-    other
-    {
-    	// this code is ran if val isn't 1, 2, or 3. But will if it's 4 etc.
-    }
-}
-// skip takes us out to here
-```
+    <M>other</M>
+    <C>{</C>
+    	<G>// this code is ran if val isn't 1, 2, or 3. But will if it's 4 etc.</G>
+    <C>}</C>
+<C>}</C>
+<G>// skip takes us out to here</G>
+</pre>
 
 ### Conditional Helpers
 ```
