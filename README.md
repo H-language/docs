@@ -1,5 +1,18 @@
 # <glow>H</glow>ydrogen <glow>Lang</glow>uage Documentation
 
+-------
+## a quick overview
+<glow>H</glow> is a single-file syntactic layer that transforms C into a more readable, functional programming language.
+Hydrogen Language provides:
+- Intuitive and explicit keywords
+- Functional programming patterns
+- Cross-platform abstractions
+- Zero overhead bloat
+- Single header file implementation
+- Unified file and folder IO
+- Modern functions and data-structures
+
+-------
 ## Contents
 - [Installation](#installation)
 - [Core Language Transforms](#core-language-transforms)
@@ -11,7 +24,7 @@
 - [Control Flow](#control-flow)
   - [Loops](#loops)
   - [Iteration Helpers](#iteration-helpers)
-  - [Switch Statements](#switch-statements)
+  - [with/when Statements](#with-when-statements)
   - [Conditional Helpers](#conditional-helpers)
 - [Functions](#functions)
   - [Function Declaration](#function-declaration)
@@ -51,33 +64,18 @@
   - [File Processing](#file-processing)
 - [License](#license)
 
-## a quick overview
-
-<glow>H</glow> is a single-file syntactic layer that transforms C into a more readable, functional programming language.
-
-Hydrogen Language provides:
-- Intuitive and explicit keywords
-- Functional programming patterns
-- Cross-platform abstractions
-- Zero overhead bloat
-- Single header file implementation
-- Unified file and folder IO
-- Modern functions and data-structures
-
+-------
 ## Installation
-
 Simply include `H.h` in your C project:
-
 <pre>
 <M>#include</M> <Y>"</Y><C>H.h</C><Y>"</Y>
 </pre>
-
 Then compile with <b>GCC</b> (MinGW), or <glow>TCC</glow>.
 
+-------
 ## Core Language Transforms
 
 ### Pointer and Reference Operations
-
 | H Syntax | Definition |
 |----------|-------------|
 | <G>TYPE</G> <glow>ref</glow> | Reference to type |
@@ -85,13 +83,11 @@ Then compile with <b>GCC</b> (MinGW), or <glow>TCC</glow>.
 | <glow>val_of(</glow> <G>REF</G> <glow>)</glow> | Value of reference |
 | <glow>to(</glow> <G>TYPE</G><glow>,</glow> <G>VAL</G> <glow>)</glow> | Type cast |
 | <glow>cast(</glow> <G>TYPE</G><glow>,</glow> <G>VAR</G> <glow>)</glow> | Reinterpret cast |
-
 <pre>
 <glow>null</glow> <G>// a zero-ref</G>
 </pre>
 
 ### Boolean and Logic Operations
-
 | H Syntax | Definition |
 |----------|-------------|
 | `not` | Logical NOT |
@@ -103,8 +99,8 @@ Then compile with <b>GCC</b> (MinGW), or <glow>TCC</glow>.
 | `isnt` | Inequality |
 | `pick( x, A, B )` | Ternary operator |
 
+-------
 ## Type System
-
 If the type is unknown, it's:
 ```
 anon
@@ -114,24 +110,23 @@ anon
 ```
 
 ### Number Types
-
-Natural (cannot be less than zero), Integer (can be negative), Rational (has a fractional part).
-
+<glow>N</glow>atural <LG>(cannot be less than zero)</LG>
+<glow>I</glow>nteger <LG>(can be negative)</LG>
+<glow>R</glow>ational <LG>(has a fractional part)</LG>
 | Type | Bytes | Range |
 |------|------|-------|
-| `n1` | <b>1</b> | <b>0</b> <i>to</i> <b>255</b> |
-| `i1` | <b>1</b> | <b>-128</b> <i>to</i> <b>127</b> |
-| `n2` | <b>2</b> | <b>0</b> <i>to</i> <b>65,535</b> |
-| `i2` | <b>2</b> | <b>-32,768</b> <i>to</i> <b>32,767</b> |
-| `n4` | <b>4</b> | <b>0</b> <i>to</i> <b>4,294,967,295</b> |
-| `i4` | <b>4</b> | <b>-2,147,483,648</b> <i>to</i><br><b>2,147,483,647</b> |
-| `r4` | <b>4</b> | <b>-inf</b> <i>to</i> <b>inf</b> |
-| `n8` | <b>8</b> | <b>0</b> <i>to</i><br><b>18,446,744,073,709,551,615</b> |
-| `i8` | <b>8</b> | <b>-9,223,372,036,854,775,808</b> <i>to</i><br><b>9,223,372,036,854,775,807</b> |
-| `r8` | <b>8</b> | <b>-inf</b> <i>to</i> <b>inf</b> |
+| <glow>n1</glow> | <b>1</b> | <b>0</b> <i>to</i> <b>255</b> |
+| <glow>i1</glow> | <b>1</b> | <b>-128</b> <i>to</i> <b>127</b> |
+| <glow>n2</glow> | <b>2</b> | <b>0</b> <i>to</i> <b>65,535</b> |
+| <glow>i2</glow> | <b>2</b> | <b>-32,768</b> <i>to</i> <b>32,767</b> |
+| <glow>n4</glow> | <b>4</b> | <b>0</b> <i>to</i> <b>4,294,967,295</b> |
+| <glow>i4</glow> | <b>4</b> | <b>-2,147,483,648</b> <i>to</i><br><b>2,147,483,647</b> |
+| <glow>r4</glow> | <b>4</b> | <b>-inf</b> <i>to</i> <b>inf</b> |
+| <glow>n8</glow> | <b>8</b> | <b>0</b> <i>to</i><br><b>18,446,744,073,709,551,615</b> |
+| <glow>i8</glow> | <b>8</b> | <b>-9,223,372,036,854,775,808</b> <i>to</i><br><b>9,223,372,036,854,775,807</b> |
+| <glow>r8</glow> | <b>8</b> | <b>-inf</b> <i>to</i> <b>inf</b> |
 
 ### Other Types
-
 ```c
 byte // equivalent to an i1, used for explicit byte handling
 flag // yes or no
@@ -142,10 +137,10 @@ yes	// 1
 no	// 0
 ```
 
+-------
 ## Control Flow
 
 ### Loops
-
 ```c
 loop			// for(;;) - infinite loop
 while( condition )	// standard while
@@ -173,8 +168,7 @@ iter_grid( x, y, width, height )
 repeat( n )
 ```
 
-### Switch Statements
-
+### with/when Statements
 ```c
 with( val ) // jump to a when() depending on what it is
 {
@@ -198,7 +192,6 @@ with( val ) // jump to a when() depending on what it is
 ```
 
 ### Conditional Helpers
-
 ```c
 if_null(ptr)            // if( ptr is null )
 if_not_null(ptr)        // if( ptr isnt null )
@@ -210,10 +203,10 @@ next_if(condition);      // if( condition ) next;
 out_if(condition) val;      // if( condition ) out val;
 ```
 
+-------
 ## Functions
 
 ### Function Declaration
-
 ```c
 fn function_name(params)    // static inline void function_name(params)
 {
