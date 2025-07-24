@@ -29,15 +29,15 @@ Then compile with <b>GCC</b> (MinGW), or <glow>TCC</glow>.
 
 | H Syntax | Definition |
 |----------|-------------|
-| `type ref` | Reference to type |
-| `ref_of( var )` | Reference-of non-temp variable |
-| `val_of( ptr )` | Dereference to get value |
-| `to( type, val )` | Type cast |
-| `cast( type, val )` | Reinterpret cast |
+| `TYPE ref` | Reference to type |
+| `ref_of( VAR )` | Reference-of variable |
+| `val_of( REF )` | Value of reference |
+| `to( TYPE, VAL )` | Type cast |
+| `cast( TYPE, VAR )` | Reinterpret cast |
 
-```
+<pre>
 <glow>null</glow> // a zero-ref
-```
+</pre>
 
 ### Boolean and Logic Operations
 
