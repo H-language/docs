@@ -204,16 +204,16 @@ repeat( n )
 </pre>
 
 ### Conditional Helpers
-```
-if_null(ptr)            // if( ptr is null )
-if_not_null(ptr)        // if( ptr isnt null )
-if_any(a, b, c)         // if( a or b or c )
-if_all(a, b, c)         // if( a and b and c )
-if_none(a, b, c)        // if( not( a or b or c) )
-skip_if(condition);      // if( condition ) skip;
-next_if(condition);      // if( condition ) next;
-out_if(condition) val;      // if( condition ) out val;
-```
+<pre>
+<M>if_null</M><Y>(</Y>ptr<Y>)</Y>            <G>// if( ptr is null )</G>
+<M>if_not_null</M><Y>(</Y>ptr<Y>)</Y>        <G>// if( ptr isnt null )</G>
+<M>if_any</M><Y>(</Y>a, b, c<Y>)</Y>         <G>// if( a or b or c )</G>
+<M>if_all</M><Y>(</Y>a, b, c<Y>)</Y>         <G>// if( a and b and c )</G>
+<M>if_none</M><Y>(</Y>a, b, c<Y>)</Y>        <G>// if( not( a or b or c) )</G>
+<M>skip_if</M><Y>(</Y>condition<Y>)</Y>;      <G>// if( condition ) skip;</G>
+<M>next_if</M><Y>(</Y>condition<Y>)</Y>;      <G>// if( condition ) next;</G>
+<M>out_if</M><Y>(</Y>condition<Y>)</Y> val;      <G>// if( condition ) out val;</G>
+</pre>
 
 -------
 ## Functions
