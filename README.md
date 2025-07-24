@@ -29,8 +29,8 @@ Then compile with <b>GCC</b> (MinGW), or <glow>TCC</glow>.
 
 | H Syntax | Definition |
 |----------|-------------|
-| `TYPE ref` | Reference to type |
-| `ref_of( VAR )` | Reference-of variable |
+| `TYPE <Y>ref</Y>` | Reference to type |
+| ref_of( <Y>VAR</Y> ) | Reference-of variable |
 | `val_of( REF )` | Value of reference |
 | `to( TYPE, VAL )` | Type cast |
 | `cast( TYPE, VAR )` | Reinterpret cast |
