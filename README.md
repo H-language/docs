@@ -546,40 +546,38 @@ start
 ## Example Programs
 
 ### Hello World
+<pre>
+<Y>#include</Y>Y> <C>"H.h"</C>
 
-```
-#include "H.h"
-
-start
-{
-    print( "Hello, World!\n" );
-    out executable_success;
-}
-```
+<M>start</M>
+<C>{</C>
+	<M>print</M><Y>(</Y> <C>"Hello, World!\n"</C> <Y>)</Y>;
+	<M>out executable_success</M>;
+<C>}</C>
+</pre>
 
 ### File Processing
+<pre>
+<Y>#include</Y> <C>"H.h"</C>
 
-```
-#include "H.h"
-
-start
-{
-    file f = open_file_loading( "input.txt" );
-    if_null( f.handle )
-    {
-        print( "Failed to open file\n" );
-        out executable_failure;
-    }
-    
-    byte buffer[ KB( 10 ) ];
-    file_load( ref_of( f ), buffer );
-    
-    print_format( "File contents: <>\n", buffer );
-    
-    file_close( ref_of( f ) );
-    out executable_success;
-}
-```
+<M>start</M>
+<C>{</C>
+	<Y>file</Y> f <Y>=</Y> <M>open_file_loading</M><Y>(</Y> <C>"input.txt"</C> <Y>)</Y>;
+	<M>if_nothing</M><Y>(</Y> f.handle <Y>)</Y>
+	<C>{</C>
+		<M>print</M><Y>(</Y> <C>"Failed to open file\n"</C> <Y>)</Y>;
+		<M>out executable_failure</M>;
+	<C>}</C>
+	
+	<Y>byte</Y> buffer<C>[</C> <M>KB</M><Y>(</Y> <C>10</C> <Y>)</Y> <C>]</C>;
+	<M>file_load</M><Y>(</Y> <M>ref_of</M><Y>(</Y> f <Y>)</Y>, buffer <C>)</C>;
+	
+	<M>print_format</M><Y>(</Y> <C>"File contents: <>\n"</C>, buffer <Y>)</Y>;
+	
+	<M>file_close</M><Y>(</Y> <M>ref_of</M><Y>(</Y> f <Y>) )</Y>;
+	<M>out executable_success</M>;
+<C>}</C>
+</pre>
 
 ## License
 
