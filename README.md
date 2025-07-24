@@ -405,15 +405,7 @@ print_newline()                     // Output newline
 print_format("Value: <c:g>%d</c:g>\n", 42);
 
 // Format tags:
-// <c:COLOR>   - Set color (r,g,b,c,m,y,w)
-// <c:d>       - Default color
-// <bg:COLOR>  - Background color
-// <b>         - Bold
-// <i>         - Italic
-// <u>         - Underline
-// </TAG>      - Disable formatting
-// <>          - Insert string argument
-// </>         - Insert path separator
+
 ```
 
 ### Format Bytes Function
