@@ -441,13 +441,13 @@ byte ref input = get_terminal_input();
 <pre>
 <M>fn</M> <M>foo</M><Y>(</Y> <Y>const</Y> <Y>byte</Y> <Y>ref</Y> format, ... <Y>)</Y>
 <C>{</C>
-    <Y>arg_list</Y> args;
-    <M>args_init</M><Y>(</Y>args, format<Y>)</Y>;
-    
-    <Y>i4</Y> num <Y>=</Y> <M>args_next</M><Y>(</Y>args, <Y>i4</Y><Y>)</Y>;
-    <Y>byte</Y> <Y>ref</Y> str <Y>=</Y> <M>args_next</M><Y>(</Y>args, <Y>ref</Y><Y>)</Y>;
-    
-    <M>args_end</M><Y>(</Y>args<Y>)</Y>;
+	<Y>arg_list</Y> args;
+	<M>args_init</M><Y>(</Y>args, format<Y>)</Y>;
+	
+	<Y>i4</Y> num <Y>=</Y> <M>args_next</M><Y>(</Y>args, <Y>i4</Y><Y>)</Y>;
+	<Y>byte</Y> <Y>ref</Y> str <Y>=</Y> <M>args_next</M><Y>(</Y>args, <Y>ref</Y><Y>)</Y>;
+	
+	<M>args_end</M><Y>(</Y>args<Y>)</Y>;
 <C>}</C>
 </pre>
 
@@ -540,7 +540,7 @@ start
 ## Example Programs
 
 ### Hello World
-```
+<pre>
 <Y>#include</Y> <C>"H.h"</C>
 
 <M>start</M>
@@ -548,10 +548,10 @@ start
 	<M>print</M><Y>(</Y> <C>"Hello, World!\n"</C> <Y>)</Y>;
 	<M>out executable_success</M>;
 <C>}</C>
-```
+</pre>
 
 ### File Processing
-```
+<pre>
 <Y>#include</Y> <C>"H.h"</C>
 
 <M>start</M>
@@ -571,7 +571,7 @@ start
 	<M>file_close</M><Y>(</Y> <M>ref_of</M><Y>(</Y> f <Y>) )</Y>;
 	<M>out executable_success</M>;
 <C>}</C>
-```
+</pre>
 
 ## License
 
