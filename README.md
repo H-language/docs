@@ -528,14 +528,14 @@ is_number( byte )         // Check if numeric
 
 ## Entry Point
 
-```
+<pre>
 start
 {
-    out executable_success;     // return 0
-    out executable_failure;     // return 1
-    out executable_warning;     // return 2
+	out executable_success;
+	out executable_failure;
+	out executable_warning;
 }
-```
+</pre>
 
 ## Example Programs
 
