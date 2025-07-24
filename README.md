@@ -1,9 +1,9 @@
-# <glow>H</glow>ydrogen <glow>Lang</glow>uage Documentation
+# <H>H</H>ydrogen <H>Lang</H>uage Documentation
 <i><G>created by </G><EDG>ENDESGA</EDG><G> - started in 2020 - made in NZ - CC0 - FOSS forever</G></i>
 
 -------
 ## a quick overview
-<glow>H</glow> is a single-file syntactic layer that transforms C into a more readable, functional programming language.
+<H>H</H> is a single-file syntactic layer that transforms C into a more readable, functional programming language.
 Hydrogen Language provides:
 - Intuitive and explicit keywords
 - Functional programming patterns
@@ -76,11 +76,11 @@ Make what you wish existed.
 
 -------
 ## Installation
-Simply include `H.h` in your C project:
+Simply include H.h in your C project:
 <pre>
-<M>#include</M> <Y>"</Y><C>H.h</C><Y>"</Y>
+<Y>#include</Y> <C>"H.h"</C>
 </pre>
-Then compile with <b>GCC</b> (MinGW), or <glow>TCC</glow>.
+Then compile with <H>GCC</H>, or <H>TCC</H>.
 
 -------
 ## Core Language Transforms
@@ -88,26 +88,28 @@ Then compile with <b>GCC</b> (MinGW), or <glow>TCC</glow>.
 ### Pointer and Reference Operations
 | H Syntax | Definition |
 |----------|-------------|
-| <G>TYPE</G> <glow>ref</glow> | Reference to type |
-| <glow>ref_of(</glow> <G>VAR</G> <glow>)</glow> | Reference-of variable |
-| <glow>val_of(</glow> <G>REF</G> <glow>)</glow> | Value of reference |
-| <glow>to(</glow> <G>TYPE</G><glow>,</glow> <G>VAL</G> <glow>)</glow> | Type cast |
-| <glow>cast(</glow> <G>TYPE</G><glow>,</glow> <G>VAR</G> <glow>)</glow> | Reinterpret cast |
+| <G>TYPE</G> <H>ref</H> | Reference to type |
+| <H>ref_of(</H> <G>VAR</G> <H>)</H> | Reference-of variable |
+| <H>val_of(</H> <G>REF</G> <H>)</H> | Value of reference |
+| <H>to(</H> <G>TYPE</G><H>,</H> <G>VAL</G> <H>)</H> | Type cast |
+| <H>cast(</H> <G>TYPE</G><H>,</H> <G>VAR</G> <H>)</H> | Reinterpret cast |
 <pre>
-<glow>null</glow> <G>// a zero-ref</G>
+<G>// If a ref doesn't point to anything, you use:</G>
+<H>nothing</H> <G>// a zero-ref that points to no value</G>
+<G>// byte ref x = nothing;</G>
 </pre>
 
 ### Boolean and Logic Operations
 | H Syntax | Definition |
 |----------|-------------|
-| `not` | Logical NOT |
-| `and` | Logical AND |
-| `or` | Logical OR |
-| `xor` | Logical XOR |
-| `mod` | Modulo |
-| `is` | Equality |
-| `isnt` | Inequality |
-| `pick( x, A, B )` | Ternary operator |
+| <H>not</H> | Logical NOT |
+| <H>and</H> | Logical AND |
+| <H>or</H> | Logical OR |
+| <H>xor</H> | Logical eXclusive-OR |
+| mod | Modulo |
+| is | Equality |
+| isnt | Inequality |
+| pick( x, A, B ) | Ternary operator |
 
 -------
 ## Type System
@@ -120,24 +122,24 @@ anon
 ```
 
 ### Number Types
-<glow>N</glow>atural <LG>(cannot be less than zero)</LG>
-<glow>I</glow>nteger <LG>(can be negative)</LG>
-<glow>R</glow>ational <LG>(has a fractional part)</LG>
+<H>N</H>atural <LG>(cannot be less than zero)</LG>
+<H>I</H>nteger <LG>(can be negative)</LG>
+<H>R</H>ational <LG>(has a fractional part)</LG>
 | Type | Bytes | Range |
 |------|------|-------|
-| <glow>n1</glow> | <b>1</b> | <b>0</b> <i>to</i> <b>255</b> |
-| <glow>i1</glow> | <b>1</b> | <b>-128</b> <i>to</i> <b>127</b> |
-| <glow>n2</glow> | <b>2</b> | <b>0</b> <i>to</i> <b>65,535</b> |
-| <glow>i2</glow> | <b>2</b> | <b>-32,768</b> <i>to</i> <b>32,767</b> |
-| <glow>n4</glow> | <b>4</b> | <b>0</b> <i>to</i> <b>4,294,967,295</b> |
-| <glow>i4</glow> | <b>4</b> | <b>-2,147,483,648</b> <i>to</i><br><b>2,147,483,647</b> |
-| <glow>r4</glow> | <b>4</b> | <b>-inf</b> <i>to</i> <b>inf</b> |
-| <glow>n8</glow> | <b>8</b> | <b>0</b> <i>to</i><br><b>18,446,744,073,709,551,615</b> |
-| <glow>i8</glow> | <b>8</b> | <b>-9,223,372,036,854,775,808</b> <i>to</i><br><b>9,223,372,036,854,775,807</b> |
-| <glow>r8</glow> | <b>8</b> | <b>-inf</b> <i>to</i> <b>inf</b> |
+| <H>n1</H> | <b>1</b> | <b>0</b> <i>to</i> <b>255</b> |
+| <H>i1</H> | <b>1</b> | <b>-128</b> <i>to</i> <b>127</b> |
+| <H>n2</H> | <b>2</b> | <b>0</b> <i>to</i> <b>65,535</b> |
+| <H>i2</H> | <b>2</b> | <b>-32,768</b> <i>to</i> <b>32,767</b> |
+| <H>n4</H> | <b>4</b> | <b>0</b> <i>to</i> <b>4,294,967,295</b> |
+| <H>i4</H> | <b>4</b> | <b>-2,147,483,648</b> <i>to</i><br><b>2,147,483,647</b> |
+| <H>r4</H> | <b>4</b> | <b>-inf</b> <i>to</i> <b>inf</b> |
+| <H>n8</H> | <b>8</b> | <b>0</b> <i>to</i><br><b>18,446,744,073,709,551,615</b> |
+| <H>i8</H> | <b>8</b> | <b>-9,223,372,036,854,775,808</b> <i>to</i><br><b>9,223,372,036,854,775,807</b> |
+| <H>r8</H> | <b>8</b> | <b>-inf</b> <i>to</i> <b>inf</b> |
 
 ### Other Types
-```c
+```
 byte // equivalent to an i1, used for explicit byte handling
 flag // yes or no
 ```
@@ -151,7 +153,7 @@ no	// 0
 ## Control Flow
 
 ### Loops
-```c
+```
 loop			// for(;;) - infinite loop
 while( condition )	// standard while
 until( condition )	// while(not(condition))
@@ -162,7 +164,7 @@ jump label		// goto label
 
 ### Iteration Helpers
 
-```c
+```
 // Range iteration: for( i = from; i <= to; i += step )
 range_step( i, from, to, step )
 range( i, from, to )              // step = 1
@@ -179,7 +181,7 @@ repeat( n )
 ```
 
 ### with/when Statements
-```c
+```
 with( val ) // jump to a when() depending on what it is
 {
     when( 1, 2, 3 )
@@ -202,7 +204,7 @@ with( val ) // jump to a when() depending on what it is
 ```
 
 ### Conditional Helpers
-```c
+```
 if_null(ptr)            // if( ptr is null )
 if_not_null(ptr)        // if( ptr isnt null )
 if_any(a, b, c)         // if( a or b or c )
@@ -217,7 +219,7 @@ out_if(condition) val;      // if( condition ) out val;
 ## Functions
 
 ### Function Declaration
-```c
+```
 fn function_name(params)    // static inline void function_name(params)
 {
     out value;              // return value;
@@ -226,7 +228,7 @@ fn function_name(params)    // static inline void function_name(params)
 
 ### Storage Classes
 
-```c
+```
 temp variable       // register variable
 perm variable       // static variable
 global variable     // explicitly global
@@ -237,7 +239,7 @@ embed function      // static inline function
 
 ### Memory Operations
 
-```c
+```
 bytes_copy(from, size, to)              // memcpy
 bytes_copy_internal(from, size, to)     // memmove
 bytes_fill(ptr, value, size)            // memset
@@ -247,7 +249,7 @@ bytes_compare(a, b, size)               // memcmp
 
 ### String Operations
 
-```c
+```
 bytes_paste(from, to)                   // strcpy
 bytes_measure(str)                      // strlen
 bytes_end(str)                          // str[0] = '\0'
@@ -255,7 +257,7 @@ bytes_end(str)                          // str[0] = '\0'
 
 ### Advanced Copy Operations
 
-```c
+```
 bytes_copy_move(from, size, to_ref)     // Copy and advance destination pointer
 bytes_paste_move(from, to_ref)          // Copy string and advance pointer
 bytes_set_move(byte, to_ref)            // Set byte and advance pointer
@@ -263,7 +265,7 @@ bytes_set_move(byte, to_ref)            // Set byte and advance pointer
 
 ## Math Operations
 
-```c
+```
 MIN(a, b)               // Minimum of two values
 MAX(a, b)               // Maximum of two values
 MIN3/MIN4               // Minimum of 3/4 values
@@ -281,7 +283,7 @@ SNAP(v, multiple)       // Snap to multiple
 
 ### Basic Struct
 
-```c
+```
 struct(Point)
 {
     r4 x, y;
@@ -293,7 +295,7 @@ Point p = make(Point, 10.0, 20.0);
 
 ### Objects with Methods
 
-```c
+```
 object(Entity)
 {
     i4 id;
@@ -313,7 +315,7 @@ call(&e, update);       // Calls update if not null
 
 ### Fusion and Group
 
-```c
+```
 fusion(value)           // union Value
 {
     i4 integer;
@@ -332,7 +334,7 @@ group(Color, n1)        // enum with underlying type
 
 ### File Operations
 
-```c
+```
 // Open files
 file f = open_file_loading("path.txt");
 file f = open_file_saving("output.txt");
@@ -354,7 +356,7 @@ file_delete("path.txt");
 
 ### File Utilities
 
-```c
+```
 flag file_exists(path)
 flag folder_exists(path)
 n8 get_file_size(path)
@@ -363,7 +365,7 @@ create_folder(path)
 
 ### Directory Operations
 
-```c
+```
 byte entries[100][PATH_MAX_SIZE];
 n2 count;
 
@@ -379,7 +381,7 @@ count = get_folders(dir, entries, 100);
 
 ### Path Operations
 
-```c
+```
 path("folder", "subfolder", "file.txt")    // "folder/subfolder/file.txt"
 path_up_folder(path_buffer)                // Remove last path component
 byte ref exe_path = get_exe_path()         // Get executable path
@@ -389,7 +391,7 @@ byte ref exe_path = get_exe_path()         // Get executable path
 
 ### Basic Output
 
-```c
+```
 print("Hello, World!")              // Output string
 print_size(buffer, 100)             // Output specific size
 print_newline()                     // Output newline
@@ -397,7 +399,7 @@ print_newline()                     // Output newline
 
 ### Formatted Output
 
-```c
+```
 print_format("Value: <c:g>%d</c:g>\n", 42);
 
 // Format tags:
@@ -414,7 +416,7 @@ print_format("Value: <c:g>%d</c:g>\n", 42);
 
 ### Format Bytes Function
 
-```c
+```
 // Format to buffer with size tracking
 byte buffer[256];
 n4 size = format_bytes(buffer, "Name: <c:b><></c:b>", "John");
@@ -426,7 +428,7 @@ format_bytes_move(ptr, "Value: <c:g>%d</c:g>\n", 42);
 
 ### Terminal Colors
 
-```c
+```
 terminal_set_color(red)
 terminal_set_bg_color(blue)
 terminal_set_bold()
@@ -436,13 +438,13 @@ terminal_clear()
 
 ### Terminal Input
 
-```c
+```
 byte ref input = get_terminal_input();
 ```
 
 ## Variadic Functions
 
-```c
+```
 fn foo( const byte ref format, ... )
 {
     arg_list args;
@@ -459,7 +461,7 @@ fn foo( const byte ref format, ... )
 
 H automatically detects and adapts to the platform:
 
-```c
+```
 OS_LINUX        // 1 if Linux, 0 otherwise
 OS_WINDOWS      // 1 if Windows, 0 otherwise
 OS_MACOS        // 1 if macOS, 0 otherwise
@@ -469,7 +471,7 @@ SEPARATOR       // "/" on Unix, "\\" on Windows
 
 ## Memory Size Constants
 
-```c
+```
 KB( n )           // n * 1,000
 MB( n )           // n * 1,000,000
 GB( n )           // n * 1,000,000,000
@@ -482,7 +484,7 @@ GiB( n )          // n * 1,073,741,824
 
 ### Default Arguments
 
-```c
+```
 #define DEFAULT( default_value, args... ) 
 // Returns args if provided, otherwise default_value
 
@@ -498,7 +500,7 @@ GiB( n )          // n * 1,073,741,824
 
 ### Compile-Time Helpers
 
-```c
+```
 COUNT_ARGS( a, b, c )     // Returns 3
 STRINGIFY( hello )        // Converts to "hello"
 CHAIN( L, R, mid, args... )  // L arg1 R mid L arg2 R
@@ -506,7 +508,7 @@ CHAIN( L, R, mid, args... )  // L arg1 R mid L arg2 R
 
 ### One-Time Execution
 
-```c
+```
 once
 {
     // This code runs only once, even in loops
@@ -516,7 +518,7 @@ once
 
 ### Byte Array Declaration
 
-```c
+```
 declare_bytes( buffer, KB( 1 ) );           // Creates an empty buffer[1000], and a buffer_ref that's at [0]
 declare_bytes( msg, 32, "Hello" );         // Creates msg[32] = "Hello", and a msg_ref that's after the 'o'
 msg[0] = '7'; // msg is now "7ello"
@@ -525,14 +527,14 @@ msg_ref[0] = 'E'; // msg is now "7elloE"
 
 ### Character Classification
 
-```c
+```
 is_letter( byte )         // Check if alphabetic
 is_number( byte )         // Check if numeric
 ```
 
 ## Entry Point
 
-```c
+```
 start
 {
     out executable_success;     // return 0
@@ -545,7 +547,7 @@ start
 
 ### Hello World
 
-```c
+```
 #include "H.h"
 
 start
@@ -557,7 +559,7 @@ start
 
 ### File Processing
 
-```c
+```
 #include "H.h"
 
 start
