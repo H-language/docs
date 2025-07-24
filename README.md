@@ -559,7 +559,7 @@ start
 </pre>
 
 ### File Processing
-<pre>
+```
 <Y>#include</Y> <C>"H.h"</C>
 
 <M>start</M>
@@ -579,7 +579,7 @@ start
 	<M>file_close</M><Y>(</Y> <M>ref_of</M><Y>(</Y> f <Y>) )</Y>;
 	<M>out executable_success</M>;
 <C>}</C>
-</pre>
+```
 
 ## License
 
