@@ -540,7 +540,7 @@ start
 ## Example Programs
 
 ### Hello World
-<pre>
+```
 <Y>#include</Y> <C>"H.h"</C>
 
 <M>start</M>
@@ -548,7 +548,7 @@ start
 	<M>print</M><Y>(</Y> <C>"Hello, World!\n"</C> <Y>)</Y>;
 	<M>out executable_success</M>;
 <C>}</C>
-</pre>
+```
 
 ### File Processing
 ```
