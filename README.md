@@ -182,7 +182,8 @@ repeat( n )
 
 ### with/when Statements
 <pre>
-<M>with</M><Y>(</Y> val <Y>)</Y> <G>// jump to a when() depending on what it is</G>
+<G>// jump to a when() depending on what it is</G>
+<M>with</M><Y>(</Y> val <Y>)</Y>
 <C>{</C>
     <M>when</M><Y>(</Y> <C>1</C>, <C>2</C>, <C>3</C> <Y>)</Y>
     <C>{</C>
@@ -197,7 +198,8 @@ repeat( n )
     
     <M>other</M>
     <C>{</C>
-    	<G>// this code is ran if val isn't 1, 2, or 3. But will if it's 4 etc.</G>
+    	<G>// this code is ran if val
+	// isn't 1, 2, or 3. But will if it's 4 etc.</G>
     <C>}</C>
 <C>}</C>
 <G>// skip takes us out to here</G>
