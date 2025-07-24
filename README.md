@@ -94,8 +94,8 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 | <H>to(</H> <G>TYPE</G><H>,</H> <G>VAL</G> <H>)</H> | Type cast |
 | <H>cast(</H> <G>TYPE</G><H>,</H> <G>VAR</G> <H>)</H> | Reinterpret cast |
 <pre>
-<G>// If a ref doesn't point to anything, you use:</G>
-<H>nothing</H> <G>// a zero-ref that points to no value</G>
+<G>// If a ref points to no value, you use:</G>
+<H>nothing</H>
 <G>// byte ref x = nothing;</G>
 </pre>
 
