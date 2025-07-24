@@ -444,18 +444,18 @@ byte ref input = get_terminal_input();
 
 ## Variadic Functions
 
-```
-fn foo( const byte ref format, ... )
-{
-    arg_list args;
-    args_init(args, format);
+<pre>
+<M>fn</M> <M>foo</M><Y>(</Y> <Y>const</Y> <Y>byte</Y> <Y>ref</Y> format, ... <Y>)</Y>
+<C>{</C>
+    <Y>arg_list</Y> args;
+    <M>args_init</M><Y>(</Y>args, format<Y>)</Y>;
     
-    i4 num = args_next(args, i4);
-    byte ref str = args_next(args, ref);
+    <Y>i4</Y> num <Y>=</Y> <M>args_next</M><Y>(</Y>args, <Y>i4</Y><Y>)</Y>;
+    <Y>byte</Y> <Y>ref</Y> str <Y>=</Y> <M>args_next</M><Y>(</Y>args, <Y>ref</Y><Y>)</Y>;
     
-    args_end(args);
-}
-```
+    <M>args_end</M><Y>(</Y>args<Y>)</Y>;
+<C>}</C>
+</pre>
 
 ## Platform Abstraction
 
@@ -547,7 +547,7 @@ start
 
 ### Hello World
 <pre>
-<Y>#include</Y>Y> <C>"H.h"</C>
+<Y>#include</Y> <C>"H.h"</C>
 
 <M>start</M>
 <C>{</C>
@@ -570,7 +570,7 @@ start
 	<C>}</C>
 	
 	<Y>byte</Y> buffer<C>[</C> <M>KB</M><Y>(</Y> <C>10</C> <Y>)</Y> <C>]</C>;
-	<M>file_load</M><Y>(</Y> <M>ref_of</M><Y>(</Y> f <Y>)</Y>, buffer <C>)</C>;
+	<M>file_load</M><Y>(</Y> <M>ref_of</M><Y>(</Y> f <Y>)</Y>, buffer <Y>)</Y>;
 	
 	<M>print_format</M><Y>(</Y> <C>"File contents: <>\n"</C>, buffer <Y>)</Y>;
 	
