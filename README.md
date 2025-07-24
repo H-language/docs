@@ -4,14 +4,14 @@
 
 H is a single-file syntactic layer that transforms C into a more readable, functional programming language.
 
-H language provides:
-- Intuitive keywords replacing outdated terms
+Hydrogen Language provides:
+- Intuitive and explicit keywords
 - Functional programming patterns
 - Cross-platform abstractions
 - Zero overhead bloat
 - Single header file implementation
 - Unified file and folder IO
-- Modern tools, functions, and data-structures
+- Modern functions and data-structures
 
 ## Installation
 
@@ -21,7 +21,7 @@ Simply include `H.h` in your C project:
 #include "H.h"
 ```
 
-Then compile with GCC (MinGW), or TCC.
+Then compile with <b>GCC</b> (MinGW), or <glow>TCC</glow>.
 
 ## Core Language Transforms
 
@@ -29,14 +29,14 @@ Then compile with GCC (MinGW), or TCC.
 
 | H Syntax | Definition |
 |----------|-------------|
-| `type ref` | Pointer type |
-| `ref_of( var )` | Address-of operator |
-| `val_of( ptr )` | Dereference operator |
+| `type ref` | Reference to type |
+| `ref_of( var )` | Reference-of non-temp variable |
+| `val_of( ptr )` | Dereference to get value |
 | `to( type, val )` | Type cast |
 | `cast( type, val )` | Reinterpret cast |
 
-```c
-null	// a zero-ref
+```
+<glow>null</glow> // a zero-ref
 ```
 
 ### Boolean and Logic Operations
@@ -66,24 +66,24 @@ anon
 
 Natural (cannot be less than zero), Integer (can be negative), Rational (has a fractional part).
 
-| Type | Size | Range |
+| Type | Bytes | Range |
 |------|------|-------|
-| `n1` | <b>1</b> byte | <b>0</b> to <b>255</b> |
-| `i1` | <b>1</b> byte | <b>-128</b> to <b>127</b> |
-| `n2` | <b>2</b> bytes | <b>0</b> to <b>65,535</b> |
-| `i2` | <b>2</b> bytes | <b>-32,768</b> to <b>32,767</b> |
-| `n4` | <b>4</b> bytes | <b>0</b> to <b>4,294,967,295</b> |
-| `i4` | <b>4</b> bytes | <b>-2,147,483,648</b> to <b>2,147,483,647</b> |
-| `r4` | <b>4</b> bytes | <b>-inf</b> to <b>inf</b> |
-| `n8` | <b>8</b> bytes | <b>0</b> to <b>18,446,744,073,709,551,615</b> |
-| `i8` | <b>8</b> bytes | <b>-9,223,372,036,854,775,808</b> to<br><b>9,223,372,036,854,775,807</b> |
-| `r8` | <b>8</b> bytes | <b>-inf</b> to <b>inf</b> |
+| `n1` | <b>1</b> | <b>0</b> <i>to</i> <b>255</b> |
+| `i1` | <b>1</b> | <b>-128</b> <i>to</i> <b>127</b> |
+| `n2` | <b>2</b> | <b>0</b> <i>to</i> <b>65,535</b> |
+| `i2` | <b>2</b> | <b>-32,768</b> <i>to</i> <b>32,767</b> |
+| `n4` | <b>4</b> | <b>0</b> <i>to</i> <b>4,294,967,295</b> |
+| `i4` | <b>4</b> | <b>-2,147,483,648</b> <i>to</i> <b>2,147,483,647</b> |
+| `r4` | <b>4</b> | <b>-inf</b> <i>to</i> <b>inf</b> |
+| `n8` | <b>8</b> | <b>0</b> <i>to</i> <b>18,446,744,073,709,551,615</b> |
+| `i8` | <b>8</b> | <b>-9,223,372,036,854,775,808</b> <i>to</i><br><b>9,223,372,036,854,775,807</b> |
+| `r8` | <b>8</b> | <b>-inf</b> <i>to</i> <b>inf</b> |
 
 ### Other Types
 
 ```c
-byte	// equivalent to an i1, used for explicit byte handling
-flag	// yes or no
+byte // equivalent to an i1, used for explicit byte handling
+flag // yes or no
 ```
 Values:
 ```
@@ -528,3 +528,4 @@ start
 ## License
 
 H is released under CC0 (Creative Commons Zero) - effectively public domain. FOSS forever.
+ 
