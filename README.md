@@ -1,8 +1,8 @@
-# Hydrogen Language Documentation
+# <glow>H</glow>ydrogen <glow>Lang</glow>uage Documentation
 
 ## a quick overview
 
-H is a single-file syntactic layer that transforms C into a more readable, functional programming language.
+<glow>H</glow> is a single-file syntactic layer that transforms C into a more readable, functional programming language.
 
 Hydrogen Language provides:
 - Intuitive and explicit keywords
