@@ -27,40 +27,39 @@ Then compile with GCC (MinGW), or TCC.
 
 ### Pointer and Reference Operations
 
-| C Syntax | H Syntax | Description |
-|----------|----------|-------------|
-| `type*` | `type ref` | Pointer type |
-| `&var` | `ref_of( var )` | Address-of operator |
-| `*ptr` | `val_of( ptr )` | Dereference operator |
-| `(type)val` | `to( type, val )` | Type cast |
-| `*(type*)&val` | `cast( type, val )` | Reinterpret cast |
+| H Syntax | Definition |
+|----------|-------------|
+| `type ref` | Pointer type |
+| `ref_of( var )` | Address-of operator |
+| `val_of( ptr )` | Dereference operator |
+| `to( type, val )` | Type cast |
+| `cast( type, val )` | Reinterpret cast |
+
+```c
+null	// a zero-ref
+```
 
 ### Boolean and Logic Operations
 
-| C Syntax | H Syntax | Description |
-|----------|----------|-------------|
-| `!` | `not` | Logical NOT |
-| `&&` | `and` | Logical AND |
-| `\|\|` | `or` | Logical OR |
-| `^` | `xor` | Logical XOR |
-| `%` | `mod` | Modulo |
-| `==` | `is` | Equality |
-| `!=` | `isnt` | Inequality |
-| `x ? A : B` | `pick( x, A, B )` | Ternary operator |
-
-### Special Values
-
-```c
-null	// (void*)0
-yes		// 1 (true)
-no		// 0 (false)
-```
+| H Syntax | Definition |
+|----------|-------------|
+| `not` | Logical NOT |
+| `and` | Logical AND |
+| `or` | Logical OR |
+| `xor` | Logical XOR |
+| `mod` | Modulo |
+| `is` | Equality |
+| `isnt` | Inequality |
+| `pick( x, A, B )` | Ternary operator |
 
 ## Type System
 
 If the type is unknown, it's:
 ```
-anon	// void
+anon
+// anon ref x = ref_of( to( anon, y ) ); !! Cannot get ref from type-cast
+// anon ref x = ref_of( cast( anon, y ) ); ?? You can get the ref from an reinterpret-cast
+// anon ref x = to( anon ref, ref_of( y ) ); It's better to get the ref, then cast the ref
 ```
 
 ### Number Types
@@ -69,22 +68,27 @@ Natural (cannot be less than zero), Integer (can be negative), Rational (has a f
 
 | Type | Size | Range |
 |------|------|-------|
-| `n1` | 1 byte | 0 to 255 (unsigned char) |
-| `i1` | 1 byte | -128 to 127 (signed char) |
-| `n2` | 2 bytes | 0 to 65,535 (unsigned short) |
-| `i2` | 2 bytes | -32,768 to 32,767 (signed short) |
-| `n4` | 4 bytes | 0 to 4,294,967,295 (unsigned int) |
-| `i4` | 4 bytes | -2,147,483,648 to 2,147,483,647 (signed int) |
-| `r4` | 4 bytes | -inf to inf |
-| `n8` | 8 bytes | 0 to 18,446,744,073,709,551,615 (unsigned long long) |
-| `i8` | 8 bytes | -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 (signed long long) |
-| `r8` | 8 bytes | -inf to inf |
+| `n1` | <b>1</b> byte | <b>0</b> to <b>255</b> |
+| `i1` | <b>1</b> byte | <b>-128</b> to <b>127</b> |
+| `n2` | <b>2</b> bytes | <b>0</b> to <b>65,535</b> |
+| `i2` | <b>2</b> bytes | <b>-32,768</b> to <b>32,767</b> |
+| `n4` | <b>4</b> bytes | <b>0</b> to <b>4,294,967,295</b> |
+| `i4` | <b>4</b> bytes | <b>-2,147,483,648</b> to <b>2,147,483,647</b> |
+| `r4` | <b>4</b> bytes | <b>-inf</b> to <b>inf</b> |
+| `n8` | <b>8</b> bytes | <b>0</b> to <b>18,446,744,073,709,551,615</b> |
+| `i8` | <b>8</b> bytes | <b>-9,223,372,036,854,775,808</b> to<br><b>9,223,372,036,854,775,807</b> |
+| `r8` | <b>8</b> bytes | <b>-inf</b> to <b>inf</b> |
 
 ### Other Types
 
 ```c
-byte        // char
-flag        // _Bool
+byte	// equivalent to an i1, used for explicit byte handling
+flag	// yes or no
+```
+Values:
+```
+yes	// 1
+no	// 0
 ```
 
 ## Control Flow
@@ -92,12 +96,12 @@ flag        // _Bool
 ### Loops
 
 ```c
-loop                    // for(;;) - infinite loop
-while(condition)        // standard while
-until(condition)        // while(not(condition))
-next                    // continue
-skip                    // break
-jump label              // goto label
+loop			// for(;;) - infinite loop
+while( condition )	// standard while
+until( condition )	// while(not(condition))
+next			// continue
+skip			// break
+jump label		// goto label
 ```
 
 ### Iteration Helpers
