@@ -264,12 +264,12 @@ If the function does output something:
 <M>next</M> <G>// Jump up to next iteration</G>
 <G>// while( x < 10 )</G>
 <G>// {</G>
-<G>//   x = x + 1;</G>
-<G>//   if( x < 5 )</G>
-<G>//   {</G>
-<G>//     next; // jumps back up to while</G>
-<G>//   }</G>
-<G>//   ...</G>
+<G>// 	x = x + 1;</G>
+<G>// 	if( x < 5 )</G>
+<G>// 	{</G>
+<G>// 		next; // jumps back up to while</G>
+<G>// 	}</G>
+<G>// 	...</G>
 <G>// }</G>
 
 <M>skip_if</M><Y>(</Y> <LG>F</LG> <Y>)</Y>; <G>// Skip if F is yes</G>
