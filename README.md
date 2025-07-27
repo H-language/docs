@@ -95,7 +95,7 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 | <code><M>to</M><Y>(</Y> <LG>TYPE</LG>, <LG>VAL</LG> <Y>)</Y></code> | Changes VAL to TYPE |
 | <code><M>cast</M><Y>(</Y> <LG>TYPE</LG>, <LG>VAR</LG> <Y>)</Y></code> | Reinterpret VAR to TYPE |
 
-### Boolean and Logic Operations
+### Logic Operations
 | H Syntax | Definition |
 |----------|-------------|
 | <code><M>not</M></code> | Logical NOT |
@@ -140,7 +140,7 @@ If the reference itself is unknown/invalid, it's:
 - <H>R</H>ational <LG>(has a fractional part)</LG>
 
 <pre>
-[<Y>n</Y>/<Y>i</Y>/<Y>r</Y>][<Y>size</Y>]
+<LG>[</LG><Y>n</Y><LG>/</LG><Y>i</Y><LG>/</LG><Y>r</Y><LG>][</LG><Y>size</Y><LG>]</LG>
 <G>// Where [size] is in bytes</G>
 </pre>
 
@@ -193,10 +193,17 @@ If the reference itself is unknown/invalid, it's:
 
 ### Loops
 <pre>
+<M>skip</M> <G>// Skip the rest of the scope</G>
+
+<LG>POINT</LG>: <G>// Set jump point</G>
+<M>jump</M> <LG>POINT</LG>; <G>// Jump to POINT
+
 <M>loop</M>
 <C>{</C>
 	<G>// Infinite loop</G>
+	<G>// Requires a skip or jump to escape!</G>
 <C>}</C>
+<G>// loop{}; will freeze the entire executable</G>
 
 <M>while</M><Y>(</Y> x <Y>)</Y>
 <C>{</C>
@@ -218,10 +225,16 @@ If the reference itself is unknown/invalid, it's:
 <M>until</M><Y>(</Y> x <Y>)</Y>;
 
 <M>next</M> <G>// Jump up to next iteration</G>
-<M>skip</M> <G>// Skip the rest of the scope</G>
-
-<LG>POINT</LG>: <G>// Set jump point</G>
-<M>jump</M> <LG>POINT</LG>; <G>// Jump to POINT
+<G>// while( x < 10 )</G>
+<G>// {</G>
+<G>// 	x = x + 1;</G>
+<G>// 	if( x < 5 )</G>
+<G>// 	{</G>
+<G>// 		print( "7" );</G>
+<G>// 		next; // jumps back up to while</G>
+<G>// 	}</G>
+<G>// 	print( "H" );</G>
+<G>// }</G>
 </pre>
 
 ### Iteration Helpers
