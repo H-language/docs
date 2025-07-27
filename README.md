@@ -241,14 +241,15 @@ jump label		// goto label
 	
 	<M>when</M><Y>(</Y> <C>4</C> <Y>)</Y>
 	<C>{</C>
-		<G>// code</G>
+		<G>// Code specifically for if val is 4</G>
 	<C>}</C> <G>// there's no skip, so it continues:</G>
 	
 	<M>other</M>
 	<C>{</C>
-		<G>// this code is ran if val</G>
-		<G>// isn't 1, 2, or 3. But will if it's 4 etc.</G>
-	<C>}</C>
+		<G>// This code is ran if val</G>
+		<G>// isn't 1, 2, or 3.
+		<G>// But will if it's 4 or anything else.</G>
+	<C>}</C> <G>// a skip isn't required in the last block
 <C>}</C>
 <G>// skip takes us out to here</G>
 </pre>
