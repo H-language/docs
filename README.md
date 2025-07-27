@@ -167,13 +167,13 @@ If the value of a reference is unknown, it's:
 </pre>
 
 <pre>
-<H>temp</H> variable <G>// variable is temporary</G>
+<H>temp</H> <LG>VAR</LG> <G>// VAR is temporary</G>
 <G>// cannot get ref_of</G>
 
-<H>perm</H> variable <G>// permanent variable</G>
-<G>// made once, always exists in the scope
+<H>perm</H> <LG>VAR</LG> <G>// VAR is permanent</G>
+<G>// made once, always exists in the scope</G>
 
-<H>global</H> variable <G>// variable is explicitly global</G>
+<H>global</H> <LG>VAR</LG> <G>// VAR is explicitly global</G>
 <G>// used as an identifier</G>
 </pre>
 
@@ -181,14 +181,35 @@ If the value of a reference is unknown, it's:
 ## Control Flow
 
 ### Loops
-```
-loop			// for(;;) - infinite loop
-while( condition )	// standard while
-until( condition )	// while(not(condition))
+<pre>
+<M>loop</M>
+<C>{</C>
+	<G>// infinite loop</G>
+<C>}</C>
+
+<M>while</M><Y>(</Y> x <Y>)</Y>
+<C>{</C>
+	<G>// run this code while x is yes</G>
+<C>}</C>
+
+<M>do</M>
+<C>{</C>
+	<G>// run this code</G>
+	<G>// while x is yes</G>
+<C>}</C>
+<M>while</M><Y>(</Y> x <Y>)</Y>;
+
+<M>do</M>
+<C>{</C>
+	<G>// run this code</G>
+	<G>// until x is yes</G>
+<C>}</C>
+<M>until</M><Y>(</Y> x <Y>)</Y>;
+
 next			// continue
 skip			// break
 jump label		// goto label
-```
+</pre>
 
 ### Iteration Helpers
 
