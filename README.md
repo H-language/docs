@@ -111,7 +111,8 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 ## Type System
 <H>H</H> has a "only bytes and references" design.
 
-## a <H>byte</H> is 8 bits, a <H>ref</H> is 8 bytes!
+## a <H>byte</H> is <i>8 bits</i>
+## a <H>ref</H> is <i>8 bytes</i>
 
 If you're dealing with bytes, use:
 <pre>
