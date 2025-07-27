@@ -249,21 +249,22 @@ jump label		// goto label
 		<G>// This code is ran if val</G>
 		<G>// isn't 1, 2, or 3.
 		<G>// But will if it's 4 or anything else.</G>
-	<C>}</C> <G>// a skip isn't required in the last block
+	<C>}</C> <G>// a skip isn't required at the end
 <C>}</C>
 <G>// skip takes us out to here</G>
 </pre>
 
 ### Conditional Helpers
 <pre>
-<M>if_null</M><Y>(</Y>ptr<Y>)</Y>            <G>// if( ptr is null )</G>
-<M>if_not_null</M><Y>(</Y>ptr<Y>)</Y>        <G>// if( ptr isnt null )</G>
-<M>if_any</M><Y>(</Y>a, b, c<Y>)</Y>         <G>// if( a or b or c )</G>
-<M>if_all</M><Y>(</Y>a, b, c<Y>)</Y>         <G>// if( a and b and c )</G>
-<M>if_none</M><Y>(</Y>a, b, c<Y>)</Y>        <G>// if( not( a or b or c) )</G>
-<M>skip_if</M><Y>(</Y>condition<Y>)</Y>;      <G>// if( condition ) skip;</G>
-<M>next_if</M><Y>(</Y>condition<Y>)</Y>;      <G>// if( condition ) next;</G>
-<M>out_if</M><Y>(</Y>condition<Y>)</Y> val;      <G>// if( condition ) out val;</G>
+<M>if_nothing</M><Y>( </Y>REF<Y> )</Y> <G>// if REF is nothing</G>
+<M>if_something</M><Y>( </Y>REF<Y> )</Y> <G>// if REF is not nothing</G>
+<M>if_any</M><Y>(</Y> a, b, c... <Y>)</Y> <G>// if any arguments are yes</G>
+<M>if_all</M><Y>(</Y> a, b, c... <Y>)</Y> <G>// if all arguments are yes</G>
+<M>if_none</M><Y>(</Y> a, b, c... <Y>)</Y> <G>// if none of the arguments are yes</G>
+
+<M>skip_if</M><Y>(</Y> x <Y>)</Y>; <G>// skip if x is yes</G>
+<M>next_if</M><Y>(</Y> x <Y>)</Y>; <G>// next iter is x is yes</G>
+<M>out_if</M><Y>(</Y> x <Y>)</Y> val; <G>// jump out if x is yes</G>
 </pre>
 
 -------
