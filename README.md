@@ -156,11 +156,14 @@ If the value of a reference is unknown, it's:
 ### Other Types and Prefixes
 <pre>
 <H>flag</H> <G>// yes or no</G>
-</pre>
-flag values:
-<pre>
+
 <H>yes</H> <G>// 1</G>
 <H>no</H>  <G>// 0</G>
+
+<H>flip(</H> <G>FLAG</G> <H>)</H>; <G>// no to yes, yes to no</G>
+<G>// flag is_ready = no;</G>
+<G>// flip( is_ready );</G>
+<G>// is_ready is now yes</G>
 </pre>
 
 <pre>
