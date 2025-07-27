@@ -614,81 +614,79 @@ If the function does output something:
 <C>}</C>
 </pre>
 
+-------
 ## Platform Abstraction
 
-H automatically detects and adapts to the platform:
+<H>H</H> automatically detects and adapts to the platform:
 
-```
-OS_LINUX        // 1 if Linux, 0 otherwise
-OS_WINDOWS      // 1 if Windows, 0 otherwise
-OS_MACOS        // 1 if macOS, 0 otherwise
-OS_NAME         // String: "Linux", "Windows", "macOS"
-SEPARATOR       // "/" on Unix, "\\" on Windows
-```
+<pre>
+<LG>OS_LINUX</LG> <G>// 1 if Linux, 0 otherwise</G>
+<LG>OS_WINDOWS</LG> <G>// 1 if Windows, 0 otherwise</G>
+<LG>OS_MACOS</LG> <G>// 1 if macOS, 0 otherwise</G>
+<LG>OS_NAME</LG> <G>// String: "Linux", "Windows", "macOS"</G>
+<LG>SEPARATOR</LG> <G>// "/" on Unix, "\\" on Windows</G>
+</pre>
 
+-------
 ## Memory Size Constants
 
-```
-KB( n )           // n * 1,000
-MB( n )           // n * 1,000,000
-GB( n )           // n * 1,000,000,000
-KiB( n )          // n * 1,024
-MiB( n )          // n * 1,048,576
-GiB( n )          // n * 1,073,741,824
-```
+<pre>
+<M>KB</M><Y>(</Y> <LG>N</LG> <Y>)</Y> <G>// N * 1,000</G>
+<M>MB</M><Y>(</Y> <LG>N</LG> <Y>)</Y> <G>// N * 1,000,000</G>
+<M>GB</M><Y>(</Y> <LG>N</LG> <Y>)</Y> <G>// N * 1,000,000,000</G>
+<M>KiB</M><Y>(</Y> <LG>N</LG> <Y>)</Y> <G>// N * 1,024</G>
+<M>MiB</M><Y>(</Y> <LG>N</LG> <Y>)</Y> <G>// N * 1,048,576</G>
+<M>GiB</M><Y>(</Y> <LG>N</LG> <Y>)</Y> <G>// N * 1,073,741,824</G>
+</pre>
 
 -------
 ## Utility Macros
 
 ### Default Arguments
 
-```
-#define DEFAULT( default_value, args... ) 
-// Returns args if provided, otherwise default_value
+<pre>
+<C>#define</C> <M>DEFAULT</M><Y>(</Y> <LG>DEFAULT_VALUE</LG>, <LG>ARGS...</LG> <Y>)</Y>
+<G>// Returns ARGS if provided, otherwise DEFAULT_VALUE</G>
 
-#define DEFAULTS( ( defaults_tuple ), args... )
-// used like:
-#define foo( name, args... ) name( DEFAULTS( ( 1, 2, 3 ), args ) )
-// foo( test ) -> test( 1, 2, 3 )
-// foo( test, 7 ) -> test( 7, 2, 3 )
-// foo( test, 7, 8 ) -> test( 7, 8, 3 )
-// foo( test, 7, 8, 9 ) -> test( 7, 8, 9 )
-// foo( test, 7,, 9 ) -> test( 7,, 9 ) !! it doesn't skip
-```
+<C>#define</C> <M>DEFAULTS</M><Y>(</Y> <Y>(</Y> <LG>DEFAULTS_TUPLE</LG> <Y>)</Y>, <LG>ARGS...</LG> <Y>)</Y>
+<G>// Used like:</G>
+<C>#define</C> <M>foo</M><Y>(</Y> <LG>NAME</LG>, <LG>ARGS...</LG> <Y>)</Y> <LG>NAME</LG><Y>(</Y> <M>DEFAULTS</M><Y>(</Y> <Y>(</Y> <C>1</C>, <C>2</C>, <C>3</C> <Y>)</Y>, <LG>ARGS</LG> <Y>)</Y> <Y>)</Y>
+<G>// foo( test ) -> test( 1, 2, 3 )</G>
+<G>// foo( test, 7 ) -> test( 7, 2, 3 )</G>
+<G>// foo( test, 7, 8 ) -> test( 7, 8, 3 )</G>
+<G>// foo( test, 7, 8, 9 ) -> test( 7, 8, 9 )</G>
+<G>// foo( test, 7,, 9 ) -> test( 7,, 9 ) !! doesn't skip</G>
+</pre>
 
 ### Compile-Time Helpers
 
-```
-COUNT_ARGS( a, b, c )     // Returns 3
-STRINGIFY( hello )        // Converts to "hello"
-CHAIN( L, R, mid, args... )  // L arg1 R mid L arg2 R
-```
-
-### One-Time Execution
-
-```
-once
-{
-    // This code runs only once, even in loops
-    print( "loading complete\n" );
-}
-```
+<pre>
+<M>COUNT_ARGS</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG> <Y>)</Y> <G>// Returns 3</G>
+<M>STRINGIFY</M><Y>(</Y> <LG>hello</LG> <Y>)</Y> <G>// Converts to "hello"</G>
+<M>CHAIN</M><Y>(</Y> <LG>L</LG>, <LG>R</LG>, <LG>MID</LG>, <LG>ARGS...</LG> <Y>)</Y> <G>// L arg1 R MID L arg2 R</G>
+</pre>
 
 ### Byte Array Declaration
 
-```
-declare_bytes( buffer, KB( 1 ) );           // Creates an empty buffer[1000], and a buffer_ref that's at [0]
-declare_bytes( msg, 32, "Hello" );         // Creates msg[32] = "Hello", and a msg_ref that's after the 'o'
-msg[0] = '7'; // msg is now "7ello"
-msg_ref[0] = 'E'; // msg is now "7elloE"
-```
+<pre>
+<M>declare_bytes</M><Y>(</Y> <LG>buffer</LG>, <M>KB</M><Y>(</Y> <C>1</C> <Y>)</Y> <Y>)</Y>;
+<G>// Creates empty buffer[1000]</G>
+<G>// And buffer_ref that's at [0]</G>
+
+<M>declare_bytes</M><Y>(</Y> <LG>msg</LG>, <C>32</C>, <C>"Hello"</C> <Y>)</Y>;
+<G>// Creates msg[32] = "Hello"</G>
+<G>// And msg_ref that's after the 'o'</G>
+
+<LG>msg</LG><Y>[</Y><C>0</C><Y>]</Y> = <C>'7'</C>; <G>// msg is now "7ello"</G>
+<LG>msg_ref</LG><Y>[</Y><C>0</C><Y>]</Y> = <C>'E'</C>; <G>// msg is now "7elloE"</G>
+</pre>
 
 ### Character Classification
 
-```
-is_letter( byte )         // Check if alphabetic
-is_number( byte )         // Check if numeric
-```
+<pre>
+<M>is_letter</M><Y>(</Y> <LG>BYTE</LG> <Y>)</Y> <G>// Check if alphabetic</G>
+<M>is_number</M><Y>(</Y> <LG>BYTE</LG> <Y>)</Y> <G>// Check if numeric</G>
+</pre>
 
 -------
 ## Example Programs
