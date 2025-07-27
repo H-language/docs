@@ -89,11 +89,11 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 ### Pointer and Reference Operations
 | H Syntax | Definition |
 |----------|-------------|
-| `<G>TYPE</G> <H>ref</H>` | Reference to TYPE |
-| `<H>ref_of(</H> <G>VAR</G> <H>)</H>` | Reference-of variable |
-| `<H>val_of(</H> <G>REF</G> <H>)</H>` | Value-of reference |
-| `<H>to(</H> <G>TYPE</G><H>,</H> <G>VAL</G> <H>)</H>` | Changes VAL to TYPE |
-| `<H>cast(</H> <G>TYPE</G><H>,</H> <G>VAR</G> <H>)</H>` | Reinterpret VAR to TYPE |
+| <code><G>TYPE</G> <H>ref</H></code> | Reference to TYPE |
+| <code><H>ref_of(</H> <G>VAR</G> <H>)</H></code> | Reference-of variable |
+| <code><H>val_of(</H> <G>REF</G> <H>)</H></code> | Value-of reference |
+| <code><H>to(</H> <G>TYPE</G><H>,</H> <G>VAL</G> <H>)</H></code> | Changes VAL to TYPE |
+| <code><H>cast(</H> <G>TYPE</G><H>,</H> <G>VAR</G> <H>)</H></code> | Reinterpret VAR to TYPE |
 <pre>
 <G>// If a ref points to no value, you use:</G>
 <H>nothing</H>
@@ -103,14 +103,14 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 ### Boolean and Logic Operations
 | H Syntax | Definition |
 |----------|-------------|
-| `<H>not</H>` | Logical NOT |
-| `<H>and</H>` | Logical AND |
-| `<H>or</H>` | Logical OR |
-| `<H>xor</H>` | Logical eXclusive-OR |
-| `<H>mod</H>` | Modulo |
-| `<H>is</H>` | Equality |
-| `<H>isnt</H>` | Inequality |
-| `<H>pick(</H> <G>x</G><H>,</H> <G>A</G><H>,</H> <G>B</G> <H>)</H>` | Ternary operator |
+| <code><H>not</H></code> | Logical NOT |
+| <code><H>and</H></code> | Logical AND |
+| <code><H>or</H></code> | Logical OR |
+| <code><H>xor</H></code> | Logical eXclusive-OR |
+| <code><H>mod</H></code> | Modulo |
+| <code><H>is</H></code> | Equality |
+| <code><H>isnt</H></code> | Inequality |
+| <code><H>pick(</H> <G>x</G><H>,</H> <G>A</G><H>,</H> <G>B</G> <H>)</H></code> | Ternary operator |
 
 -------
 ## Type System
@@ -126,16 +126,16 @@ If the type is unknown, it's:
 - <H>R</H>ational <LG>(has a fractional part)</LG>
 | Type | Bytes | Range |
 |------|------|-------|
-| `<H>n1</H>` | <b>1</b> | <b>0</b> <LG><i>to</i></LG> <b>255</b> |
-| `<H>i1</H>` | <b>1</b> | <b>-128</b> <LG><i>to</i></LG> <b>127</b> |
-| `<H>n2</H>` | <b>2</b> | <b>0</b> <LG><i>to</i></LG> <b>65,535</b> |
-| `<H>i2</H>` | <b>2</b> | <b>-32,768</b> <LG><i>to</i></LG> <b>32,767</b> |
-| `<H>n4</H>` | <b>4</b> | <b>0</b> <LG><i>to</i></LG> <b>4,294,967,295</b> |
-| `<H>i4</H>` | <b>4</b> | <b>-2,147,483,648</b> <LG><i>to</i></LG><br><b>2,147,483,647</b> |
-| `<H>r4</H>` | <b>4</b> | <b>-inf</b> <LG><i>to</i></LG> <b>inf</b> |
-| `<H>n8</H>` | <b>8</b> | <b>0</b> <LG><i>to</i></LG><br><b>18,446,744,073,709,551,615</b> |
-| `<H>i8</H>` | <b>8</b> | <b>-9,223,372,036,854,775,808</b> <LG><i>to</i></LG><br><b>9,223,372,036,854,775,807</b> |
-| `<H>r8</H>` | <b>8</b> | <b>-inf</b> <LG><i>to</i></LG> <b>inf</b> |
+| <code><H>n1</H></code> | <b>1</b> | <b>0</b> <LG><i>to</i></LG> <b>255</b> |
+| <code><H>i1</H></code> | <b>1</b> | <b>-128</b> <LG><i>to</i></LG> <b>127</b> |
+| <code><H>n2</H></code> | <b>2</b> | <b>0</b> <LG><i>to</i></LG> <b>65,535</b> |
+| <code><H>i2</H></code> | <b>2</b> | <b>-32,768</b> <LG><i>to</i></LG> <b>32,767</b> |
+| <code><H>n4</H></code> | <b>4</b> | <b>0</b> <LG><i>to</i></LG> <b>4,294,967,295</b> |
+| <code><H>i4</H></code> | <b>4</b> | <b>-2,147,483,648</b> <LG><i>to</i></LG><br><b>2,147,483,647</b> |
+| <code><H>r4</H></code> | <b>4</b> | <b>-inf</b> <LG><i>to</i></LG> <b>inf</b> |
+| <code><H>n8</H></code> | <b>8</b> | <b>0</b> <LG><i>to</i></LG><br><b>18,446,744,073,709,551,615</b> |
+| <code><H>i8</H></code> | <b>8</b> | <b>-9,223,372,036,854,775,808</b> <LG><i>to</i></LG><br><b>9,223,372,036,854,775,807</b> |
+| <code><H>r8</H></code> | <b>8</b> | <b>-inf</b> <LG><i>to</i></LG> <b>inf</b> |
 
 ### Other Types
 ```
