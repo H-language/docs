@@ -192,16 +192,28 @@ If the reference itself is unknown/invalid, it's:
 ## Functions
 
 ### Function Declaration
+If the function doesn't output anything:
 <pre>
-<G>// If the function does not output anything:
-<M>fn</M> <LG>NAME</LG><Y>(</Y> <LG>TYPE ARG1</LG>, <LG>const TYPE ARG2</LG>, <LG>TYPE ref ARG3...</LG> <Y>)</Y>
+<M>fn</M> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG>, <LG>TYPE B</LG>, <LG>TYPE C...</LG> <Y>)</Y>
+<C>{</C>
+	<G>// function code</G>
+	<M>out</M>; <G>// exits the function</G>
+<C>}</C>
+</pre>
+If the function does output something:
+<pre>
+<LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG>, <LG>TYPE B</LG>, <LG>TYPE C...</LG> <Y>)</Y>
+<C>{</C>
+	<G>// function code</G>
+	<M>out</M> <LG>VAL</LG>; <G>// outputs a value of TYPE</G>
+<C>}</C>
 </pre>
 
 ### Embed Function Prefix
 <pre>
 <M>embed</M> <LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>...</LG> <Y>)</Y>
-<G>// This will force the compiler to embed the</G>
-<G>//  function code in where it's called</G>
+<G>// This will force the compiler to embed</G>
+<G>//  the function code in where it's called</G>
 </pre>
 
 -------
@@ -214,31 +226,31 @@ If the reference itself is unknown/invalid, it's:
 	<G>// Infinite loop</G>
 	<G>// Requires a skip or jump to escape!</G>
 <C>}</C>
-<G>// loop{}; will freeze the entire executable</G>
+<G>// loop{}; will freeze the executable</G>
 
-<M>while</M><Y>(</Y> x <Y>)</Y>
+<M>while</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y>
 <C>{</C>
-	<G>// Run this code while x is yes</G>
+	<G>// Run this code while FLAG is yes</G>
 <C>}</C>
 
 <M>do</M>
 <C>{</C>
 	<G>// Run this code</G>
-	<G>// While x is yes</G>
+	<G>// While FLAG is yes</G>
 <C>}</C>
-<M>while</M><Y>(</Y> x <Y>)</Y>;
+<M>while</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y>;
 
 <M>do</M>
 <C>{</C>
 	<G>// Run this code</G>
-	<G>// Until x is yes</G>
+	<G>// Until FLAG is yes</G>
 <C>}</C>
-<M>until</M><Y>(</Y> x <Y>)</Y>;
+<M>until</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y>;
 
 <M>skip</M> <G>// Skip the rest of the scope</G>
 
 <LG>POINT</LG>: <G>// Set jump point</G>
-<M>jump</M> <LG>POINT</LG>; <G>// Jump to POINT
+<M>jump</M> <LG>POINT</LG>; <G>// Jump to POINT</G>
 
 <M>next</M> <G>// Jump up to next iteration</G>
 <G>// while( x < 10 )</G>
@@ -252,11 +264,12 @@ If the reference itself is unknown/invalid, it's:
 <G>// 	print( "H" );</G>
 <G>// }</G>
 
-<M>skip_if</M><Y>(</Y> <LG>x</LG> <Y>)</Y>; <G>// Skip if x is yes</G>
-<M>next_if</M><Y>(</Y> <LG>x</LG> <Y>)</Y>; <G>// Jump to next if x is yes</G>
-<M>out_if</M><Y>(</Y> <LG>x</LG> <Y>)</Y> v; <G>// Output v if x is yes</G>
+<M>skip_if</M><Y>(</Y> <LG>F</LG> <Y>)</Y>; <G>// Skip if F is yes</G>
+<M>jump_if</M><Y>(</Y> <LG>F</LG> <Y>)</Y> <LG>P</LG>; <G>// Jump to P if F is yes</G>
+<M>next_if</M><Y>(</Y> <LG>F</LG> <Y>)</Y>; <G>// Jump to next if F is yes</G>
+<M>out_if</M><Y>(</Y> <LG>F</LG> <Y>)</Y> v; <G>// Output v if F is yes</G>
 <G>// Can be empty if function doesn't output:</G>
-<G>// out_if( x );</G>
+<G>// out_if( is_done isnt no );</G>
 </pre>
 
 ### Iteration Helpers
