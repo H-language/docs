@@ -233,22 +233,22 @@ jump label		// goto label
 <G>// jump to a when() depending on what it is</G>
 <M>with</M><Y>(</Y> val <Y>)</Y>
 <C>{</C>
-    <M>when</M><Y>(</Y> <C>1</C>, <C>2</C>, <C>3</C> <Y>)</Y>
-    <C>{</C>
-    	<G>// code</G>
-    	<M>skip</M>;
-    <C>}</C>
-    
-    <M>when</M><Y>(</Y> <C>4</C> <Y>)</Y>
-    <C>{</C>
-    	<G>// code</G>
-    <C>}</C> <G>// there's no skip, so it continues:</G>
-    
-    <M>other</M>
-    <C>{</C>
-    	<G>// this code is ran if val</G>
-			<G>// isn't 1, 2, or 3. But will if it's 4 etc.</G>
-    <C>}</C>
+	<M>when</M><Y>(</Y> <C>1</C>, <C>2</C>, <C>3</C> <Y>)</Y>
+	<C>{</C>
+		<G>// code</G>
+		<M>skip</M>;
+	<C>}</C>
+	
+	<M>when</M><Y>(</Y> <C>4</C> <Y>)</Y>
+	<C>{</C>
+		<G>// code</G>
+	<C>}</C> <G>// there's no skip, so it continues:</G>
+	
+	<M>other</M>
+	<C>{</C>
+		<G>// this code is ran if val</G>
+		<G>// isn't 1, 2, or 3. But will if it's 4 etc.</G>
+	<C>}</C>
 <C>}</C>
 <G>// skip takes us out to here</G>
 </pre>
