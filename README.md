@@ -4,7 +4,7 @@
 -------
 ## a quick overview
 <H>H</H> is a single-file syntactic layer that reshapes C into a more readable and understandable language.
-Hydrogen Language provides:
+<H>H</H>ydrogen <H>Lang</H>uage provides:
 - Intuitive and explicit keywords
 - Functional programming patterns
 - Cross-platform abstractions
@@ -14,12 +14,13 @@ Hydrogen Language provides:
 - Modern functions and data-structures
 
 ### the H mini-manifesto & some personal statements:
-Why go to all the effort of making a programming language when it's not even readable to the average person? What's the point of gatekeeping "talking to computers" behind walls of unintuitive symbols? It's hard enough learning the rules, logic, workflows to program. Why make it harder with symbols and pairs of symbols that require remembering rather than simply reading? Programmers forget how difficult it was to initially understand how to code, and brush it off as "you'll learn and struggle too". But why not just bring the barrier of entry down by making a language completely readable without symbol-decryption?
+Why go to all the effort of making a programming language when it's not even readable to the average person? What's the point of gatekeeping "talking to computers" behind walls of unintuitive symbols? It's hard enough learning the logic, rules, and workflows to program effectively. Why make it harder with symbols and pairs of symbols that require remembering rather than simply reading?
+
+Programmers forget how difficult it was to initially understand how to code, and brush it off as "you'll learn and struggle too". But why not just bring the barrier of entry down by making a language completely readable from the start?
 
 My answer to this is an abstraction layer I've been crafting and honing for many years.
 This is designed for younger me, who struggled to read and understand code for a very long time. The over-use of symbols in programming languages has frustrated me since the moment I started learning. Only after many years of intense study, practice, and fixation have I finally got enough knowledge to create a solution.
 
-A lot of passion, care, and strong intention has gone into all of this.
 Make what you wish existed.
 
 -------
@@ -88,11 +89,11 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 ### Pointer and Reference Operations
 | H Syntax | Definition |
 |----------|-------------|
-| <G>TYPE</G> <H>ref</H> | Reference to type |
-| <H>ref_of(</H> <G>VAR</G> <H>)</H> | Reference-of variable |
-| <H>val_of(</H> <G>REF</G> <H>)</H> | Value of reference |
-| <H>to(</H> <G>TYPE</G><H>,</H> <G>VAL</G> <H>)</H> | Type cast |
-| <H>cast(</H> <G>TYPE</G><H>,</H> <G>VAR</G> <H>)</H> | Reinterpret cast |
+| <code><G>TYPE</G> <H>ref</H></code> | Reference to type |
+| <code><H>ref_of(</H> <G>VAR</G> <H>)</H></code> | Reference-of variable |
+| <code><H>val_of(</H> <G>REF</G> <H>)</H></code> | Value of reference |
+| <code><H>to(</H> <G>TYPE</G><H>,</H> <G>VAL</G> <H>)</H></code> | Type cast |
+| <code><H>cast(</H> <G>TYPE</G><H>,</H> <G>VAR</G> <H>)</H></code> | Reinterpret cast |
 <pre>
 <G>// If a ref points to no value, you use:</G>
 <H>nothing</H>
@@ -102,14 +103,14 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 ### Boolean and Logic Operations
 | H Syntax | Definition |
 |----------|-------------|
-| <H>not</H> | Logical NOT |
-| <H>and</H> | Logical AND |
-| <H>or</H> | Logical OR |
-| <H>xor</H> | Logical eXclusive-OR |
-| mod | Modulo |
-| is | Equality |
-| isnt | Inequality |
-| pick( x, A, B ) | Ternary operator |
+| <code><H>not</H></code> | Logical NOT |
+| <code><H>and</H></code> | Logical AND |
+| <code><H>or</H></code> | Logical OR |
+| <code><H>xor</H></code> | Logical eXclusive-OR |
+| <code><H>mod</H></code> | Modulo |
+| <code><H>is</H></code> | Equality |
+| <code><H>isnt</H></code> | Inequality |
+| <code><H>pick(</H> <G>x</G><H>,</H> <G>A</G><H>,</H> <G>B</G> <H>)</H></code> | Ternary operator |
 
 -------
 ## Type System
@@ -170,7 +171,7 @@ jump label		// goto label
 <C>{</C>
 	<G>// iterates VAR in a FROM-TO range</G>
 	<G>// progresses 1 at a time</G>
-	<G>// range( i, 2, 7 ) makes i go from 2 to 7</G>
+	<G>// ( i, 2, 7 ) makes i go from 2 to 7</G>
 <C>}</C>
 
 <M>range_step</M><Y>(</Y> VAR, FROM, TO, STEP <Y>)</Y>
@@ -194,8 +195,9 @@ jump label		// goto label
 
 <M>iter_grid</M><Y>(</Y> X, Y, WIDTH, HEIGHT <Y>)</Y>
 <C>{</C>
-	<G>// iterates X from 0 to WIDTH-1; left-to-right,</G>
-	<G>// and Y from 0 to HEIGHT-1; top-to-bottom,</G>
+	<G>// iterates X from 0 to WIDTH-1,</G>
+	<G>// and Y from 0 to HEIGHT-1.</G>
+	<G>// left-to-right, top-to-bottom.</G>
 	<G>// for things like pixel images</G>
 <C>}</C>
 
@@ -206,9 +208,9 @@ jump label		// goto label
 
 <M>once</M>
 <C>{</C>
-	<G>// this scope runs only once, even in loops</G>
+	<G>// this scope runs only once</G>
 	<M>print</M><Y>(</Y> <C>"loading complete\n"</C> <Y>)</Y>;
-	<G>// mostly used for testing and initializing</G>
+	<G>// used for testing or initializing</G>
 <C>}</C>
 </pre>
 
