@@ -105,7 +105,6 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 | <code><M>mod</M></code> | Modulo |
 | <code><M>is</M></code> | Equality |
 | <code><M>isnt</M></code> | Inequality |
-| <code><M>pick</M><Y>(</Y> <LG>x</LG>, <LG>A</LG>, <LG>B</LG> <Y>)</Y></code> | Ternary operator |
 
 -------
 ## Type System
@@ -116,7 +115,7 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 
 If you're dealing with bytes, use:
 <pre>
-<H>byte</H>
+<Y>byte</Y>
 <G>// byte x = '7';</G>
 <G>// The '7' character is 55</G>
 <G>// Which is 00110111 in bits</G>
@@ -124,14 +123,14 @@ If you're dealing with bytes, use:
 
 If the reference type is unknown, it's:
 <pre>
-<H>anon</H>
+<Y>anon</Y>
 <G>// some_type ref y_ref = ref_of( y );</G>
 <G>// anon ref x = to( anon ref, y_ref );</G>
 </pre>
 
 If the reference itself is unknown/invalid, it's:
 <pre>
-<H>nothing</H>
+<C>nothing</C>
 <G>// byte ref x = nothing;</G>
 </pre>
 
@@ -161,28 +160,32 @@ If the reference itself is unknown/invalid, it's:
 ### Other Types
 <pre>
 <Y>flag</Y> <LG>VAR</LG>
-<G>// a flag can either be:
+<G>// A flag can either be:
 <C>yes</C> <G>// 1</G>
+<G>// or</G>
 <C>no</C>  <G>// 0</G>
 
 <M>flip</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y>; <G>// no to yes, yes to no</G>
 <G>// flag is_ready = no;</G>
 <G>// flip( is_ready );</G>
 <G>// is_ready is now yes</G>
+
+<M>pick</M><Y>(</Y> <LG>FLAG</LG>, <LG>A</LG>, <LG>B</LG> <Y>)</Y> <G>// Ternary operator</G>
+<G>// If FLAG is yes, pick A, else pick B</G>
 </pre>
 
 ### Type Prefixes
 <pre>
 <Y>temp</Y> <LG>TYPE VAR</LG> <G>// VAR is temporary</G>
-<G>// cannot get ref_of</G>
+<G>// Cannot get ref_of a temp variable!</G>
 
 <Y>perm</Y> <LG>TYPE VAR</LG> <G>// VAR is permanent</G>
-<G>// made once, always exists in the scope</G>
+<G>// Made once, always exists in the scope</G>
 
 <Y>global</Y> <LG>TYPE VAR</LG> <G>// VAR is explicitly global</G>
-<G>// Used as a label outside functions/scopes.</G>
+<G>// Used as a label outside functions/scopes</G>
 <G>// Globals are discouraged,</G>
-<G>// this is to make them explicit.</G>
+<G>//  this is to make them explicit</G>
 </pre>
 
 -------
@@ -192,140 +195,143 @@ If the reference itself is unknown/invalid, it's:
 <pre>
 <M>loop</M>
 <C>{</C>
-	<G>// infinite loop</G>
+	<G>// Infinite loop</G>
 <C>}</C>
 
 <M>while</M><Y>(</Y> x <Y>)</Y>
 <C>{</C>
-	<G>// run this code while x is yes</G>
+	<G>// Run this code while x is yes</G>
 <C>}</C>
 
 <M>do</M>
 <C>{</C>
-	<G>// run this code</G>
-	<G>// while x is yes</G>
+	<G>// Run this code</G>
+	<G>// While x is yes</G>
 <C>}</C>
 <M>while</M><Y>(</Y> x <Y>)</Y>;
 
 <M>do</M>
 <C>{</C>
-	<G>// run this code</G>
-	<G>// until x is yes</G>
+	<G>// Run this code</G>
+	<G>// Until x is yes</G>
 <C>}</C>
 <M>until</M><Y>(</Y> x <Y>)</Y>;
 
-next			// continue
-skip			// break
-jump label		// goto label
+<M>next</M> <G>// Jump up to next iteration</G>
+<M>skip</M> <G>// Skip the rest of the scope</G>
+
+<LG>POINT</LG>: <G>// Set jump point</G>
+<M>jump</M> <LG>POINT</LG>; <G>// Jump to POINT
 </pre>
 
 ### Iteration Helpers
 
 <pre>
-<G>// range functions include from and to</G>
+<G>// Range functions include from and to</G>
 <M>range</M><Y>(</Y> VAR, FROM, TO <Y>)</Y>
 <C>{</C>
-	<G>// iterates VAR in a FROM-TO range</G>
-	<G>// progresses 1 at a time</G>
+	<G>// Iterates VAR in a FROM-TO range</G>
+	<G>// Progresses 1 at a time</G>
 	<G>// ( i, 2, 7 ) makes i go from 2 to 7</G>
 <C>}</C>
 
 <M>range_step</M><Y>(</Y> VAR, FROM, TO, STEP <Y>)</Y>
 <C>{</C>
-	<G>// iterates VAR in a FROM-TO range</G>
-	<G>// but progresses with STEP</G>
+	<G>// Iterates VAR in a FROM-TO range,</G>
+	<G>//  but progresses with STEP</G>
 <C>}</C>
 
-<G>// iter functions always start from 0</G>
+<G>// Iter functions always start from 0</G>
 <M>iter</M><Y>(</Y> VAR, SIZE <Y>)</Y>
 <C>{</C>
-	<G>// iterates VAR from 0 to SIZE-1</G>
-	<G>// progresses 1 at a time</G>
+	<G>// Iterates VAR from 0 to SIZE-1</G>
+	<G>// Progresses 1 at a time</G>
 <C>}</C>
 
 <M>iter_step</M><Y>(</Y> VAR, SIZE, STEP <Y>)</Y>
 <C>{</C>
-	<G>// iterates VAR from 0 to SIZE-1</G>
-	<G>// but progresses with STEP</G>
+	<G>// Iterates VAR from 0 to SIZE-1,</G>
+	<G>//  but progresses with STEP</G>
 <C>}</C>
 
 <M>iter_grid</M><Y>(</Y> X, Y, WIDTH, HEIGHT <Y>)</Y>
 <C>{</C>
-	<G>// iterates X from 0 to WIDTH-1,</G>
-	<G>// and Y from 0 to HEIGHT-1.</G>
-	<G>// left-to-right, top-to-bottom.</G>
-	<G>// for things like pixel images</G>
+	<G>// Iterates X from 0 to WIDTH-1,</G>
+	<G>//  and Y from 0 to HEIGHT-1</G>
+	<G>// Left-to-right, top-to-bottom</G>
+	<G>// For things like pixel images</G>
 <C>}</C>
 
 <M>repeat</M><Y>(</Y> n <Y>)</Y>
 <C>{</C>
-	<G>// repeats this scope n-times</G>
+	<G>// Repeats this scope n-times</G>
 <C>}</C>
 
 <M>once</M>
 <C>{</C>
-	<G>// this scope runs only once</G>
-	<M>print</M><Y>(</Y> <C>"loading complete\n"</C> <Y>)</Y>;
-	<G>// used for testing or initializing</G>
+	<G>// This scope runs only once</G>
+	<G>// Used for testing or initializing</G>
 <C>}</C>
 </pre>
 
 ### with/when Statements
 <pre>
-<G>// jump to a when() depending on what it is</G>
+<G>// Jump to a when() depending on what it is</G>
 <M>with</M><Y>(</Y> val <Y>)</Y>
 <C>{</C>
 	<M>when</M><Y>(</Y> <C>1</C>, <C>2</C>, <C>3</C> <Y>)</Y>
 	<C>{</C>
-		<G>// code</G>
-		<M>skip</M>;
+		<G>// Code only if val is 1, 2, or 3</G>
+		<M>skip</M>; <G>// Skip the rest</G>
 	<C>}</C>
 	
 	<M>when</M><Y>(</Y> <C>4</C> <Y>)</Y>
 	<C>{</C>
 		<G>// Code specifically for if val is 4</G>
-	<C>}</C> <G>// there's no skip, so it continues:</G>
+	<C>}</C> <G>// There's no skip, so it continues:</G>
 	
 	<M>other</M>
 	<C>{</C>
 		<G>// This code is ran if val</G>
-		<G>// isn't 1, 2, or 3.
-		<G>// But will if it's 4 or anything else.</G>
-	<C>}</C> <G>// a skip isn't required at the end
+		<G>//  isn't 1, 2, or 3.
+		<G>// But will if it's 4 or anything else</G>
+	<C>}</C> <G>// Skip isn't required at the end
 <C>}</C>
-<G>// skip takes us out to here</G>
+<G>// All skips takes us out to here</G>
 </pre>
 
 ### Conditional Helpers
 <pre>
 <M>if_nothing</M><Y>( </Y>REF<Y> )</Y>
 <C>{</C>
-    <G>// if REF is nothing</G>
+    <G>// If REF is nothing</G>
 <C>}</C>
 
 <M>if_something</M><Y>( </Y>REF<Y> )</Y>
 <C>{</C>
-    <G>// if REF is not nothing</G>
+    <G>// If REF is not nothing</G>
 <C>}</C>
 
 <M>if_any</M><Y>(</Y> a, b, c... <Y>)</Y>
 <C>{</C>
-    <G>// if any arguments are yes</G>
+    <G>// If any arguments are yes</G>
 <C>}</C>
 
 <M>if_all</M><Y>(</Y> a, b, c... <Y>)</Y>
 <C>{</C>
-    <G>// if all arguments are yes</G>
+    <G>// If all arguments are yes</G>
 <C>}</C>
 
 <M>if_none</M><Y>(</Y> a, b, c... <Y>)</Y>
 <C>{</C>
-    <G>// if none of the arguments are yes</G>
+    <G>// If none of the arguments are yes</G>
 <C>}</C>
 
-<M>skip_if</M><Y>(</Y> x <Y>)</Y>; <G>// skip if x is yes</G>
-<M>next_if</M><Y>(</Y> x <Y>)</Y>; <G>// next iter is x is yes</G>
-<M>out_if</M><Y>(</Y> x <Y>)</Y> v; <G>// output v if x is yes</G>
+<M>skip_if</M><Y>(</Y> x <Y>)</Y>; <G>// Skip if x is yes</G>
+<M>next_if</M><Y>(</Y> x <Y>)</Y>; <G>// Jump up to next if x is yes</G>
+<M>out_if</M><Y>(</Y> x <Y>)</Y> v; <G>// Output v if x is yes</G>
+<G>// Can be empty if function doesn't output:</G>
+<G>// out_if( x );</G>
 </pre>
 
 -------
