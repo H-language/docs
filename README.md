@@ -89,23 +89,23 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 ### Pointer and Reference Operations
 | H Syntax | Definition |
 |----------|-------------|
-| <code><G>TYPE</G> <H>ref</H></code> | Reference to TYPE |
-| <code><H>ref_of(</H> <G>VAR</G> <H>)</H></code> | Reference-of variable |
-| <code><H>val_of(</H> <G>REF</G> <H>)</H></code> | Value-of reference |
-| <code><H>to(</H> <G>TYPE</G><H>,</H> <G>VAL</G> <H>)</H></code> | Changes VAL to TYPE |
-| <code><H>cast(</H> <G>TYPE</G><H>,</H> <G>VAR</G> <H>)</H></code> | Reinterpret VAR to TYPE |
+| <code><LG>TYPE</LG> <Y>ref</Y></code> | Reference to TYPE |
+| <code><M>ref_of</M><Y>(</Y> <LG>VAR</LG> <Y>)</Y></code> | Reference-of variable |
+| <code><M>val_of</M><Y>(</Y> <LG>REF</LG> <Y>)</Y></code> | Value-of reference |
+| <code><M>to</M><Y>(</Y> <LG>TYPE</LG>, <LG>VAL</LG> <Y>)</Y></code> | Changes VAL to TYPE |
+| <code><M>cast</M><Y>(</Y> <LG>TYPE</LG>, <LG>VAR</LG> <Y>)</Y></code> | Reinterpret VAR to TYPE |
 
 ### Boolean and Logic Operations
 | H Syntax | Definition |
 |----------|-------------|
-| <code><H>not</H></code> | Logical NOT |
-| <code><H>and</H></code> | Logical AND |
-| <code><H>or</H></code> | Logical OR |
-| <code><H>xor</H></code> | Logical eXclusive-OR |
-| <code><H>mod</H></code> | Modulo |
-| <code><H>is</H></code> | Equality |
-| <code><H>isnt</H></code> | Inequality |
-| <code><H>pick(</H> <G>x</G><H>,</H> <G>A</G><H>,</H> <G>B</G> <H>)</H></code> | Ternary operator |
+| <code><M>not</M></code> | Logical NOT |
+| <code><M>and</M></code> | Logical AND |
+| <code><M>or</M></code> | Logical OR |
+| <code><M>xor</M></code> | Logical eXclusive-OR |
+| <code><M>mod</M></code> | Modulo |
+| <code><M>is</M></code> | Equality |
+| <code><M>isnt</M></code> | Inequality |
+| <code><M>pick</M><Y>(</Y> <LG>x</LG>, <LG>A</LG>, <LG>B</LG> <Y>)</Y></code> | Ternary operator |
 
 -------
 ## Type System
