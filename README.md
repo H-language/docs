@@ -10,7 +10,7 @@
 - Cross-platform abstractions
 - Zero overhead bloat
 - Single header file implementation
-- Unified file and folder IO
+- Unified file and folder I/O
 - Modern functions and data-structures
 
 ### the H mini-manifesto & some personal statements:
@@ -612,6 +612,8 @@ If the function does output something:
 <Y>byte ref</Y> <LG>input</LG> = <M>get_terminal_input</M><Y>()</Y>;
 <G>// Returns user typed text</G>
 </pre>
+
+-------
 ## Variadic Functions
 
 <pre>
@@ -658,17 +660,18 @@ If the function does output something:
 ### Default Arguments
 
 <pre>
-<C>#define</C> <M>DEFAULT</M><Y>(</Y> <LG>DEFAULT_VALUE</LG>, <LG>ARGS...</LG> <Y>)</Y>
-<G>// Returns ARGS if provided, otherwise DEFAULT_VALUE</G>
+<M>DEFAULT</M><Y>(</Y> <LG>VAL</LG>, <LG>ARG</LG> <Y>)</Y>
+<G>// Becomes ARG if provided, otherwise VAL</G>
 
-<C>#define</C> <M>DEFAULTS</M><Y>(</Y> <Y>(</Y> <LG>DEFAULTS_TUPLE</LG> <Y>)</Y>, <LG>ARGS...</LG> <Y>)</Y>
+<M>DEFAULTS</M><Y>(</Y> <Y>(</Y> <LG>TUPLE</LG> <Y>)</Y>, <LG>ARGS...</LG> <Y>)</Y>
 <G>// Used like:</G>
-<C>#define</C> <M>foo</M><Y>(</Y> <LG>NAME</LG>, <LG>ARGS...</LG> <Y>)</Y> <LG>NAME</LG><Y>(</Y> <M>DEFAULTS</M><Y>(</Y> <Y>(</Y> <C>1</C>, <C>2</C>, <C>3</C> <Y>)</Y>, <LG>ARGS</LG> <Y>)</Y> <Y>)</Y>
+<C>#define</C> <M>foo</M><Y>(</Y> <LG>NAME</LG>, <LG>ARGS...</LG> <Y>)\</Y>
+<LG>NAME</LG><Y>(</Y> <M>DEFAULTS</M><Y>(</Y> <Y>(</Y> <C>1</C>, <C>2</C>, <C>3</C> <Y>)</Y>, <LG>ARGS</LG> <Y>)</Y> <Y>)</Y>
 <G>// foo( test ) -> test( 1, 2, 3 )</G>
 <G>// foo( test, 7 ) -> test( 7, 2, 3 )</G>
 <G>// foo( test, 7, 8 ) -> test( 7, 8, 3 )</G>
 <G>// foo( test, 7, 8, 9 ) -> test( 7, 8, 9 )</G>
-<G>// foo( test, 7,, 9 ) -> test( 7,, 9 ) !! doesn't skip</G>
+<G>// foo( test, 7,, 9 ) -> test( 7,, 9 )</G>
 </pre>
 
 ### Compile-Time Helpers
@@ -770,7 +773,9 @@ If the function does output something:
 <C>}</C>
 </pre>
 
+-------
 ## License
 
 H is released under CC0 (Creative Commons Zero) - effectively public domain. FOSS forever.
  
+-------
