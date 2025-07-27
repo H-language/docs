@@ -264,13 +264,12 @@ If the function does output something:
 <M>next</M> <G>// Jump up to next iteration</G>
 <G>// while( x < 10 )</G>
 <G>// {</G>
-<G>// 	x = x + 1;</G>
-<G>// 	if( x < 5 )</G>
-<G>// 	{</G>
-<G>// 		print( "7" );</G>
-<G>// 		next; // jumps back up to while</G>
-<G>// 	}</G>
-<G>// 	print( "H" );</G>
+<G>//   x = x + 1;</G>
+<G>//   if( x < 5 )</G>
+<G>//   {</G>
+<G>//     next; // jumps back up to while</G>
+<G>//   }</G>
+<G>//   ...</G>
 <G>// }</G>
 
 <M>skip_if</M><Y>(</Y> <LG>F</LG> <Y>)</Y>; <G>// Skip if F is yes</G>
@@ -361,62 +360,76 @@ If the function does output something:
 <pre>
 <M>if_nothing</M><Y>(</Y> <LG>REF</LG> <Y>)</Y>
 <C>{</C>
-    <G>// If REF is nothing</G>
+	<G>// If REF is nothing</G>
 <C>}</C>
 
 <M>if_something</M><Y>(</Y> <LG>REF</LG> <Y>)</Y>
 <C>{</C>
-    <G>// If REF is not nothing</G>
+	<G>// If REF is not nothing</G>
 <C>}</C>
 
 <M>if_any</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C...</LG> <Y>)</Y>
 <C>{</C>
-    <G>// If any arguments are yes</G>
+	<G>// If any arguments are yes</G>
 <C>}</C>
 
 <M>if_all</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C...</LG> <Y>)</Y>
 <C>{</C>
-    <G>// If all arguments are yes</G>
+	<G>// If all arguments are yes</G>
 <C>}</C>
 
 <M>if_none</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C...</LG> <Y>)</Y>
 <C>{</C>
-    <G>// If none of the arguments are yes</G>
+	<G>// If none of the arguments are yes</G>
 <C>}</C>
 </pre>
 
 -------
-## Memory and String Operations
+## Memory Operations
 
-### Memory Operations
-
+### Byte Reference Operations
 <pre>
-<M>bytes_copy</M><Y>(</Y> <LG>FROM</LG>, <LG>SIZE</LG>, <LG>TO</LG> <Y>)</Y> <G>// Copy SIZE bytes from FROM to TO</G>
+<M>bytes_copy</M><Y>(</Y> <LG>FROM</LG>, <LG>SIZE</LG>, <LG>TO</LG> <Y>)</Y>
+<G>// Copy SIZE bytes from FROM to TO</G>
+
 <M>bytes_copy_internal</M><Y>(</Y> <LG>FROM</LG>, <LG>SIZE</LG>, <LG>TO</LG> <Y>)</Y>
-<G>// Copy SIZE bytes, handles overlapping memory</G>
-<M>bytes_fill</M><Y>(</Y> <LG>PTR</LG>, <LG>VALUE</LG>, <LG>SIZE</LG> <Y>)</Y> <G>// Fill SIZE bytes with VALUE</G>
-<M>bytes_clear</M><Y>(</Y> <LG>PTR</LG>, <LG>SIZE</LG> <Y>)</Y> <G>// Clear SIZE bytes to zero</G>
-<M>bytes_compare</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>SIZE</LG> <Y>)</Y> <G>// Compare SIZE bytes</G>
-<G>// Returns 0 if equal, negative if A < B, positive if A > B</G>
+<G>// Copy SIZE bytes, handles overlapping</G>
+
+<M>bytes_fill</M><Y>(</Y> <LG>PTR</LG>, <LG>VALUE</LG>, <LG>SIZE</LG> <Y>)</Y>
+<G>// Fill SIZE bytes with VALUE</G>
+
+<M>bytes_clear</M><Y>(</Y> <LG>PTR</LG>, <LG>SIZE</LG> <Y>)</Y>
+<G>// Clear SIZE bytes to zero</G>
+
+<M>bytes_compare</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>SIZE</LG> <Y>)</Y>
+<G>// Compare SIZE bytes</G>
+<G>// Outputs 0 if equal,</G>
+<G>//  negative if A < B, positive if A > B</G>
 </pre>
 
-### String Operations
-
+### Null-Terminated Operations
 <pre>
-<M>bytes_paste</M><Y>(</Y> <LG>FROM</LG>, <LG>TO</LG> <Y>)</Y> <G>// Copy bytes until '\0'</G>
-<M>bytes_measure</M><Y>(</Y> <LG>STR</LG> <Y>)</Y> <G>// Count bytes until '\0'</G>
-<M>bytes_end</M><Y>(</Y> <LG>STR</LG> <Y>)</Y> <G>// Set first byte to '\0'</G>
+<M>bytes_measure</M><Y>(</Y> <LG>STR</LG> <Y>)</Y>
+<G>// Count bytes until '\0'</G>
+
+<M>bytes_paste</M><Y>(</Y> <LG>FROM</LG>, <LG>TO</LG> <Y>)</Y>
+<G>// Copy bytes until '\0'</G>
+
+<M>bytes_end</M><Y>(</Y> <LG>REF</LG> <Y>)</Y>
+<G>// Set REF byte to '\0'</G>
+<G>// Doesn't measure REF!</G>
 </pre>
 
 ### Advanced Copy Operations
 
 <pre>
-<M>bytes_copy_move</M><Y>(</Y> <LG>FROM</LG>, <LG>SIZE</LG>, <LG>TO_REF</LG> <Y>)</Y>
-<G>// Copy SIZE bytes and advance TO_REF pointer</G>
-<M>bytes_paste_move</M><Y>(</Y> <LG>FROM</LG>, <LG>TO_REF</LG> <Y>)</Y>
-<G>// Copy string and advance TO_REF pointer</G>
-<M>bytes_set_move</M><Y>(</Y> <LG>BYTE</LG>, <LG>TO_REF</LG> <Y>)</Y>
-<G>// Set single byte and advance TO_REF pointer</G>
+<M>bytes_copy_move</M><Y>(</Y> <LG>FROM</LG>, <LG>SIZE</LG>, <LG>TO</LG> <Y>)</Y>
+<G>// Copy SIZE bytes then</G>
+<G>//  moves TO pointer by SIZE</G>
+<M>bytes_paste_move</M><Y>(</Y> <LG>FROM</LG>, <LG>TO</LG> <Y>)</Y>
+<G>// Pastes null-terminated  and advance TO pointer</G>
+<M>bytes_set_move</M><Y>(</Y> <LG>BYTE</LG>, <LG>TO</LG> <Y>)</Y>
+<G>// Set single byte and advance TO pointer</G>
 </pre>
 
 -------
