@@ -390,201 +390,215 @@ If the function does output something:
 
 ### Memory Operations
 
-```
-bytes_copy(from, size, to)              // memcpy
-bytes_copy_internal(from, size, to)     // memmove
-bytes_fill(ptr, value, size)            // memset
-bytes_clear(ptr, size)                  // memset(ptr, 0, size)
-bytes_compare(a, b, size)               // memcmp
-```
+<pre>
+<M>bytes_copy</M><Y>(</Y> <LG>FROM</LG>, <LG>SIZE</LG>, <LG>TO</LG> <Y>)</Y> <G>// Copy SIZE bytes from FROM to TO</G>
+<M>bytes_copy_internal</M><Y>(</Y> <LG>FROM</LG>, <LG>SIZE</LG>, <LG>TO</LG> <Y>)</Y>
+<G>// Copy SIZE bytes, handles overlapping memory</G>
+<M>bytes_fill</M><Y>(</Y> <LG>PTR</LG>, <LG>VALUE</LG>, <LG>SIZE</LG> <Y>)</Y> <G>// Fill SIZE bytes with VALUE</G>
+<M>bytes_clear</M><Y>(</Y> <LG>PTR</LG>, <LG>SIZE</LG> <Y>)</Y> <G>// Clear SIZE bytes to zero</G>
+<M>bytes_compare</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>SIZE</LG> <Y>)</Y> <G>// Compare SIZE bytes</G>
+<G>// Returns 0 if equal, negative if A < B, positive if A > B</G>
+</pre>
 
 ### String Operations
 
-```
-bytes_paste(from, to)                   // strcpy
-bytes_measure(str)                      // strlen
-bytes_end(str)                          // str[0] = '\0'
-```
+<pre>
+<M>bytes_paste</M><Y>(</Y> <LG>FROM</LG>, <LG>TO</LG> <Y>)</Y> <G>// Copy bytes until '\0'</G>
+<M>bytes_measure</M><Y>(</Y> <LG>STR</LG> <Y>)</Y> <G>// Count bytes until '\0'</G>
+<M>bytes_end</M><Y>(</Y> <LG>STR</LG> <Y>)</Y> <G>// Set first byte to '\0'</G>
+</pre>
 
 ### Advanced Copy Operations
 
-```
-bytes_copy_move(from, size, to_ref)     // Copy and advance destination pointer
-bytes_paste_move(from, to_ref)          // Copy string and advance pointer
-bytes_set_move(byte, to_ref)            // Set byte and advance pointer
-```
+<pre>
+<M>bytes_copy_move</M><Y>(</Y> <LG>FROM</LG>, <LG>SIZE</LG>, <LG>TO_REF</LG> <Y>)</Y>
+<G>// Copy SIZE bytes and advance TO_REF pointer</G>
+<M>bytes_paste_move</M><Y>(</Y> <LG>FROM</LG>, <LG>TO_REF</LG> <Y>)</Y>
+<G>// Copy string and advance TO_REF pointer</G>
+<M>bytes_set_move</M><Y>(</Y> <LG>BYTE</LG>, <LG>TO_REF</LG> <Y>)</Y>
+<G>// Set single byte and advance TO_REF pointer</G>
+</pre>
 
+-------
 ## Math Operations
 
-```
-MIN(a, b)               // Minimum of two values
-MAX(a, b)               // Maximum of two values
-MIN3/MIN4               // Minimum of 3/4 values
-MAX3/MAX4               // Maximum of 3/4 values
-MEAN(a, b)              // Average of two values
-CLAMP(v, min, max)      // Constrain value to range
-ABS(v)                  // Absolute value
-SIGN(v)                 // Sign of value (1 or -1)
-SQR(v)                  // Square (v * v)
-CUBE(v)                 // Cube (v * v * v)
-SNAP(v, multiple)       // Snap to multiple
-```
+<pre>
+<M>MIN</M><Y>(</Y> <LG>A</LG>, <LG>B</LG> <Y>)</Y> <G>// Smaller of A or B</G>
+<M>MAX</M><Y>(</Y> <LG>A</LG>, <LG>B</LG> <Y>)</Y> <G>// Larger of A or B</G>
+<M>MIN3</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG> <Y>)</Y> <G>// Smallest of three</G>
+<M>MIN4</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG>, <LG>D</LG> <Y>)</Y> <G>// Smallest of four</G>
+<M>MAX3</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG> <Y>)</Y> <G>// Largest of three</G>
+<M>MAX4</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG>, <LG>D</LG> <Y>)</Y> <G>// Largest of four</G>
+<M>MEAN</M><Y>(</Y> <LG>A</LG>, <LG>B</LG> <Y>)</Y> <G>// Average of A and B</G>
+<M>CLAMP</M><Y>(</Y> <LG>VAL</LG>, <LG>MIN</LG>, <LG>MAX</LG> <Y>)</Y> <G>// Keep VAL between MIN and MAX</G>
+<M>ABS</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y> <G>// Remove negative sign</G>
+<M>SIGN</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y> <G>// Returns 1 or -1</G>
+<M>SQR</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y> <G>// VAL times VAL</G>
+<M>CUBE</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y> <G>// VAL times VAL times VAL</G>
+<M>SNAP</M><Y>(</Y> <LG>VAL</LG>, <LG>MULTIPLE</LG> <Y>)</Y> <G>// Round VAL to nearest MULTIPLE</G>
+</pre>
 
+-------
 ## Structures and Objects
 
 ### Basic Struct
 
-```
-struct(Point)
-{
-    r4 x, y;
-};
+<pre>
+<M>struct</M><Y>(</Y><LG>Point</LG><Y>)</Y>
+<C>{</C>
+    <Y>r4</Y> <LG>x</LG>, <LG>y</LG>;
+<C>}</C>;
 
-// Usage:
-Point p = make(Point, 10.0, 20.0);
-```
+<G>// Usage:</G>
+<LG>Point</LG> <LG>p</LG> = <M>make</M><Y>(</Y><LG>Point</LG>, <C>10.0</C>, <C>20.0</C><Y>)</Y>;
+</pre>
 
 ### Objects with Methods
 
-```
-object(Entity)
-{
-    i4 id;
-    byte name[32];
-};
+<pre>
+<M>object</M><Y>(</Y><LG>Entity</LG><Y>)</Y>
+<C>{</C>
+    <Y>i4</Y> <LG>id</LG>;
+    <Y>byte</Y> <LG>name</LG><Y>[</Y><C>32</C><Y>]</Y>;
+<C>}</C>;
 
-object_fn(Entity, update)
-{
-    // 'this' is automatically available as Entity ref
-    this->id++;
-}
+<M>object_fn</M><Y>(</Y><LG>Entity</LG>, <LG>update</LG><Y>)</Y>
+<C>{</C>
+    <G>// 'this' is auto-available as Entity ref</G>
+    <LG>this</LG><Y>-></Y><LG>id</LG><Y>++</Y>;
+<C>}</C>
 
-// Usage:
-Entity e = {0};
-call(&e, update);       // Calls update if not null
-```
+<G>// Usage:</G>
+<LG>Entity</LG> <LG>e</LG> = <C>{0}</C>;
+<M>call</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>e</LG><Y>)</Y>, <LG>update</LG><Y>)</Y>; <G>// Calls if not nothing</G>
+</pre>
 
 ### Fusion and Group
 
-```
-fusion(value)           // union Value
-{
-    i4 integer;
-    r4 rational;
-};
+<pre>
+<M>fusion</M><Y>(</Y><LG>Value</LG><Y>)</Y> <G>// Can hold different types</G>
+<C>{</C>
+    <Y>i4</Y> <LG>integer</LG>;
+    <Y>r4</Y> <LG>rational</LG>;
+<C>}</C>;
 
-group(Color, n1)        // enum with underlying type
-{
-    red,
-    green,
-    blue
-};
-```
+<M>group</M><Y>(</Y><LG>Color</LG>, <Y>n1</Y><Y>)</Y> <G>// Named values with type</G>
+<C>{</C>
+    <LG>red</LG>,
+    <LG>green</LG>,
+    <LG>blue</LG>
+<C>}</C>;
+</pre>
 
+-------
 ## File I/O
 
 ### File Operations
 
-```
-// Open files
-file f = open_file_loading("path.txt");
-file f = open_file_saving("output.txt");
+<pre>
+<G>// Open files</G>
+<Y>file</Y> <LG>f</LG> = <M>open_file_loading</M><Y>(</Y><C>"path.txt"</C><Y>)</Y>;
+<Y>file</Y> <LG>f</LG> = <M>open_file_saving</M><Y>(</Y><C>"output.txt"</C><Y>)</Y>;
 
-// Load/Save
-byte buffer[1024];
-file_load(&f, buffer);
-file_save(&f, data, size);
+<G>// Load/Save</G>
+<Y>byte</Y> <LG>buffer</LG><Y>[</Y><C>1024</C><Y>]</Y>;
+<M>file_load</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>f</LG><Y>)</Y>, <LG>buffer</LG><Y>)</Y>;
+<M>file_save</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>f</LG><Y>)</Y>, <LG>DATA</LG>, <LG>SIZE</LG><Y>)</Y>;
 
-// Memory mapped files
-file f = map_file("large.dat", path_size);
-// Access via f.mapped_bytes
-file_unmap(&f);
+<G>// Memory mapped files</G>
+<Y>file</Y> <LG>f</LG> = <M>map_file</M><Y>(</Y><C>"large.dat"</C>, <LG>PATH_SIZE</LG><Y>)</Y>;
+<G>// Access via f.mapped_bytes</G>
+<M>file_unmap</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>f</LG><Y>)</Y><Y>)</Y>;
 
-// Cleanup
-file_close(&f);
-file_delete("path.txt");
-```
+<G>// Cleanup</G>
+<M>file_close</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>f</LG><Y>)</Y><Y>)</Y>;
+<M>file_delete</M><Y>(</Y><C>"path.txt"</C><Y>)</Y>;
+</pre>
 
 ### File Utilities
 
-```
-flag file_exists(path)
-flag folder_exists(path)
-n8 get_file_size(path)
-create_folder(path)
-```
+<pre>
+<Y>flag</Y> <M>file_exists</M><Y>(</Y><LG>PATH</LG><Y>)</Y>
+<Y>flag</Y> <M>folder_exists</M><Y>(</Y><LG>PATH</LG><Y>)</Y>
+<Y>n8</Y> <M>get_file_size</M><Y>(</Y><LG>PATH</LG><Y>)</Y>
+<M>create_folder</M><Y>(</Y><LG>PATH</LG><Y>)</Y>
+</pre>
 
 ### Directory Operations
 
-```
-byte entries[100][PATH_MAX_SIZE];
-n2 count;
+<pre>
+<Y>byte</Y> <LG>entries</LG><Y>[</Y><C>100</C><Y>][</Y><LG>PATH_MAX_SIZE</LG><Y>]</Y>;
+<Y>n2</Y> <LG>count</LG>;
 
-// Get all entries
-count = get_entries_in_folder(dir, entries, 100, entry_any);
+<G>// Get all entries</G>
+<LG>count</LG> = <M>get_entries_in_folder</M><Y>(</Y><LG>DIR</LG>, <LG>entries</LG>, <C>100</C>, <LG>entry_any</LG><Y>)</Y>;
 
-// Get only files
-count = get_files(dir, entries, 100);
+<G>// Get only files</G>
+<LG>count</LG> = <M>get_files</M><Y>(</Y><LG>DIR</LG>, <LG>entries</LG>, <C>100</C><Y>)</Y>;
 
-// Get only folders  
-count = get_folders(dir, entries, 100);
-```
+<G>// Get only folders</G>
+<LG>count</LG> = <M>get_folders</M><Y>(</Y><LG>DIR</LG>, <LG>entries</LG>, <C>100</C><Y>)</Y>;
+</pre>
 
 ### Path Operations
 
-```
-path("folder", "subfolder", "file.txt")    // "folder/subfolder/file.txt"
-path_up_folder(path_buffer)                // Remove last path component
-byte ref exe_path = get_exe_path()         // Get executable path
-```
+<pre>
+<M>path</M><Y>(</Y><C>"folder"</C>, <C>"subfolder"</C>, <C>"file.txt"</C><Y>)</Y>
+<G>// Makes "folder/subfolder/file.txt"</G>
+<M>path_up_folder</M><Y>(</Y><LG>PATH_BUFFER</LG><Y>)</Y> <G>// Remove last part</G>
+<Y>byte ref</Y> <LG>exe_path</LG> = <M>get_exe_path</M><Y>()</Y> <G>// Program location</G>
+</pre>
 
+-------
 ## Terminal Operations
 
 ### Basic Output
 
-```
-print("Hello, World!")              // Output string
-print_size(buffer, 100)             // Output specific size
-print_newline()                     // Output newline
-```
+<pre>
+<M>print</M><Y>(</Y><C>"Hello, World!"</C><Y>)</Y> <G>// Output text</G>
+<M>print_size</M><Y>(</Y><LG>BUFFER</LG>, <C>100</C><Y>)</Y> <G>// Output exact bytes</G>
+<M>print_newline</M><Y>()</Y> <G>// Start new line</G>
+</pre>
 
 ### Formatted Output
 
-```
-print_format("Value: <c:g>%d</c:g>\n", 42);
+<pre>
+<M>print_format</M><Y>(</Y><C>"Value: <c:g>%d</c:g>\n"</C>, <C>42</C><Y>)</Y>;
 
-// Format tags:
-
-```
+<G>// Format tags:</G>
+<G>// <c:r> = red, <c:g> = green, <c:b> = blue</G>
+<G>// <c:y> = yellow, <c:m> = magenta, <c:c> = cyan</G>
+<G>// <b> = bold, <u> = underline</G>
+</pre>
 
 ### Format Bytes Function
 
-```
-// Format to buffer with size tracking
-byte buffer[256];
-n4 size = format_bytes(buffer, "Name: <c:b><></c:b>", "John");
+<pre>
+<G>// Format to buffer with size tracking</G>
+<Y>byte</Y> <LG>buffer</LG><Y>[</Y><C>256</C><Y>]</Y>;
+<Y>n4</Y> <LG>size</LG> = <M>format_bytes</M><Y>(</Y><LG>buffer</LG>, <C>"Name: <c:b><></c:b>"</C>, <C>"John"</C><Y>)</Y>;
 
-// Format and advance pointer
-byte ref ptr = buffer;
-format_bytes_move(ptr, "Value: <c:g>%d</c:g>\n", 42);
-```
+<G>// Format and advance pointer</G>
+<Y>byte ref</Y> <LG>ptr</LG> = <LG>buffer</LG>;
+<M>format_bytes_move</M><Y>(</Y><LG>ptr</LG>, <C>"Value: <c:g>%d</c:g>\n"</C>, <C>42</C><Y>)</Y>;
+</pre>
 
 ### Terminal Colors
 
-```
-terminal_set_color(red)
-terminal_set_bg_color(blue)
-terminal_set_bold()
-terminal_reset_format()
-terminal_clear()
-```
+<pre>
+<M>terminal_set_color</M><Y>(</Y><LG>red</LG><Y>)</Y>
+<M>terminal_set_bg_color</M><Y>(</Y><LG>blue</LG><Y>)</Y>
+<M>terminal_set_bold</M><Y>()</Y>
+<M>terminal_reset_format</M><Y>()</Y>
+<M>terminal_clear</M><Y>()</Y>
+</pre>
 
 ### Terminal Input
 
-```
-byte ref input = get_terminal_input();
-```
-
+<pre>
+<Y>byte ref</Y> <LG>input</LG> = <M>get_terminal_input</M><Y>()</Y>;
+<G>// Returns user typed text</G>
+</pre>
 ## Variadic Functions
 
 <pre>
