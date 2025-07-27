@@ -237,10 +237,10 @@ With ref/const_ref too:
 ## Types, Fusions, and Groups
 
 ### Basic New Type
-A new type can be made from 1 or more type:
+A type can be made from 1 or more type:
 <pre>
 <M>type_from</M><Y>(</Y> <LG>TYPE</LG> <Y>)</Y> <LG>NAME</LG>;
-<G>// If it's a single-type alias
+<G>// Defines an alias NAME of TYPE</G>
 
 <M>type</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
 <C>{</C>
@@ -248,16 +248,40 @@ A new type can be made from 1 or more type:
 	<LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG>;
 	<Y>const</Y> <LG>TYPE NAME</LG>;
 <C>}</C>;
-<G>// If the type is made of multiple types</G>
+<G>// Defines a type made of multiple types</G>
 </pre>
 
 ### Fusion
+A fusion-type is always as big as the largest internal type, but all elements of a fusion use the same bytes:
 <pre>
-<M>fusion</M><Y>(</Y><LG>Value</LG><Y>)</Y> <G>// Can hold different types</G>
+<M>fusion</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
 <C>{</C>
-    <Y>i4</Y> <LG>integer</LG>;
-    <Y>r4</Y> <LG>rational</LG>;
+	<LG>TYPE A</LG>;
+	<LG>TYPE B</LG>;
+	<LG>...</LG>
 <C>}</C>;
+<G>// NAME has elements A, B, (etc...),</G>
+<G>//  editing one edits the others</G>
+
+<G>// You can make multi-type fusions with:</G>
+<M>anon_type</M>
+<G>// Which allows for element aliasing:</G>
+<M>fusion</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
+<C>{</C>
+	<M>anon_type</M>
+	<C>{</C>
+		<LG>TYPE X</LG>;
+		<LG>TYPE Y</LG>;
+	<C>}</C>;
+	
+	<M>anon_type</M>
+	<C>{</C>
+		<LG>TYPE W</LG>;
+		<LG>TYPE H</LG>;
+	<C>}</C>;
+<C>}</C>;
+<G>// Which makes X and W read the same value,</G>
+<G>//  or Y and H having the same value</G>
 </pre>
 
 ### Group
