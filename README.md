@@ -140,7 +140,7 @@ If the value of a reference is unknown, it's:
 - <H>I</H>nteger <LG>(can be negative)</LG>
 - <H>R</H>ational <LG>(has a fractional part)</LG>
 
-| Type | Bytes | Range |
+| Type | Size | Range |
 |------|------|-------|
 | <code><H>n1</H></code> | <b>1</b> | <b>0</b> <LG><i>to</i></LG> <b>255</b> |
 | <code><H>i1</H></code> | <b>1</b> | <b>-128</b> <LG><i>to</i></LG> <b>127</b> |
