@@ -205,7 +205,7 @@ With ref/const_ref too:
 | <code><Y>i8</Y></code> | <b>8</b> | <b>-9,223,372,036,854,775,808</b> <LG><i>to</i></LG><br><b>9,223,372,036,854,775,807</b> |
 | <code><Y>r8</Y></code> | <b>8</b> | <b>-inf</b> <LG><i>to</i></LG> <b>inf</b> |
 
-### Other Types
+### Other H Types
 <pre>
 <Y>flag</Y> <LG>VAR</LG>
 <G>// A flag can either be:</G>
@@ -232,6 +232,62 @@ With ref/const_ref too:
 | <code><M>mod</M></code> | Modulo |
 | <code><M>is</M></code> | Equality |
 | <code><M>isnt</M></code> | Inequality |
+
+-------
+## Types, Fusions, and Groups
+
+### Basic New Type
+A new type can be made from 1 or more type:
+<pre>
+<M>type_from</M><Y>(</Y> <LG>TYPE</LG> <Y>)</Y> <LG>NAME</LG>;
+<G>// If it's a single-type alias
+
+<M>type</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
+<C>{</C>
+	<LG>TYPE NAME</LG>;
+	<LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG>;
+	<Y>const</Y> <LG>TYPE NAME</LG>;
+<C>}</C>;
+<G>// If the type is made of multiple types</G>
+</pre>
+
+### Fusion
+<pre>
+<M>fusion</M><Y>(</Y><LG>Value</LG><Y>)</Y> <G>// Can hold different types</G>
+<C>{</C>
+    <Y>i4</Y> <LG>integer</LG>;
+    <Y>r4</Y> <LG>rational</LG>;
+<C>}</C>;
+</pre>
+
+### Group
+<pre>
+<M>group</M><Y>(</Y><LG>Color</LG>, <Y>n1</Y><Y>)</Y> <G>// Named values with type</G>
+<C>{</C>
+    <LG>red</LG>,
+    <LG>green</LG>,
+    <LG>blue</LG>
+<C>}</C>;
+</pre>
+
+### Objects with Methods
+<pre>
+<M>object</M><Y>(</Y><LG>Entity</LG><Y>)</Y>
+<C>{</C>
+    <Y>i4</Y> <LG>id</LG>;
+    <Y>byte</Y> <LG>name</LG><Y>[</Y><C>32</C><Y>]</Y>;
+<C>}</C>;
+
+<M>object_fn</M><Y>(</Y><LG>Entity</LG>, <LG>update</LG><Y>)</Y>
+<C>{</C>
+    <G>// 'this' is auto-available as Entity ref</G>
+    <LG>this</LG><Y>-></Y><LG>id</LG><Y>++</Y>;
+<C>}</C>
+
+<G>// Usage:</G>
+<LG>Entity</LG> <LG>e</LG> = <C>{0}</C>;
+<M>call</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>e</LG><Y>)</Y>, <LG>update</LG><Y>)</Y>; <G>// Calls if not nothing</G>
+</pre>
 
 -------
 ## Functions
@@ -515,58 +571,6 @@ If the function does output something:
 
 <M>SNAP</M><Y>(</Y> <LG>VAL</LG>, <LG>MULTIPLE</LG> <Y>)</Y>
 <G>// Round VAL to nearest MULTIPLE</G>
-</pre>
-
--------
-## Structures and Objects
-
-### Basic Struct
-
-<pre>
-<M>struct</M><Y>(</Y><LG>Point</LG><Y>)</Y>
-<C>{</C>
-    <Y>r4</Y> <LG>x</LG>, <LG>y</LG>;
-<C>}</C>;
-
-<G>// Usage:</G>
-<LG>Point</LG> <LG>p</LG> = <M>make</M><Y>(</Y><LG>Point</LG>, <C>10.0</C>, <C>20.0</C><Y>)</Y>;
-</pre>
-
-### Objects with Methods
-
-<pre>
-<M>object</M><Y>(</Y><LG>Entity</LG><Y>)</Y>
-<C>{</C>
-    <Y>i4</Y> <LG>id</LG>;
-    <Y>byte</Y> <LG>name</LG><Y>[</Y><C>32</C><Y>]</Y>;
-<C>}</C>;
-
-<M>object_fn</M><Y>(</Y><LG>Entity</LG>, <LG>update</LG><Y>)</Y>
-<C>{</C>
-    <G>// 'this' is auto-available as Entity ref</G>
-    <LG>this</LG><Y>-></Y><LG>id</LG><Y>++</Y>;
-<C>}</C>
-
-<G>// Usage:</G>
-<LG>Entity</LG> <LG>e</LG> = <C>{0}</C>;
-<M>call</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>e</LG><Y>)</Y>, <LG>update</LG><Y>)</Y>; <G>// Calls if not nothing</G>
-</pre>
-
-### Fusion and Group
-
-<pre>
-<M>fusion</M><Y>(</Y><LG>Value</LG><Y>)</Y> <G>// Can hold different types</G>
-<C>{</C>
-    <Y>i4</Y> <LG>integer</LG>;
-    <Y>r4</Y> <LG>rational</LG>;
-<C>}</C>;
-
-<M>group</M><Y>(</Y><LG>Color</LG>, <Y>n1</Y><Y>)</Y> <G>// Named values with type</G>
-<C>{</C>
-    <LG>red</LG>,
-    <LG>green</LG>,
-    <LG>blue</LG>
-<C>}</C>;
 </pre>
 
 -------
