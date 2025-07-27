@@ -139,6 +139,7 @@ If the reference itself is unknown:
 <G>// Made once, always exists in the scope</G>
 
 <Y>temp</Y> <LG>TYPE VAR</LG> <G>// VAR is temporary</G>
+<G>// Faster read/write time than without temp
 <G>// Cannot get ref_of a temp variable!</G>
 
 <Y>const</Y> <LG>TYPE NAME</LG> <G>// NAME is constant</G>
