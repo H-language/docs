@@ -246,8 +246,8 @@ jump label		// goto label
     
     <M>other</M>
     <C>{</C>
-    	<G>// this code is ran if val
-	// isn't 1, 2, or 3. But will if it's 4 etc.</G>
+    	<G>// this code is ran if val</G>
+			<G>// isn't 1, 2, or 3. But will if it's 4 etc.</G>
     <C>}</C>
 <C>}</C>
 <G>// skip takes us out to here</G>
