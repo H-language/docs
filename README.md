@@ -563,12 +563,12 @@ If the function does output something:
 ### Formatted Output
 
 <pre>
-<M>print_format</M><Y>(</Y><C>"Value: <c:g>%d</c:g>\n"</C>, <C>42</C><Y>)</Y>;
+<M>print_format</M><Y>(</Y><C>"Value: &lt;c:g&gt;%d&lt;/c:g&gt;\n"</C>, <C>42</C><Y>)</Y>;
 
 <G>// Format tags:</G>
-<G>// <c:r> = red, <c:g> = green, <c:b> = blue</G>
-<G>// <c:y> = yellow, <c:m> = magenta, <c:c> = cyan</G>
-<G>// <b> = bold, <u> = underline</G>
+<G>// &lt;c:r&gt; = red, &lt;c:g&gt; = green, &lt;c:b&gt; = blue</G>
+<G>// &lt;c:y&gt; = yellow, &lt;c:m&gt; = magenta, &lt;c:c&gt; = cyan</G>
+<G>// &lt;b&gt; = bold, &lt;u&gt; = underline</G>
 </pre>
 
 ### Format Bytes Function
