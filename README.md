@@ -122,7 +122,7 @@ If you're dealing with bytes, use:
 <G>// which is 00110111 in bits</G>
 </pre>
 
-If the type is unknown, it's:
+If the ref type is unknown, it's:
 <pre>
 <H>anon</H>
 <G>// some_type ref y_ref = ref_of( y );</G>
