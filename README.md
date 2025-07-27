@@ -421,15 +421,15 @@ If the function does output something:
 </pre>
 
 ### Advanced Copy Operations
-
 <pre>
 <M>bytes_copy_move</M><Y>(</Y> <LG>FROM</LG>, <LG>SIZE</LG>, <LG>TO</LG> <Y>)</Y>
 <G>// Copy SIZE bytes then</G>
-<G>//  moves TO pointer by SIZE</G>
+<G>//  moves the TO ref by SIZE</G>
 <M>bytes_paste_move</M><Y>(</Y> <LG>FROM</LG>, <LG>TO</LG> <Y>)</Y>
-<G>// Pastes null-terminated  and advance TO pointer</G>
+<G>// Pastes null-terminated FROM to TO</G>
+<G>//  moves the TO ref by FROM size</G>
 <M>bytes_set_move</M><Y>(</Y> <LG>BYTE</LG>, <LG>TO</LG> <Y>)</Y>
-<G>// Set single byte and advance TO pointer</G>
+<G>// Set single byte and move the TO ref by 1</G>
 </pre>
 
 -------
@@ -658,7 +658,6 @@ If the function does output something:
 ## Utility Macros
 
 ### Default Arguments
-
 <pre>
 <M>DEFAULT</M><Y>(</Y> <LG>VAL</LG>, <LG>ARG</LG> <Y>)</Y>
 <G>// Becomes ARG if provided, otherwise VAL</G>
@@ -666,7 +665,7 @@ If the function does output something:
 <M>DEFAULTS</M><Y>(</Y> <Y>(</Y> <LG>TUPLE</LG> <Y>)</Y>, <LG>ARGS...</LG> <Y>)</Y>
 <G>// Used like:</G>
 <C>#define</C> <M>foo</M><Y>(</Y> <LG>NAME</LG>, <LG>ARGS...</LG> <Y>)\</Y>
-<LG>NAME</LG><Y>(</Y> <M>DEFAULTS</M><Y>(</Y> <Y>(</Y> <C>1</C>, <C>2</C>, <C>3</C> <Y>)</Y>, <LG>ARGS</LG> <Y>)</Y> <Y>)</Y>
+	<LG>NAME</LG><Y>(</Y> <M>DEFAULTS</M><Y>(</Y> <Y>(</Y> <C>1</C>, <C>2</C>, <C>3</C> <Y>)</Y>, <LG>ARGS</LG> <Y>)</Y> <Y>)</Y>
 <G>// foo( test ) -> test( 1, 2, 3 )</G>
 <G>// foo( test, 7 ) -> test( 7, 2, 3 )</G>
 <G>// foo( test, 7, 8 ) -> test( 7, 8, 3 )</G>
@@ -675,7 +674,6 @@ If the function does output something:
 </pre>
 
 ### Compile-Time Helpers
-
 <pre>
 <M>COUNT_ARGS</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG> <Y>)</Y> <G>// Returns 3</G>
 <M>STRINGIFY</M><Y>(</Y> <LG>hello</LG> <Y>)</Y> <G>// Converts to "hello"</G>
@@ -683,7 +681,6 @@ If the function does output something:
 </pre>
 
 ### Byte Array Declaration
-
 <pre>
 <M>declare_bytes</M><Y>(</Y> <LG>buffer</LG>, <M>KB</M><Y>(</Y> <C>1</C> <Y>)</Y> <Y>)</Y>;
 <G>// Creates empty buffer[1000]</G>
