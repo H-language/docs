@@ -552,24 +552,54 @@ start
 
 ### File Processing
 <pre>
-<Y>#include</Y> <C>"H.h"</C>
-
 <M>start</M>
 <C>{</C>
-	<Y>file</Y> f <Y>=</Y> <M>open_file_loading</M><Y>(</Y> <C>"input.txt"</C> <Y>)</Y>;
+	<Y>file</Y> f <Y>=</Y> <M>open_file</M><Y>(</Y> input_bytes<C>[</C> <C>1</C> <C>]</C> <Y>)</Y>;
 	<M>if_nothing</M><Y>(</Y> f.handle <Y>)</Y>
 	<C>{</C>
 		<M>print</M><Y>(</Y> <C>"Failed to open file\n"</C> <Y>)</Y>;
-		<M>out executable_failure</M>;
+		<M>out</M> <M>executable_failure</M>;
 	<C>}</C>
 	
-	<Y>byte</Y> buffer<C>[</C> <M>KB</M><Y>(</Y> <C>10</C> <Y>)</Y> <C>]</C>;
-	<M>file_load</M><Y>(</Y> <M>ref_of</M><Y>(</Y> f <Y>)</Y>, buffer <Y>)</Y>;
+	<Y>byte</Y> input<C>[</C> <M>KB</M><Y>(</Y> <C>100</C> <Y>)</Y> <C>]</C>;
+	<M>temp</M> <Y>byte</Y> <Y>ref</Y> input_ref <Y>=</Y> input;
+	<M>file_load</M><Y>(</Y> f, input <Y>)</Y>;
 	
-	<M>print_format</M><Y>(</Y> <C>"File contents: <>\n"</C>, buffer <Y>)</Y>;
+	<Y>byte</Y> output<C>[</C> <M>KB</M><Y>(</Y> <C>100</C> <Y>)</Y> <C>]</C>;
+	<M>temp</M> <Y>byte</Y> <Y>ref</Y> output_ref <Y>=</Y> output;
 	
-	<M>file_close</M><Y>(</Y> <M>ref_of</M><Y>(</Y> f <Y>) )</Y>;
-	<M>out executable_success</M>;
+	<Y>check_input</Y>:
+	<C>{</C>
+		<M>temp</M> <Y>byte</Y> val <Y>=</Y> <M>val_of</M><Y>(</Y> input_ref <Y>)</Y>;
+		<M>with</M><Y>(</Y> val <Y>)</Y>
+		<C>{</C>
+			<M>when</M><Y>(</Y> <C>'\0'</C> <Y>)</Y> <M>jump</M> <Y>input_eof</Y>;
+
+			<M>when</M><Y>(</Y> <C>' '</C>, <C>'\t'</C>, <C>'\n'</C>, <C>'\r'</C> <Y>)</Y> <M>skip</M>;
+
+			<M>when</M><Y>(</Y> <C>'E'</C>, <C>'e'</C> <Y>)</Y>
+			<C>{</C>
+				<M>val_of</M><Y>(</Y> output_ref <Y>)</Y> <Y>=</Y> <C>'3'</C>;
+				output_ref <Y>=</Y> output_ref <Y>+</Y> <C>1</C>;
+				<M>skip</M>;
+			<C>}</C>
+
+			<M>other</M>
+			<C>{</C>
+				<M>val_of</M><Y>(</Y> output_ref <Y>)</Y> <Y>=</Y> val;
+				output_ref <Y>=</Y> output_ref <Y>+</Y> <C>1</C>;
+				<M>skip</M>;
+			<C>}</C>
+		<C>}</C>
+		input_ref <Y>=</Y> input_ref <Y>+</Y> <C>1</C>;
+		<M>jump</M> <Y>check_input</Y>;
+	<C>}</C>
+
+	<Y>input_eof</Y>:
+	<M>file_close</M><Y>(</Y> f <Y>)</Y>;
+	<M>print</M><Y>(</Y> output <Y>)</Y>;
+	<M>print_newline</M><Y>()</Y>;
+	<M>out</M> <M>executable_success</M>;
 <C>}</C>
 </pre>
 
