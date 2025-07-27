@@ -158,7 +158,27 @@ They can be combined:
 With ref/const_ref too:
 <pre>
 <Y>perm</Y><LG>/</LG><Y>temp const</Y> <LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG>
-<G>// A permanent-or-temporary constant TYPE reference</G>
+<G>// A permanent-or-temporary</G>
+<G>//  constant TYPE reference</G>
+
+<Y>perm</Y><LG>/</LG><Y>temp const</Y> <LG>TYPE</LG> <Y>const_ref</Y> <LG>NAME</LG>
+<G>// A permanent-or-temporary</G>
+<G>//  constant TYPE constant-reference</G>
+</pre>
+
+### Mutation Permissions
+<pre>
+<Y>const</Y> <LG>TYPE</LG> <Y>const_ref</Y> <LG>NAME</LG>
+<G>// NAME and val_of NAME cannot change</G>
+
+<LG>TYPE</LG> <Y>const_ref</Y> <LG>NAME</LG>
+<G>// NAME cannot change, but val_of NAME can</G>
+
+<Y>const</Y> <LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG>
+<G>// NAME can change, but val_of NAME cannot</G>
+
+<LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG>
+<G>// NAME and val_of NAME can change</G>
 </pre>
 
 ### Number Types
