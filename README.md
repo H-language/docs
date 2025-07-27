@@ -142,39 +142,40 @@ If the reference itself is unknown/invalid, it's:
 
 | Type | Size | Range |
 |------|------|-------|
-| <code><H>n1</H></code> | <b>1</b> | <b>0</b> <LG><i>to</i></LG> <b>255</b> |
-| <code><H>i1</H></code> | <b>1</b> | <b>-128</b> <LG><i>to</i></LG> <b>127</b> |
-| <code><H>n2</H></code> | <b>2</b> | <b>0</b> <LG><i>to</i></LG> <b>65,535</b> |
-| <code><H>i2</H></code> | <b>2</b> | <b>-32,768</b> <LG><i>to</i></LG> <b>32,767</b> |
-| <code><H>n4</H></code> | <b>4</b> | <b>0</b> <LG><i>to</i></LG> <b>4,294,967,295</b> |
-| <code><H>i4</H></code> | <b>4</b> | <b>-2,147,483,648</b> <LG><i>to</i></LG><br><b>2,147,483,647</b> |
-| <code><H>r4</H></code> | <b>4</b> | <b>-inf</b> <LG><i>to</i></LG> <b>inf</b> |
-| <code><H>n8</H></code> | <b>8</b> | <b>0</b> <LG><i>to</i></LG><br><b>18,446,744,073,709,551,615</b> |
-| <code><H>i8</H></code> | <b>8</b> | <b>-9,223,372,036,854,775,808</b> <LG><i>to</i></LG><br><b>9,223,372,036,854,775,807</b> |
-| <code><H>r8</H></code> | <b>8</b> | <b>-inf</b> <LG><i>to</i></LG> <b>inf</b> |
+| <code><Y>n1</Y></code> | <b>1</b> | <b>0</b> <LG><i>to</i></LG> <b>255</b> |
+| <code><Y>i1</Y></code> | <b>1</b> | <b>-128</b> <LG><i>to</i></LG> <b>127</b> |
+| <code><Y>n2</Y></code> | <b>2</b> | <b>0</b> <LG><i>to</i></LG> <b>65,535</b> |
+| <code><Y>i2</Y></code> | <b>2</b> | <b>-32,768</b> <LG><i>to</i></LG> <b>32,767</b> |
+| <code><Y>n4</Y></code> | <b>4</b> | <b>0</b> <LG><i>to</i></LG> <b>4,294,967,295</b> |
+| <code><Y>i4</Y></code> | <b>4</b> | <b>-2,147,483,648</b> <LG><i>to</i></LG><br><b>2,147,483,647</b> |
+| <code><Y>r4</Y></code> | <b>4</b> | <b>-inf</b> <LG><i>to</i></LG> <b>inf</b> |
+| <code><Y>n8</Y></code> | <b>8</b> | <b>0</b> <LG><i>to</i></LG><br><b>18,446,744,073,709,551,615</b> |
+| <code><Y>i8</Y></code> | <b>8</b> | <b>-9,223,372,036,854,775,808</b> <LG><i>to</i></LG><br><b>9,223,372,036,854,775,807</b> |
+| <code><Y>r8</Y></code> | <b>8</b> | <b>-inf</b> <LG><i>to</i></LG> <b>inf</b> |
 
-### Other Types and Prefixes
+### Other Types
 <pre>
-<H>flag</H> <G>// yes or no</G>
+<Y>flag</Y> <G>// yes or no</G>
 
-<H>yes</H> <G>// 1</G>
-<H>no</H>  <G>// 0</G>
+<C>yes</C> <G>// 1</G>
+<C>no</C>  <G>// 0</G>
 
-<H>flip(</H> <G>FLAG</G> <H>)</H>; <G>// no to yes, yes to no</G>
+<M>flip</M><Y>(</Y> <G>FLAG</G> <Y>)</Y>; <G>// no to yes, yes to no</G>
 <G>// flag is_ready = no;</G>
 <G>// flip( is_ready );</G>
 <G>// is_ready is now yes</G>
 </pre>
 
+### Type Prefixes
 <pre>
-<H>temp</H> <LG>VAR</LG> <G>// VAR is temporary</G>
+<Y>temp</Y> <LG>TYPE VAR</LG> <G>// VAR is temporary</G>
 <G>// cannot get ref_of</G>
 
-<H>perm</H> <LG>VAR</LG> <G>// VAR is permanent</G>
+<Y>perm</Y> <LG>TYPE VAR</LG> <G>// VAR is permanent</G>
 <G>// made once, always exists in the scope</G>
 
-<H>global</H> <LG>VAR</LG> <G>// VAR is explicitly global</G>
-<G>// Used as an label outside functions/scopes.</G>
+<Y>global</Y> <LG>TYPE VAR</LG> <G>// VAR is explicitly global</G>
+<G>// Used as a label outside functions/scopes.</G>
 <G>// Globals are discouraged,</G>
 <G>// this is to make them explicit.</G>
 </pre>
