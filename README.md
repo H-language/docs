@@ -256,11 +256,30 @@ jump label		// goto label
 
 ### Conditional Helpers
 <pre>
-<M>if_nothing</M><Y>( </Y>REF<Y> )</Y> <G>// if REF is nothing</G>
-<M>if_something</M><Y>( </Y>REF<Y> )</Y> <G>// if REF is not nothing</G>
-<M>if_any</M><Y>(</Y> a, b, c... <Y>)</Y> <G>// if any arguments are yes</G>
-<M>if_all</M><Y>(</Y> a, b, c... <Y>)</Y> <G>// if all arguments are yes</G>
-<M>if_none</M><Y>(</Y> a, b, c... <Y>)</Y> <G>// if none of the arguments are yes</G>
+<M>if_nothing</M><Y>( </Y>REF<Y> )</Y>
+<C>{</C>
+    <G>// if REF is nothing</G>
+<C>}</C>
+
+<M>if_something</M><Y>( </Y>REF<Y> )</Y>
+<C>{</C>
+    <G>// if REF is not nothing</G>
+<C>}</C>
+
+<M>if_any</M><Y>(</Y> a, b, c... <Y>)</Y>
+<C>{</C>
+    <G>// if any arguments are yes</G>
+<C>}</C>
+
+<M>if_all</M><Y>(</Y> a, b, c... <Y>)</Y>
+<C>{</C>
+    <G>// if all arguments are yes</G>
+<C>}</C>
+
+<M>if_none</M><Y>(</Y> a, b, c... <Y>)</Y>
+<C>{</C>
+    <G>// if none of the arguments are yes</G>
+<C>}</C>
 
 <M>skip_if</M><Y>(</Y> x <Y>)</Y>; <G>// skip if x is yes</G>
 <M>next_if</M><Y>(</Y> x <Y>)</Y>; <G>// next iter is x is yes</G>
