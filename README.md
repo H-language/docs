@@ -100,8 +100,18 @@ If you're dealing with bytes, use:
 </pre>
 
 ### Refs
+If the reference address could be changed:
 <pre>
-<LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG> <G>// A reference to a TYPE</G>
+<LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG>
+<G>// A reference to a TYPE</G>
+<G>// Can be changed like:</G>
+<G>//  NAME = NAME + 1;</G>
+</pre>
+If the reference is constant:
+<pre>
+<LG>TYPE</LG> <Y>const_ref</Y> <LG>NAME</LG>
+<G>// A constant reference to a TYPE</G>
+<G>// Cannot be changed!</G>
 </pre>
 | H Syntax | Definition |
 |----------|-------------|
@@ -425,9 +435,11 @@ If the function does output something:
 <M>bytes_copy_move</M><Y>(</Y> <LG>FROM</LG>, <LG>SIZE</LG>, <LG>TO</LG> <Y>)</Y>
 <G>// Copy SIZE bytes then</G>
 <G>//  moves the TO ref by SIZE</G>
+
 <M>bytes_paste_move</M><Y>(</Y> <LG>FROM</LG>, <LG>TO</LG> <Y>)</Y>
 <G>// Pastes null-terminated FROM to TO</G>
 <G>//  moves the TO ref by FROM size</G>
+
 <M>bytes_set_move</M><Y>(</Y> <LG>BYTE</LG>, <LG>TO</LG> <Y>)</Y>
 <G>// Set single byte and move the TO ref by 1</G>
 </pre>
@@ -436,19 +448,47 @@ If the function does output something:
 ## Math Operations
 
 <pre>
-<M>MIN</M><Y>(</Y> <LG>A</LG>, <LG>B</LG> <Y>)</Y> <G>// Smaller of A or B</G>
-<M>MAX</M><Y>(</Y> <LG>A</LG>, <LG>B</LG> <Y>)</Y> <G>// Larger of A or B</G>
-<M>MIN3</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG> <Y>)</Y> <G>// Smallest of three</G>
-<M>MIN4</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG>, <LG>D</LG> <Y>)</Y> <G>// Smallest of four</G>
-<M>MAX3</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG> <Y>)</Y> <G>// Largest of three</G>
-<M>MAX4</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG>, <LG>D</LG> <Y>)</Y> <G>// Largest of four</G>
-<M>MEAN</M><Y>(</Y> <LG>A</LG>, <LG>B</LG> <Y>)</Y> <G>// Average of A and B</G>
-<M>CLAMP</M><Y>(</Y> <LG>VAL</LG>, <LG>MIN</LG>, <LG>MAX</LG> <Y>)</Y> <G>// Keep VAL between MIN and MAX</G>
-<M>ABS</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y> <G>// Remove negative sign</G>
-<M>SIGN</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y> <G>// Returns 1 or -1</G>
-<M>SQR</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y> <G>// VAL times VAL</G>
-<M>CUBE</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y> <G>// VAL times VAL times VAL</G>
-<M>SNAP</M><Y>(</Y> <LG>VAL</LG>, <LG>MULTIPLE</LG> <Y>)</Y> <G>// Round VAL to nearest MULTIPLE</G>
+<M>MIN</M><Y>(</Y> <LG>A</LG>, <LG>B</LG> <Y>)</Y>
+<G>// Smaller of A or B</G>
+
+<M>MAX</M><Y>(</Y> <LG>A</LG>, <LG>B</LG> <Y>)</Y>
+<G>// Larger of A or B</G>
+
+<M>MIN3</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG> <Y>)</Y>
+<G>// Smallest of three</G>
+
+<M>MIN4</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG>, <LG>D</LG> <Y>)</Y>
+<G>// Smallest of four</G>
+
+<M>MAX3</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG> <Y>)</Y>
+<G>// Largest of three</G>
+
+<M>MAX4</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG>, <LG>D</LG> <Y>)</Y>
+<G>// Largest of four</G>
+
+<M>MEAN</M><Y>(</Y> <LG>A</LG>, <LG>B</LG> <Y>)</Y>
+<G>// Average of A and B</G>
+
+<M>CLAMP</M><Y>(</Y> <LG>VAL</LG>, <LG>MIN</LG>, <LG>MAX</LG> <Y>)</Y>
+<G>// Keep VAL between MIN and MAX</G>
+
+<M>ABS</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y>
+<G>// Remove negative sign</G>
+
+<M>SIGN</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y>
+<G>// Outputs 1 if positive or 0, -1 if negative</G>
+
+<M>SIGN_ZERO</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y>
+<G>// Outputs 0 if 0, 1 if positive, -1 if negative</G>
+
+<M>SQR</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y>
+<G>// VAL * VAL</G>
+
+<M>CUBE</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y>
+<G>// VAL * VAL * VAL</G>
+
+<M>SNAP</M><Y>(</Y> <LG>VAL</LG>, <LG>MULTIPLE</LG> <Y>)</Y>
+<G>// Round VAL to nearest MULTIPLE</G>
 </pre>
 
 -------
