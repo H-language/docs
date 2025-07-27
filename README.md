@@ -153,16 +153,26 @@ If the value of a reference is unknown, it's:
 | <code><H>i8</H></code> | <b>8</b> | <b>-9,223,372,036,854,775,808</b> <LG><i>to</i></LG><br><b>9,223,372,036,854,775,807</b> |
 | <code><H>r8</H></code> | <b>8</b> | <b>-inf</b> <LG><i>to</i></LG> <b>inf</b> |
 
-### Other Types
-```
-byte // equivalent to an i1, used for explicit byte handling
-flag // yes or no
-```
-Values:
-```
-yes	// 1
-no	// 0
-```
+### Other Types and Prefixes
+<pre>
+<H>flag</H> <G>// yes or no</G>
+</pre>
+flag values:
+<pre>
+<H>yes</H> <G>// 1</G>
+<H>no</H>  <G>// 0</G>
+</pre>
+
+<pre>
+<H>temp</H> variable <G>// variable is temporary</G>
+<G>// cannot get ref_of</G>
+
+<H>perm</H> variable <G>// permanent variable</G>
+<G>// made once, always exists in the scope
+
+<H>global</H> variable <G>// variable is explicitly global</G>
+<G>// used as an identifier</G>
+</pre>
 
 -------
 ## Control Flow
@@ -283,7 +293,7 @@ jump label		// goto label
 
 <M>skip_if</M><Y>(</Y> x <Y>)</Y>; <G>// skip if x is yes</G>
 <M>next_if</M><Y>(</Y> x <Y>)</Y>; <G>// next iter is x is yes</G>
-<M>out_if</M><Y>(</Y> x <Y>)</Y> val; <G>// jump out if x is yes</G>
+<M>out_if</M><Y>(</Y> x <Y>)</Y> v; <G>// output v if x is yes</G>
 </pre>
 
 -------
@@ -300,9 +310,6 @@ fn function_name(params)    // static inline void function_name(params)
 ### Storage Classes
 
 ```
-temp variable       // register variable
-perm variable       // static variable
-global variable     // explicitly global
 embed function      // static inline function
 ```
 
