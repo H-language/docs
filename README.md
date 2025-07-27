@@ -3,7 +3,7 @@
 
 -------
 ## a quick overview
-<H>H</H> is a single-file syntactic layer that transforms C into a more readable, functional programming language.
+<H>H</H> is a single-file syntactic layer that reshapes C into a more readable and understandable language.
 Hydrogen Language provides:
 - Intuitive and explicit keywords
 - Functional programming patterns
@@ -164,21 +164,53 @@ jump label		// goto label
 
 ### Iteration Helpers
 
-```
-// Range iteration: for( i = from; i <= to; i += step )
-range_step( i, from, to, step )
-range( i, from, to )              // step = 1
+<pre>
+<G>// range functions include from and to</G>
+<M>range</M><Y>(</Y> VAR, FROM, TO <Y>)</Y>
+<C>{</C>
+	<G>// iterates VAR in a FROM-TO range</G>
+	<G>// progresses 1 at a time</G>
+	<G>// range( i, 2, 7 ) makes i go from 2 to 7</G>
+<C>}</C>
 
-// Index iteration: for( i = 0; i < size; i += step )
-iter_step( i, size, step )
-iter( i, size )                   // step = 1
+<M>range_step</M><Y>(</Y> VAR, FROM, TO, STEP <Y>)</Y>
+<C>{</C>
+	<G>// iterates VAR in a FROM-TO range</G>
+	<G>// but progresses with STEP</G>
+<C>}</C>
 
-// 2D grid iteration
-iter_grid( x, y, width, height )
+<G>// iter functions always start from 0</G>
+<M>iter</M><Y>(</Y> VAR, SIZE <Y>)</Y>
+<C>{</C>
+	<G>// iterates VAR from 0 to SIZE-1</G>
+	<G>// progresses 1 at a time</G>
+<C>}</C>
 
-// Repeat n times
-repeat( n )
-```
+<M>iter_step</M><Y>(</Y> VAR, SIZE, STEP <Y>)</Y>
+<C>{</C>
+	<G>// iterates VAR from 0 to SIZE-1</G>
+	<G>// but progresses with STEP</G>
+<C>}</C>
+
+<M>iter_grid</M><Y>(</Y> X, Y, WIDTH, HEIGHT <Y>)</Y>
+<C>{</C>
+	<G>// iterates X from 0 to WIDTH-1; left-to-right,</G>
+	<G>// and Y from 0 to HEIGHT-1; top-to-bottom,</G>
+	<G>// for things like pixel images</G>
+<C>}</C>
+
+<M>repeat</M><Y>(</Y> n <Y>)</Y>
+<C>{</C>
+	<G>// repeats this scope n-times</G>
+<C>}</C>
+
+<M>once</M>
+<C>{</C>
+	<G>// this scope runs only once, even in loops</G>
+	<M>print</M><Y>(</Y> <C>"loading complete\n"</C> <Y>)</Y>;
+	<G>// mostly used for testing and initializing</G>
+<C>}</C>
+</pre>
 
 ### with/when Statements
 <pre>
@@ -474,6 +506,7 @@ MiB( n )          // n * 1,048,576
 GiB( n )          // n * 1,073,741,824
 ```
 
+-------
 ## Utility Macros
 
 ### Default Arguments
@@ -526,17 +559,7 @@ is_letter( byte )         // Check if alphabetic
 is_number( byte )         // Check if numeric
 ```
 
-## Entry Point
-
-<pre>
-start
-{
-	out executable_success;
-	out executable_failure;
-	out executable_warning;
-}
-</pre>
-
+-------
 ## Example Programs
 
 ### Hello World
@@ -552,6 +575,8 @@ start
 
 ### File Processing
 <pre>
+<Y>#include</Y> <C>"H.h"</C>
+
 <M>start</M>
 <C>{</C>
 	<Y>file</Y> f <Y>=</Y> <M>open_file</M><Y>(</Y> input_bytes<C>[</C> <C>1</C> <C>]</C> <Y>)</Y>;
