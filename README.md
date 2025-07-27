@@ -174,7 +174,9 @@ If the reference itself is unknown/invalid, it's:
 <G>// made once, always exists in the scope</G>
 
 <H>global</H> <LG>VAR</LG> <G>// VAR is explicitly global</G>
-<G>// used as an identifier</G>
+<G>// Used as an label outside functions/scopes.</G>
+<G>// Globals are discouraged,</G>
+<G>// this is to make them explicit.</G>
 </pre>
 
 -------
