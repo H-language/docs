@@ -100,14 +100,14 @@ If you're dealing with bytes, use:
 </pre>
 
 ### Refs
-If the reference address could be changed:
+If the reference will be changed:
 <pre>
 <LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG>
 <G>// A reference to a TYPE</G>
 <G>// Can be changed like:</G>
 <G>//  NAME = NAME + 1;</G>
 </pre>
-If the reference is constant:
+Otherwise, make it constant:
 <pre>
 <LG>TYPE</LG> <Y>const_ref</Y> <LG>NAME</LG>
 <G>// A constant reference to a TYPE</G>
@@ -131,6 +131,34 @@ If the reference itself is unknown:
 <pre>
 <C>nothing</C>
 <G>// byte ref x = nothing;</G>
+</pre>
+
+### Type Prefixes
+<pre>
+<Y>perm</Y> <LG>TYPE VAR</LG> <G>// VAR is permanent</G>
+<G>// Made once, always exists in the scope</G>
+
+<Y>temp</Y> <LG>TYPE VAR</LG> <G>// VAR is temporary</G>
+<G>// Cannot get ref_of a temp variable!</G>
+
+<Y>const</Y> <LG>TYPE NAME</LG> <G>// NAME is constant</G>
+<G>// Cannot be changed!
+
+<Y>global</Y> <LG>TYPE VAR</LG> <G>// VAR is explicitly global</G>
+<G>// Used as a label outside functions/scopes</G>
+<G>// Globals are discouraged,</G>
+<G>//  this is to make them explicit</G>
+</pre>
+They can be combined:
+<pre>
+<Y>perm</Y><LG>/</LG><Y>temp const</Y> <LG>TYPE NAME</LG>
+<G>// A permanent-or-temporary constant TYPE</G>
+<G>// perm/temp always go before const</G>
+</pre>
+With ref/const_ref too:
+<pre>
+<Y>perm</Y><LG>/</LG><Y>temp const</Y> <LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG>
+<G>// A permanent-or-temporary constant TYPE reference</G>
 </pre>
 
 ### Number Types
@@ -171,29 +199,6 @@ If the reference itself is unknown:
 
 <M>pick</M><Y>(</Y> <LG>FLAG</LG>, <LG>A</LG>, <LG>B</LG> <Y>)</Y> <G>// Ternary operator</G>
 <G>// If FLAG is yes, pick A, else pick B</G>
-</pre>
-
-### Type Prefixes
-<pre>
-<Y>perm</Y> <LG>TYPE VAR</LG> <G>// VAR is permanent</G>
-<G>// Made once, always exists in the scope</G>
-
-<Y>temp</Y> <LG>TYPE VAR</LG> <G>// VAR is temporary</G>
-<G>// Cannot get ref_of a temp variable!</G>
-
-<Y>const</Y> <LG>TYPE NAME</LG> <G>// NAME is constant</G>
-<G>// Cannot be changed!
-
-<Y>global</Y> <LG>TYPE VAR</LG> <G>// VAR is explicitly global</G>
-<G>// Used as a label outside functions/scopes</G>
-<G>// Globals are discouraged,</G>
-<G>//  this is to make them explicit</G>
-</pre>
-They can be combined:
-<pre>
-<Y>perm</Y><LG>/</LG><Y>temp const</Y> <LG>TYPE NAME</LG>
-<G>// A permanent-or-temporary constant TYPE</G>
-<G>// perm/temp always go before const</G>
 </pre>
 
 ### Logic Operations
