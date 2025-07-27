@@ -94,11 +94,6 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 | <code><H>val_of(</H> <G>REF</G> <H>)</H></code> | Value-of reference |
 | <code><H>to(</H> <G>TYPE</G><H>,</H> <G>VAL</G> <H>)</H></code> | Changes VAL to TYPE |
 | <code><H>cast(</H> <G>TYPE</G><H>,</H> <G>VAR</G> <H>)</H></code> | Reinterpret VAR to TYPE |
-<pre>
-<G>// If a ref points to no value, you use:</G>
-<H>nothing</H>
-<G>// byte ref x = nothing;</G>
-</pre>
 
 ### Boolean and Logic Operations
 | H Syntax | Definition |
@@ -114,10 +109,29 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 
 -------
 ## Type System
+<H>H</H> has a "only bytes and references" design.
+
+## a <H>byte</H> is 8 bits, a <H>ref</H> is 8 bytes!
+
+If you're dealing with bytes, use:
+<pre>
+<H>byte</H>
+<G>// byte x = '7';</G>
+<G>// the '7' character is 55</G>
+<G>// which is 00110111 in bits</G>
+</pre>
+
 If the type is unknown, it's:
 <pre>
 <H>anon</H>
-<G>// anon ref x = to( anon ref, ref_of( y ) );</G>
+<G>// some_type ref y_ref = ref_of( y );</G>
+<G>// anon ref x = to( anon ref, y_ref );</G>
+</pre>
+
+If the value of a reference is unknown, it's:
+<pre>
+<H>nothing</H>
+<G>// byte ref x = nothing;</G>
 </pre>
 
 ### Number Types
