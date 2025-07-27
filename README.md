@@ -122,14 +122,14 @@ If you're dealing with bytes, use:
 <G>// which is 00110111 in bits</G>
 </pre>
 
-If the ref type is unknown, it's:
+If the reference type is unknown, it's:
 <pre>
 <H>anon</H>
 <G>// some_type ref y_ref = ref_of( y );</G>
 <G>// anon ref x = to( anon ref, y_ref );</G>
 </pre>
 
-If the value of a reference is unknown, it's:
+If the reference itself is unknown/invalid, it's:
 <pre>
 <H>nothing</H>
 <G>// byte ref x = nothing;</G>
