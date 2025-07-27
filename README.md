@@ -90,8 +90,8 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 | H Syntax | Definition |
 |----------|-------------|
 | <code><LG>TYPE</LG> <Y>ref</Y></code> | Reference to TYPE |
-| <code><M>ref_of</M><Y>(</Y> <LG>VAR</LG> <Y>)</Y></code> | Reference-of variable |
-| <code><M>val_of</M><Y>(</Y> <LG>REF</LG> <Y>)</Y></code> | Value-of reference |
+| <code><M>ref_of</M><Y>(</Y> <LG>VAR</LG> <Y>)</Y></code> | Reference-of VAR |
+| <code><M>val_of</M><Y>(</Y> <LG>REF</LG> <Y>)</Y></code> | Value-of REF |
 | <code><M>to</M><Y>(</Y> <LG>TYPE</LG>, <LG>VAL</LG> <Y>)</Y></code> | Changes VAL to TYPE |
 | <code><M>cast</M><Y>(</Y> <LG>TYPE</LG>, <LG>VAR</LG> <Y>)</Y></code> | Reinterpret VAR to TYPE |
 
@@ -109,7 +109,7 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 
 -------
 ## Type System
-<H>H</H> has a "only bytes and references" design.
+<H>H</H> is "only bytes and references".
 
 ## a <H>byte</H> is <i>8 bits</i>
 ## a <H>ref</H> is <i>8 bytes</i>
@@ -118,8 +118,8 @@ If you're dealing with bytes, use:
 <pre>
 <H>byte</H>
 <G>// byte x = '7';</G>
-<G>// the '7' character is 55</G>
-<G>// which is 00110111 in bits</G>
+<G>// The '7' character is 55</G>
+<G>// Which is 00110111 in bits</G>
 </pre>
 
 If the reference type is unknown, it's:
@@ -140,6 +140,11 @@ If the reference itself is unknown/invalid, it's:
 - <H>I</H>nteger <LG>(can be negative)</LG>
 - <H>R</H>ational <LG>(has a fractional part)</LG>
 
+<pre>
+[<Y>n</Y>/<Y>i</Y>/<Y>r</Y>][<Y>size</Y>]
+<G>// Where [size] is in bytes</G>
+</pre>
+
 | Type | Size | Range |
 |------|------|-------|
 | <code><Y>n1</Y></code> | <b>1</b> | <b>0</b> <LG><i>to</i></LG> <b>255</b> |
@@ -155,12 +160,12 @@ If the reference itself is unknown/invalid, it's:
 
 ### Other Types
 <pre>
-<Y>flag</Y> <G>// yes or no</G>
-
+<Y>flag</Y> <LG>VAR</LG>
+<G>// a flag can either be:
 <C>yes</C> <G>// 1</G>
 <C>no</C>  <G>// 0</G>
 
-<M>flip</M><Y>(</Y> <G>FLAG</G> <Y>)</Y>; <G>// no to yes, yes to no</G>
+<M>flip</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y>; <G>// no to yes, yes to no</G>
 <G>// flag is_ready = no;</G>
 <G>// flip( is_ready );</G>
 <G>// is_ready is now yes</G>
