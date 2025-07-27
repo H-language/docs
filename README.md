@@ -90,7 +90,7 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 ## a <H>byte</H> is <i>8 bits</i>
 ## a <H>ref</H> is <i>8 bytes</i>
 
-### Byte
+### Bytes
 If you're dealing with bytes, use:
 <pre>
 <Y>byte</Y>
@@ -99,9 +99,9 @@ If you're dealing with bytes, use:
 <G>// Which is 00110111 in bits</G>
 </pre>
 
-### Ref
+### Refs
 <pre>
-<LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG> <G>// A reference to a TYPE, called NAME</G>
+<LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG> <G>// A reference to a TYPE</G>
 </pre>
 | H Syntax | Definition |
 |----------|-------------|
@@ -110,14 +110,14 @@ If you're dealing with bytes, use:
 | <code><M>to</M><Y>(</Y> <LG>TYPE</LG>, <LG>VAL</LG> <Y>)</Y></code> | Changes VAL to TYPE |
 | <code><M>cast</M><Y>(</Y> <LG>TYPE</LG>, <LG>VAR</LG> <Y>)</Y></code> | Reinterpret VAR to TYPE |
 
-If the reference type is unknown, it's:
+If the reference type is unknown:
 <pre>
 <Y>anon</Y>
 <G>// some_type ref y_ref = ref_of( y );</G>
 <G>// anon ref x = to( anon ref, y_ref );</G>
 </pre>
 
-If the reference itself is unknown/invalid, it's:
+If the reference itself is unknown:
 <pre>
 <C>nothing</C>
 <G>// byte ref x = nothing;</G>
@@ -165,16 +165,25 @@ If the reference itself is unknown/invalid, it's:
 
 ### Type Prefixes
 <pre>
+<Y>perm</Y> <LG>TYPE VAR</LG> <G>// VAR is permanent</G>
+<G>// Made once, always exists in the scope</G>
+
 <Y>temp</Y> <LG>TYPE VAR</LG> <G>// VAR is temporary</G>
 <G>// Cannot get ref_of a temp variable!</G>
 
-<Y>perm</Y> <LG>TYPE VAR</LG> <G>// VAR is permanent</G>
-<G>// Made once, always exists in the scope</G>
+<Y>const</Y> <LG>TYPE NAME</LG> <G>// NAME is constant</G>
+<G>// Cannot be changed!
 
 <Y>global</Y> <LG>TYPE VAR</LG> <G>// VAR is explicitly global</G>
 <G>// Used as a label outside functions/scopes</G>
 <G>// Globals are discouraged,</G>
 <G>//  this is to make them explicit</G>
+</pre>
+They can be combined:
+<pre>
+<Y>perm</Y><LG>/</LG><Y>temp const</Y> <LG>TYPE NAME</LG>
+<G>// A permanent-or-temporary constant TYPE</G>
+<G>// perm/temp always go before const</G>
 </pre>
 
 ### Logic Operations
