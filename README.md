@@ -84,35 +84,13 @@ Simply include H.h in your C project:
 Then compile with <H>GCC</H>, or <H>TCC</H>.
 
 -------
-## Core Language Transforms
-
-### Pointer and Reference Operations
-| H Syntax | Definition |
-|----------|-------------|
-| <code><LG>TYPE</LG> <Y>ref</Y></code> | Reference to TYPE |
-| <code><M>ref_of</M><Y>(</Y> <LG>VAR</LG> <Y>)</Y></code> | Reference-of VAR |
-| <code><M>val_of</M><Y>(</Y> <LG>REF</LG> <Y>)</Y></code> | Value-of REF |
-| <code><M>to</M><Y>(</Y> <LG>TYPE</LG>, <LG>VAL</LG> <Y>)</Y></code> | Changes VAL to TYPE |
-| <code><M>cast</M><Y>(</Y> <LG>TYPE</LG>, <LG>VAR</LG> <Y>)</Y></code> | Reinterpret VAR to TYPE |
-
-### Logic Operations
-| H Syntax | Definition |
-|----------|-------------|
-| <code><M>not</M></code> | Logical NOT |
-| <code><M>and</M></code> | Logical AND |
-| <code><M>or</M></code> | Logical OR |
-| <code><M>xor</M></code> | Logical eXclusive-OR |
-| <code><M>mod</M></code> | Modulo |
-| <code><M>is</M></code> | Equality |
-| <code><M>isnt</M></code> | Inequality |
-
--------
-## Type System
+## Bytes, References, and Types
 <H>H</H> is "only bytes and references".
 
 ## a <H>byte</H> is <i>8 bits</i>
 ## a <H>ref</H> is <i>8 bytes</i>
 
+### Byte
 If you're dealing with bytes, use:
 <pre>
 <Y>byte</Y>
@@ -120,6 +98,17 @@ If you're dealing with bytes, use:
 <G>// The '7' character is 55</G>
 <G>// Which is 00110111 in bits</G>
 </pre>
+
+### Ref
+<pre>
+<LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG> <G>// A reference to a TYPE, called NAME</G>
+</pre>
+| H Syntax | Definition |
+|----------|-------------|
+| <code><M>ref_of</M><Y>(</Y> <LG>VAR</LG> <Y>)</Y></code> | Reference-of VAR |
+| <code><M>val_of</M><Y>(</Y> <LG>REF</LG> <Y>)</Y></code> | Value-of REF |
+| <code><M>to</M><Y>(</Y> <LG>TYPE</LG>, <LG>VAL</LG> <Y>)</Y></code> | Changes VAL to TYPE |
+| <code><M>cast</M><Y>(</Y> <LG>TYPE</LG>, <LG>VAR</LG> <Y>)</Y></code> | Reinterpret VAR to TYPE |
 
 If the reference type is unknown, it's:
 <pre>
@@ -188,16 +177,38 @@ If the reference itself is unknown/invalid, it's:
 <G>//  this is to make them explicit</G>
 </pre>
 
+### Logic Operations
+| H Syntax | Definition |
+|----------|-------------|
+| <code><M>not</M></code> | Logical NOT |
+| <code><M>and</M></code> | Logical AND |
+| <code><M>or</M></code> | Logical OR |
+| <code><M>xor</M></code> | Logical eXclusive-OR |
+| <code><M>mod</M></code> | Modulo |
+| <code><M>is</M></code> | Equality |
+| <code><M>isnt</M></code> | Inequality |
+
+-------
+## Functions
+
+### Function Declaration
+<pre>
+<G>// If the function does not output anything:
+<M>fn</M> <LG>NAME</LG><Y>(</Y> <LG>TYPE ARG1</LG>, <LG>const TYPE ARG2</LG>, <LG>TYPE ref ARG3...</LG> <Y>)</Y>
+</pre>
+
+### Embed Function Prefix
+<pre>
+<M>embed</M> <LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>...</LG> <Y>)</Y>
+<G>// This will force the compiler to embed the</G>
+<G>//  function code in where it's called</G>
+</pre>
+
 -------
 ## Control Flow
 
 ### Loops
 <pre>
-<M>skip</M> <G>// Skip the rest of the scope</G>
-
-<LG>POINT</LG>: <G>// Set jump point</G>
-<M>jump</M> <LG>POINT</LG>; <G>// Jump to POINT
-
 <M>loop</M>
 <C>{</C>
 	<G>// Infinite loop</G>
@@ -224,6 +235,11 @@ If the reference itself is unknown/invalid, it's:
 <C>}</C>
 <M>until</M><Y>(</Y> x <Y>)</Y>;
 
+<M>skip</M> <G>// Skip the rest of the scope</G>
+
+<LG>POINT</LG>: <G>// Set jump point</G>
+<M>jump</M> <LG>POINT</LG>; <G>// Jump to POINT
+
 <M>next</M> <G>// Jump up to next iteration</G>
 <G>// while( x < 10 )</G>
 <G>// {</G>
@@ -235,39 +251,45 @@ If the reference itself is unknown/invalid, it's:
 <G>// 	}</G>
 <G>// 	print( "H" );</G>
 <G>// }</G>
+
+<M>skip_if</M><Y>(</Y> <LG>x</LG> <Y>)</Y>; <G>// Skip if x is yes</G>
+<M>next_if</M><Y>(</Y> <LG>x</LG> <Y>)</Y>; <G>// Jump to next if x is yes</G>
+<M>out_if</M><Y>(</Y> <LG>x</LG> <Y>)</Y> v; <G>// Output v if x is yes</G>
+<G>// Can be empty if function doesn't output:</G>
+<G>// out_if( x );</G>
 </pre>
 
 ### Iteration Helpers
 
 <pre>
 <G>// Range functions include from and to</G>
-<M>range</M><Y>(</Y> VAR, FROM, TO <Y>)</Y>
+<M>range</M><Y>(</Y> <LG>VAR</LG>, <LG>FROM</LG>, <LG>TO</LG> <Y>)</Y>
 <C>{</C>
 	<G>// Iterates VAR in a FROM-TO range</G>
 	<G>// Progresses 1 at a time</G>
 	<G>// ( i, 2, 7 ) makes i go from 2 to 7</G>
 <C>}</C>
 
-<M>range_step</M><Y>(</Y> VAR, FROM, TO, STEP <Y>)</Y>
+<M>range_step</M><Y>(</Y> <LG>VAR</LG>, <LG>FROM</LG>, <LG>TO</LG>, <LG>STEP</LG> <Y>)</Y>
 <C>{</C>
 	<G>// Iterates VAR in a FROM-TO range,</G>
 	<G>//  but progresses with STEP</G>
 <C>}</C>
 
 <G>// Iter functions always start from 0</G>
-<M>iter</M><Y>(</Y> VAR, SIZE <Y>)</Y>
+<M>iter</M><Y>(</Y> <LG>VAR</LG>, <LG>SIZE</LG> <Y>)</Y>
 <C>{</C>
 	<G>// Iterates VAR from 0 to SIZE-1</G>
 	<G>// Progresses 1 at a time</G>
 <C>}</C>
 
-<M>iter_step</M><Y>(</Y> VAR, SIZE, STEP <Y>)</Y>
+<M>iter_step</M><Y>(</Y> <LG>VAR</LG>, <LG>SIZE</LG>, <LG>STEP</LG> <Y>)</Y>
 <C>{</C>
 	<G>// Iterates VAR from 0 to SIZE-1,</G>
 	<G>//  but progresses with STEP</G>
 <C>}</C>
 
-<M>iter_grid</M><Y>(</Y> X, Y, WIDTH, HEIGHT <Y>)</Y>
+<M>iter_grid</M><Y>(</Y> <LG>X</LG>, <LG>Y</LG>, <LG>WIDTH</LG>, <LG>HEIGHT</LG> <Y>)</Y>
 <C>{</C>
 	<G>// Iterates X from 0 to WIDTH-1,</G>
 	<G>//  and Y from 0 to HEIGHT-1</G>
@@ -275,9 +297,9 @@ If the reference itself is unknown/invalid, it's:
 	<G>// For things like pixel images</G>
 <C>}</C>
 
-<M>repeat</M><Y>(</Y> n <Y>)</Y>
+<M>repeat</M><Y>(</Y> <LG>N</LG> <Y>)</Y>
 <C>{</C>
-	<G>// Repeats this scope n-times</G>
+	<G>// Repeats this scope N-times</G>
 <C>}</C>
 
 <M>once</M>
@@ -290,7 +312,7 @@ If the reference itself is unknown/invalid, it's:
 ### with/when Statements
 <pre>
 <G>// Jump to a when() depending on what it is</G>
-<M>with</M><Y>(</Y> val <Y>)</Y>
+<M>with</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y>
 <C>{</C>
 	<M>when</M><Y>(</Y> <C>1</C>, <C>2</C>, <C>3</C> <Y>)</Y>
 	<C>{</C>
@@ -315,55 +337,33 @@ If the reference itself is unknown/invalid, it's:
 
 ### Conditional Helpers
 <pre>
-<M>if_nothing</M><Y>( </Y>REF<Y> )</Y>
+<M>if_nothing</M><Y>(</Y> <LG>REF</LG> <Y>)</Y>
 <C>{</C>
     <G>// If REF is nothing</G>
 <C>}</C>
 
-<M>if_something</M><Y>( </Y>REF<Y> )</Y>
+<M>if_something</M><Y>(</Y> <LG>REF</LG> <Y>)</Y>
 <C>{</C>
     <G>// If REF is not nothing</G>
 <C>}</C>
 
-<M>if_any</M><Y>(</Y> a, b, c... <Y>)</Y>
+<M>if_any</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C...</LG> <Y>)</Y>
 <C>{</C>
     <G>// If any arguments are yes</G>
 <C>}</C>
 
-<M>if_all</M><Y>(</Y> a, b, c... <Y>)</Y>
+<M>if_all</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C...</LG> <Y>)</Y>
 <C>{</C>
     <G>// If all arguments are yes</G>
 <C>}</C>
 
-<M>if_none</M><Y>(</Y> a, b, c... <Y>)</Y>
+<M>if_none</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C...</LG> <Y>)</Y>
 <C>{</C>
     <G>// If none of the arguments are yes</G>
 <C>}</C>
-
-<M>skip_if</M><Y>(</Y> x <Y>)</Y>; <G>// Skip if x is yes</G>
-<M>next_if</M><Y>(</Y> x <Y>)</Y>; <G>// Jump to next if x is yes</G>
-<M>out_if</M><Y>(</Y> x <Y>)</Y> v; <G>// Output v if x is yes</G>
-<G>// Can be empty if function doesn't output:</G>
-<G>// out_if( x );</G>
 </pre>
 
 -------
-## Functions
-
-### Function Declaration
-```
-fn function_name(params)    // static inline void function_name(params)
-{
-    out value;              // return value;
-}
-```
-
-### Embed Prefix
-
-```
-embed function      // static inline function
-```
-
 ## Memory and String Operations
 
 ### Memory Operations
