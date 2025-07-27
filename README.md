@@ -502,10 +502,10 @@ If the function does output something:
 <G>// Remove negative sign</G>
 
 <M>SIGN</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y>
-<G>// Outputs 1 if positive or 0, -1 if negative</G>
+<G>// 1 if positive or 0, -1 if negative</G>
 
 <M>SIGN_ZERO</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y>
-<G>// Outputs 0 if 0, 1 if positive, -1 if negative</G>
+<G>// 0 if 0, 1 if positive, -1 if negative</G>
 
 <M>SQR</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y>
 <G>// VAL * VAL</G>
