@@ -160,7 +160,7 @@ If the reference itself is unknown/invalid, it's:
 ### Other Types
 <pre>
 <Y>flag</Y> <LG>VAR</LG>
-<G>// A flag can either be:
+<G>// A flag can either be:</G>
 <C>yes</C> <G>// 1</G>
 <G>// or</G>
 <C>no</C>  <G>// 0</G>
@@ -328,7 +328,7 @@ If the reference itself is unknown/invalid, it's:
 <C>}</C>
 
 <M>skip_if</M><Y>(</Y> x <Y>)</Y>; <G>// Skip if x is yes</G>
-<M>next_if</M><Y>(</Y> x <Y>)</Y>; <G>// Jump up to next if x is yes</G>
+<M>next_if</M><Y>(</Y> x <Y>)</Y>; <G>// Jump to next if x is yes</G>
 <M>out_if</M><Y>(</Y> x <Y>)</Y> v; <G>// Output v if x is yes</G>
 <G>// Can be empty if function doesn't output:</G>
 <G>// out_if( x );</G>
@@ -345,7 +345,7 @@ fn function_name(params)    // static inline void function_name(params)
 }
 ```
 
-### Storage Classes
+### Embed Prefix
 
 ```
 embed function      // static inline function
