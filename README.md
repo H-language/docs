@@ -28,59 +28,7 @@ Make what you wish existed.
 
 [TOC]
 
-[[toc]]
-
-{:toc}
-
-- [Installation](#installation)
-- [Core Language Transforms](#core-language-transforms)
-  - [Pointer and Reference Operations](#pointer-and-reference-operations)
-  - [Boolean and Logic Operations](#boolean-and-logic-operations)
-- [Type System](#type-system)
-  - [Number Types](#number-types)
-  - [Other Types](#other-types)
-- [Control Flow](#control-flow)
-  - [Loops](#loops)
-  - [Iteration Helpers](#iteration-helpers)
-  - [with/when Statements](#with-when-statements)
-  - [Conditional Helpers](#conditional-helpers)
-- [Functions](#functions)
-  - [Function Declaration](#function-declaration)
-  - [Storage Classes](#storage-classes)
-- [Memory and String Operations](#memory-and-string-operations)
-  - [Memory Operations](#memory-operations)
-  - [String Operations](#string-operations)
-  - [Advanced Copy Operations](#advanced-copy-operations)
-- [Math Operations](#math-operations)
-- [Structures and Objects](#structures-and-objects)
-  - [Basic Struct](#basic-struct)
-  - [Objects with Methods](#objects-with-methods)
-  - [Fusion and Group](#fusion-and-group)
-- [File I/O](#file-io)
-  - [File Operations](#file-operations)
-  - [File Utilities](#file-utilities)
-  - [Directory Operations](#directory-operations)
-  - [Path Operations](#path-operations)
-- [Terminal Operations](#terminal-operations)
-  - [Basic Output](#basic-output)
-  - [Formatted Output](#formatted-output)
-  - [Format Bytes Function](#format-bytes-function)
-  - [Terminal Colors](#terminal-colors)
-  - [Terminal Input](#terminal-input)
-- [Variadic Functions](#variadic-functions)
-- [Platform Abstraction](#platform-abstraction)
-- [Memory Size Constants](#memory-size-constants)
-- [Utility Macros](#utility-macros)
-  - [Default Arguments](#default-arguments)
-  - [Compile-Time Helpers](#compile-time-helpers)
-  - [One-Time Execution](#one-time-execution)
-  - [Byte Array Declaration](#byte-array-declaration)
-  - [Character Classification](#character-classification)
-- [Entry Point](#entry-point)
-- [Example Programs](#example-programs)
-  - [Hello World](#hello-world)
-  - [File Processing](#file-processing)
-- [License](#license)
+<toc></toc>
 
 -------
 ## Installation
