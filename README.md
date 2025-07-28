@@ -280,17 +280,40 @@ A fusion-type is always as big as the largest internal type, but all elements of
 		<LG>TYPE H</LG>;
 	<C>}</C>;
 <C>}</C>;
-<G>// Which makes X and W read the same value,</G>
-<G>//  or Y and H having the same value</G>
+<G>// NAME.X and NAME.W read the same value,</G>
+<G>//  same as NAME.Y and NAME.H</G>
+<G>// Both anon_types take the same space</G>
 </pre>
 
 ### Group
+A group allows you to define Natural/Integer constant-values under a name:
 <pre>
-<M>group</M><Y>(</Y><LG>Color</LG>, <Y>n1</Y><Y>)</Y> <G>// Named values with type</G>
+<M>group</M><Y>(</Y> <LG>NAME</LG>, <LG>OPTIONAL_TYPE</LG> <Y>)</Y>
 <C>{</C>
-    <LG>red</LG>,
-    <LG>green</LG>,
-    <LG>blue</LG>
+	<LG>NAME_A</LG>, <G>// starts at 0</G>
+	<LG>NAME_B</LG>, <G>// 1</G>
+	<LG>NAME_C</LG>, <G>// 2</G>
+	<LG>...</LG>
+<C>}</C>;
+<G>// OPTIONAL_TYPE can be [n/i][1/2/4/8]<G>
+
+<G>// You can explicitly define the value</G>
+<G>//  if it's within the type-range:</G>
+<M>group</M><Y>(</Y> <LG>NAME</LG>, <Y>i2 )</Y>
+<C>{</C>
+	<LG>NAME_A</LG> <Y>=</Y> <C>-7</C>,
+	<LG>NAME_B</LG>, <G>// is -6</G>
+	<LG>NAME_C</LG> <Y>=</Y> <C>777</C>,
+	<LG>NAME_D</LG>, <G>// is 778
+<C>}</C>;
+</pre>
+If there's going to be less than 256 elements, the default group-type is a <H>byte</H>:
+<pre>
+<M>group</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
+<C>{</C>
+    <LG>NAME_A</LG>,
+    <LG>NAME_B</LG>,
+    <LG>...</LG>
 <C>}</C>;
 </pre>
 
