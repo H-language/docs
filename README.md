@@ -57,8 +57,7 @@ If the reference will be changed:
 <pre>
 <LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG>
 <G>// A reference to a TYPE</G>
-<G>// Can be changed like:</G>
-<G>//  NAME = NAME + 1;</G>
+<G>// Can be changed</G>
 </pre>
 <br></br>
 Otherwise, make it constant:
