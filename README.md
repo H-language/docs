@@ -25,6 +25,15 @@ Make what you wish existed.
 
 -------
 ## Contents
+
+[TOC]
+
+[[toc]]
+
+{:toc}
+
+
+
 - [Installation](#installation)
 - [Core Language Transforms](#core-language-transforms)
   - [Pointer and Reference Operations](#pointer-and-reference-operations)
@@ -205,7 +214,7 @@ With ref/const_ref too:
 | <code><Y>i8</Y></code> | <b>8</b> | <b>-9,223,372,036,854,775,808</b> <LG><i>to</i></LG><br><b>9,223,372,036,854,775,807</b> |
 | <code><Y>r8</Y></code> | <b>8</b> | <b>-inf</b> <LG><i>to</i></LG> <b>inf</b> |
 
-### Other H Types
+### Other Types
 <pre>
 <Y>flag</Y> <LG>VAR</LG>
 <G>// A flag can either be:</G>
@@ -236,10 +245,8 @@ With ref/const_ref too:
 -------
 ## Types, Fusions, and Groups
 
-### Basic New Type
-New types need one or more type-elements:
-Creating a new type requires one or more types:
-One or more types can compose a new type:
+### Types
+New types are made with one or more types:
 <pre>
 <M>type_from</M><Y>(</Y> <LG>TYPE</LG> <Y>)</Y> <LG>NAME</LG>;
 <G>// Defines an alias NAME of TYPE</G>
@@ -251,9 +258,11 @@ One or more types can compose a new type:
 	<Y>const</Y> <LG>TYPE NAME</LG>;
 <C>}</C>;
 <G>// Defines a type made of multiple types</G>
+
+<G>// You can now </G>
 </pre>
 
-### Fusion
+### Fusions
 A fusion-type is always as big as the largest internal type, but all elements of a fusion use the same bytes:
 <pre>
 <M>fusion</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
@@ -287,7 +296,7 @@ A fusion-type is always as big as the largest internal type, but all elements of
 <G>// Both anon_types take the same space</G>
 </pre>
 
-### Group
+### Groups
 A group allows you to define Natural/Integer constant-values under a name:
 <pre>
 <M>group</M><Y>(</Y> <LG>NAME</LG>, <LG>OPTIONAL_TYPE</LG> <Y>)</Y>
