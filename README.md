@@ -301,17 +301,19 @@ If there's going to be less than 256 elements, the default group-type is a <H>by
 ## Functions
 
 ### Function Declaration
+
 If the function doesn't output anything:
 <pre>
-<M>fn</M> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG>, <LG>TYPE B</LG>, <LG>TYPE C...</LG> <Y>)</Y>
+<M>fn</M> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG>, <LG>TYPE B</LG>, <LG>TYPE C</LG>, <LG>...</LG> <Y>)</Y>
 <C>{</C>
 	<G>// function code</G>
 	<M>out</M>; <G>// exits the function</G>
 <C>}</C>
 </pre>
+
 If the function does output something:
 <pre>
-<LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG>, <LG>TYPE B</LG>, <LG>TYPE C...</LG> <Y>)</Y>
+<LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG>, <LG>TYPE B</LG>, <LG>TYPE C</LG>, <LG>...</LG> <Y>)</Y>
 <C>{</C>
 	<G>// function code</G>
 	<M>out</M> <LG>VAL</LG>; <G>// outputs a value of TYPE</G>
