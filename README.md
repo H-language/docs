@@ -93,7 +93,7 @@ Simply include H.h in your C project:
 Then compile with <H>GCC</H>, or <H>TCC</H>.
 
 -------
-## Bytes, References, and Types
+## Bytes, Refs, and Types
 <H>H</H> is "only bytes and references".
 
 ## a <H>byte</H> is <i>8 bits</i>
