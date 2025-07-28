@@ -26,8 +26,6 @@ Make what you wish existed.
 -------
 ## Contents
 
-[TOC]
-
 <toc></toc>
 
 -------
@@ -39,11 +37,11 @@ Simply include H.h in your C project:
 Then compile with <H>GCC</H>, or <H>TCC</H>.
 
 -------
-## Bytes, Refs, and Types
-<H>H</H> is "only bytes and references".
+## Bytes and References
+<H>H</H> is designed from the ground up to focus on "only bytes and references".
 
-## a <H>byte</H> is <i>8 bits</i>
-## a <H>ref</H> is <i>8 bytes</i>
+#### a <H>byte</H> is <i>8 bits</i>
+#### a <H>ref</H> is <i>8 bytes</i>
 
 ### Bytes
 If you're dealing with bytes, use:
@@ -189,7 +187,8 @@ With ref/const_ref too:
 | <code><M>isnt</M></code> | Inequality |
 
 -------
-## Types, Fusions, and Groups
+## Defining New Types
+Types can be an alias (a renamed type), multi-typed (contains elements), a fusion (elements use the same bytes), or a group (elements are the same type, and are ordered).
 
 ### Types
 New types are made with one or more types:
