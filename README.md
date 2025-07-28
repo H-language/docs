@@ -32,8 +32,6 @@ Make what you wish existed.
 
 {:toc}
 
-
-
 - [Installation](#installation)
 - [Core Language Transforms](#core-language-transforms)
   - [Pointer and Reference Operations](#pointer-and-reference-operations)
