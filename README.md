@@ -268,6 +268,7 @@ A group allows you to define Natural/Integer constant-values under a name:
 	<LG>NAME_D</LG>, <G>// is 778
 <C>}</C>;
 </pre>
+<br>
 If there's going to be less than 256 elements, the default group-type is a <H>byte</H>:
 <pre>
 <M>group</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
@@ -310,7 +311,7 @@ If the function doesn't output anything:
 	<M>out</M>; <G>// exits the function</G>
 <C>}</C>
 </pre>
-
+<br>
 If the function does output something:
 <pre>
 <LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG>, <LG>TYPE B</LG>, <LG>TYPE C</LG>, <LG>...</LG> <Y>)</Y>
