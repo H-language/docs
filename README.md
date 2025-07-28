@@ -188,23 +188,28 @@ With ref/const_ref too:
 
 -------
 ## Defining New Types
-Types can be an <H>alias</H> <LG>(a renamed type)</LG>, <H>multi-typed</H> <LG>(contains elements)</LG>, a <H>fusion</H> <LG>(elements use the same bytes)</LG>, or a <H>group</H> <LG>(elements are the same type, and are ordered)</LG>.
+Types can be an <H>alias</H> <LG>(a renamed type)</LG>,<br>
+<H>multi-typed</H> <LG>(contains elements)</LG>,<br>
+a <H>fusion</H> <LG>(elements use the same bytes)</LG>,<br>
+or a <H>group</H> <LG>(elements are the same type, and are ordered)</LG>.
 
 ### Types
 New types are made with one or more types:
 <pre>
-<M>type_from</M><Y>(</Y> <LG>TYPE</LG> <Y>)</Y> <LG>NAME</LG>;
-<G>// Defines an alias NAME of TYPE</G>
+<M>type_from</M><Y>(</Y> <LG>TYPE</LG>, <LG>NAME</LG>LG> <Y>)</Y>;
+<G>// Defines an alias of TYPE, called NAME</G>
 
 <M>type</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
 <C>{</C>
-	<LG>TYPE NAME</LG>;
-	<LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG>;
-	<Y>const</Y> <LG>TYPE NAME</LG>;
+	<LG>TYPE NAME_A</LG>;
+	<LG>TYPE</LG> <Y>ref</Y> <LG>NAME_B</LG>;
+	<Y>const</Y> <LG>TYPE NAME_C</LG>;
 <C>}</C>;
 <G>// Defines a type made of multiple types</G>
 
-<G>// You can now </G>
+<G>// You can now access the elements like:</G>
+<G>// NAME t;</G>
+<G>// t.NAME_A = ...</G>
 </pre>
 
 ### Fusions
