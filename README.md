@@ -237,7 +237,9 @@ With ref/const_ref too:
 ## Types, Fusions, and Groups
 
 ### Basic New Type
-A type can be made from 1 or more type:
+New types need one or more type-elements:
+Creating a new type requires one or more types:
+One or more types can compose a new type:
 <pre>
 <M>type_from</M><Y>(</Y> <LG>TYPE</LG> <Y>)</Y> <LG>NAME</LG>;
 <G>// Defines an alias NAME of TYPE</G>
