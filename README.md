@@ -60,13 +60,14 @@ If the reference will be changed:
 <G>// Can be changed like:</G>
 <G>//  NAME = NAME + 1;</G>
 </pre>
-<br>
+<br></br>
 Otherwise, make it constant:
 <pre>
 <LG>TYPE</LG> <Y>const_ref</Y> <LG>NAME</LG>
 <G>// A constant reference to a TYPE</G>
 <G>// Cannot be changed!</G>
 </pre>
+
 | H Syntax | Definition |
 |----------|-------------|
 | <code><M>ref_of</M><Y>(</Y> <LG>VAR</LG> <Y>)</Y></code> | Reference-of VAR |
