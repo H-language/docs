@@ -60,6 +60,7 @@ If the reference will be changed:
 <G>// Can be changed like:</G>
 <G>//  NAME = NAME + 1;</G>
 </pre>
+<br>
 Otherwise, make it constant:
 <pre>
 <LG>TYPE</LG> <Y>const_ref</Y> <LG>NAME</LG>
