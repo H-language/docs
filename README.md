@@ -40,8 +40,8 @@ Then compile with <H>GCC</H>, or <H>TCC</H>.
 ## Bytes and References
 <H>H</H> is designed from the ground up to focus on "only bytes and references".
 
-#### a <H>byte</H> is <i>8 bits</i>
-#### a <H>ref</H> is <i>8 bytes</i>
+#### <LG>a</LG> <H>byte</H> <LG>is</LG> <i>8 bits</i>
+#### <LG>a</LG> <H>ref</H> <LG>is</LG> <i>8 bytes</i>
 
 ### Bytes
 If you're dealing with bytes, use:
@@ -188,7 +188,7 @@ With ref/const_ref too:
 
 -------
 ## Defining New Types
-Types can be an alias (a renamed type), multi-typed (contains elements), a fusion (elements use the same bytes), or a group (elements are the same type, and are ordered).
+Types can be an <H>alias</H> <LG>(a renamed type)</LG>, <H>multi-typed</H> <LG>(contains elements)</LG>, a <H>fusion</H> <LG>(elements use the same bytes)</LG>, or a <H>group</H> <LG>(elements are the same type, and are ordered)</LG>.
 
 ### Types
 New types are made with one or more types:
