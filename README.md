@@ -281,7 +281,7 @@ If there's going to be less than 256 elements, the default group-type is a <H>by
 
 ### Objects with Methods
 <pre>
-<M>object</M><Y>(</Y><LG>Entity</LG><Y>)</Y>
+<M>object</M><Y>(</Y> <LG>Entity</LG> <Y>)</Y>
 <C>{</C>
     <Y>i4</Y> <LG>id</LG>;
     <Y>byte</Y> <LG>name</LG><Y>[</Y><C>32</C><Y>]</Y>;
