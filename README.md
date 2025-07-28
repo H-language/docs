@@ -270,7 +270,7 @@ A group allows you to define Natural/Integer constant-values under a name:
 	<LG>NAME_D</LG>, <G>// is 778
 <C>}</C>;
 </pre>
-<br>
+<br></br>
 If there's going to be less than 256 elements, the default group-type is a <H>byte</H>:
 <pre>
 <M>group</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
