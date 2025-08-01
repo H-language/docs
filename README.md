@@ -2,7 +2,7 @@
 <i><G>created by </G><EDG>ENDESGA</EDG><G> - started in 2020 - made in NZ - CC0 - FOSS forever</G></i>
 
 -------
-## a quick overview
+## <LG>a quick overview</LG>
 <H>H</H> is a single-file syntactic layer that reshapes C into a more readable and understandable language.
 <H>H</H>ydrogen <H>Lang</H>uage provides:
 - Intuitive and explicit keywords
@@ -144,12 +144,14 @@ With ref/const_ref too:
 - <H>I</H>nteger <LG>(can be negative)</LG>
 	- <C>-3, -2, -1, 0, 1, 2, 3, ...</C>
 - <H>R</H>ational <LG>(has a fractional part)</LG>
-	- <C>-777/1.23, -1.5, 0.002, 1./2., 7.777/3.21, ...</C>
+	- <C>-7./9., -1.5, 0.02, 1./2., 7./9., ...</C>
 
 <pre>
 <LG>[</LG><Y>n</Y><LG>/</LG><Y>i</Y><LG>/</LG><Y>r</Y><LG>][</LG><Y>size</Y><LG>]</LG>
 <G>// Where [size] is in bytes</G>
 </pre>
+
+#### more <H>bytes</H> = more <H>range</H>
 
 | Type | Size | Range |
 |------|------|-------|
@@ -162,7 +164,7 @@ With ref/const_ref too:
 | <code><Y>r4</Y></code> | <b>4</b> | <b>-inf</b> <LG><i>to</i></LG> <b>inf</b> |
 | <code><Y>n8</Y></code> | <b>8</b> | <b>0</b> <LG><i>to</i></LG><br><b>18,446,744,073,709,551,615</b> |
 | <code><Y>i8</Y></code> | <b>8</b> | <b>-9,223,372,036,854,775,808</b> <LG><i>to</i></LG><br><b>9,223,372,036,854,775,807</b> |
-| <code><Y>r8</Y></code> | <b>8</b> | <b>-inf</b> <LG><i>to</i></LG> <b>inf</b> |
+| <code><Y>r8</Y></code> | <b>8</b> | <b>-inf</b> <LG><i>to</i></LG> <b>inf</b> <LG>(more precise)</LG> |
 
 ### Other Types
 <pre>
@@ -385,8 +387,8 @@ If the function does output something:
 <M>jump_if</M><Y>(</Y> <LG>F</LG> <Y>)</Y> <LG>P</LG>; <G>// Jump to P if F is yes</G>
 <M>next_if</M><Y>(</Y> <LG>F</LG> <Y>)</Y>; <G>// Jump to next if F is yes</G>
 <M>out_if</M><Y>(</Y> <LG>F</LG> <Y>)</Y> v; <G>// Output v if F is yes</G>
-<G>// Can be empty if function doesn't output:</G>
-<G>// out_if( is_done isnt no );</G>
+<G>// Can be empty if fn doesn't output:</G>
+<G>// out_if( F );</G>
 </pre>
 
 ### Iteration Helpers
@@ -594,11 +596,21 @@ If the function does output something:
 ## File I/O
 
 ### File Operations
-
+Loading:
 <pre>
-<G>// Open files</G>
-<Y>file</Y> <LG>f</LG> = <M>open_file_loading</M><Y>(</Y><C>"path.txt"</C><Y>)</Y>;
-<Y>file</Y> <LG>f</LG> = <M>open_file_saving</M><Y>(</Y><C>"output.txt"</C><Y>)</Y>;
+<Y>file</Y> <LG>F</LG> = <M>open_file</M><Y>(</Y> <C>"input.txt"</C> <Y>)</Y>;
+<G>// Opens a file,</G>
+<G>//  outputs a file-type for loading</G>
+
+<Y>byte</Y> <LG>LOADED</LG><M>[ KB</M><Y>(</Y> <C>10</C> <Y>)</Y> <M>]</M>;
+<M>file_load</M><Y>(</Y> <LG>F</LG>, <LG>LOADED</LG> <Y>)</Y>;
+</pre>
+
+Saving:
+<pre>
+<Y>file</Y> <LG>F</LG> = <M>new_file</M><Y>(</Y> <C>"output.txt"</C> <Y>)</Y>;
+<G>// Creates/wipes a file,</G>
+<G>//  outputs a file-type for saving</G>
 
 <G>// Load/Save</G>
 <Y>byte</Y> <LG>buffer</LG><Y>[</Y><C>1024</C><Y>]</Y>;
