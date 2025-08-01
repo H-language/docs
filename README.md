@@ -1,5 +1,5 @@
 # <H>H</H>ydrogen <H>Lang</H>uage Documentation
-<i><G>created by </G><EDG><a href="https://x.com/ENDESGA">ENDESGA</a></EDG><G> - started in 2020 - made in NZ - CC0 - FOSS forever</G></i>
+<i><G>created by </G><a href="https://x.com/ENDESGA" class="EDG">ENDESGA</a><G> - started in 2020 - made in NZ - CC0 - FOSS forever</G></i>
 
 -------
 ## <G>a quick overview</G>
