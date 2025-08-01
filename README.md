@@ -1,8 +1,8 @@
 # <H>H</H>ydrogen <H>Lang</H>uage Documentation
-<i><G>created by </G><EDG>ENDESGA</EDG><G> - started in 2020 - made in NZ - CC0 - FOSS forever</G></i>
+<i><G>created by </G><EDG><a href="https://x.com/ENDESGA">ENDESGA</a></EDG><G> - started in 2020 - made in NZ - CC0 - FOSS forever</G></i>
 
 -------
-## <LG>a quick overview</LG>
+## <G>a quick overview</G>
 <H>H</H> is a single-file syntactic layer that reshapes C into a more readable and understandable language.
 <H>H</H>ydrogen <H>Lang</H>uage provides:
 - Intuitive and explicit keywords
@@ -213,7 +213,7 @@ New types are made with one or more types:
 	<LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG><C>;</C>
 	<Y>const</Y> <LG>TYPE NAME</LG><C>;</C>
 	<LG>...</LG>
-<C>};</C>
+<C>};</C> <G><- the semicolon is required!</G>
 <G>// Defines a type made of multiple types</G>
 </pre>
 <br>
@@ -230,7 +230,7 @@ t<C>.</C>A <Y>=</Y> <LG>...</LG>
 <G>// If it's a type-value,</G>
 <G>//  you use "</G><C>.</C><G>"</G>
 
-<Y>NAME ref</Y> t_ref<C>;</C>
+<Y>NAME ref</Y> t_ref <Y>=</Y> <M>ref_of</M><Y>(</Y> t <Y>)</Y><C>;</C>
 t_ref<C>-></C>B <Y>=</Y> <LG>...</LG>
 <G>// If it's a type-reference,</G>
 <G>//  you use "</G><C>-></C><G>"</G>
@@ -244,23 +244,23 @@ A fusion-type is always as big as the largest internal type, and all elements of
 	<LG>TYPE A</LG><C>;</C>
 	<LG>TYPE B</LG><C>;</C>
 	<LG>...</LG>
-<C>};</C>
+<C>};</C> <G><- the semicolon is required!</G>
 <G>// NAME has elements A, B, (etc...),</G>
 <G>//  editing one edits the others</G>
 
 <G>// You can make multi-type fusions with:</G>
-<M>anon_type</M>
+<M>variant</M>
 <G>// Which allows for element aliasing:</G>
 <M>fusion</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
 <C>{</C>
-	<M>anon_type</M>
+	<M>variant</M>
 	<C>{</C>
 		<LG>TYPE X</LG><C>;</C>
 		<LG>TYPE Y</LG><C>;</C>
 		<LG>...</LG>
 	<C>};</C>
 	
-	<M>anon_type</M>
+	<M>variant</M>
 	<C>{</C>
 		<LG>TYPE W</LG><C>;</C>
 		<LG>TYPE H</LG><C>;</C>
@@ -269,7 +269,7 @@ A fusion-type is always as big as the largest internal type, and all elements of
 <C>};</C>
 <G>// NAME.X and NAME.W read the same value,</G>
 <G>//  same as NAME.Y and NAME.H</G>
-<G>// Both anon_types take the same space</G>
+<G>// Both variants take the same space</G>
 </pre>
 
 ### Groups
@@ -281,7 +281,7 @@ A group allows you to define Natural/Integer constant-values under a name:
 	<LG>NAME_B</LG><C>,</C> <G>// 1</G>
 	<LG>NAME_C</LG><C>,</C> <G>// 2</G>
 	<LG>...</LG>
-<C>};</C>
+<C>};</C> <G><- the semicolon is required!</G>
 <G>// OPTIONAL_TYPE can be [n/i][1/2/4/8]</G>
 
 <G>// You can explicitly define the value</G>
@@ -299,25 +299,27 @@ If there's going to be less than 256 elements, the default group-type is a <H>by
 <pre>
 <M>group</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
 <C>{</C>
-    <LG>NAME_A</LG><C>,</C>
-    <LG>NAME_B</LG><C>,</C>
-    <LG>...</LG>
+	<LG>...</LG>
 <C>};</C>
 </pre>
 
-### Objects with Methods
+### Objects
+An object is a reference to a type, that's often created to exist outside of scopes.
 <pre>
-<M>object</M><Y>(</Y> <LG>Entity</LG> <Y>)</Y>
+<M>object</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
 <C>{</C>
-    <Y>i4</Y> <LG>id</LG>;
-    <Y>byte</Y> <LG>name</LG><Y>[</Y><C>32</C><Y>]</Y>;
-<C>}</C>;
+	<LG>TYPE NAME_A</LG><C>;</C>
+	<LG>TYPE NAME_B</LG><C>;</C>
+	<LG>...</LG>
+<C>};</C> <G><- the semicolon is required!</G>
 
-<M>object_fn</M><Y>(</Y><LG>Entity</LG>, <LG>update</LG><Y>)</Y>
+<M>object_fn</M><Y>(</Y> <LG>OBJECT</LG><C>,</C> <LG>FN_NAME</LG><C>,</C> <LG>OPTIONAL_ARGS...</LG> <Y>)</Y>
 <C>{</C>
-    <G>// 'this' is auto-available as Entity ref</G>
-    <LG>this</LG><Y>-></Y><LG>id</LG><Y>++</Y>;
+	<G>// "this" is available to access OBJECT</G>
+	<LG>this</LG><C>-></C><LG>NAME_A</LG> <Y>=</Y> <LG>...</LG><C>;</C>
 <C>}</C>
+<G>// The object-fn made is:</G>
+<G>//  OBJECT_FN_NAME( OBJECT this, ... )</G>
 
 <G>// Usage:</G>
 <LG>Entity</LG> <LG>e</LG> = <C>{0}</C>;
