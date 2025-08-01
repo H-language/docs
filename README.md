@@ -14,7 +14,7 @@
 - Modern functions and data-structures
 
 ### the questions that began H, and a personal statement:
-Why go to all the effort of making a programming language when it's not even readable to the average person? What's the point of gatekeeping "talking to computers" behind walls of unintuitive symbols? It's hard enough learning the logic, rules, and workflows to program effectively. Why make it harder with symbols and pairs of symbols that require remembering rather than simply reading?
+Why go to all the effort of making a programming language when it's not even readable for the average person? What's the point of gatekeeping "talking to computers" behind walls of unintuitive symbols? It's hard enough learning the logic, rules, and workflows to program effectively. Why make it harder with symbols and cryptic words that require remembering rather than simply reading?
 
 Programmers forget how difficult it was to initially understand how to code, and brush it off as "you'll learn and struggle too". But why not just bring the barrier of entry down by making a language readable from the start?
 
@@ -209,26 +209,42 @@ New types are made with one or more types:
 
 <M>type</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
 <C>{</C>
-	<LG>TYPE NAME_A</LG><C>;</C>
-	<LG>TYPE</LG> <Y>ref</Y> <LG>NAME_B</LG><C>;</C>
-	<Y>const</Y> <LG>TYPE NAME_C</LG><C>;</C>
-<C>}</C><C>;</C>
+	<LG>TYPE NAME</LG><C>;</C>
+	<LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG><C>;</C>
+	<Y>const</Y> <LG>TYPE NAME</LG><C>;</C>
+	<LG>...</LG>
+<C>};</C>
 <G>// Defines a type made of multiple types</G>
+</pre>
+<br>
+Accessing elements from a type:
+<pre>
+<M>type</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
+<C>{</C>
+	<LG>TYPE1 A</LG><C>;</C>
+	<LG>TYPE2 B</LG><C>;</C>
+<C>};</C>
 
-<G>// You can now access the elements like:</G>
-<G>// NAME t;</G>
-<G>// t.NAME_A = ...</G>
+<Y>NAME</Y> t<C>;</C>
+t<C>.</C>A <Y>=</Y> <LG>...</LG>
+<G>// If it's a type-value,</G>
+<G>//  you use "</G><C>.</C><G>"</G>
+
+<Y>NAME ref</Y> t_ref<C>;</C>
+t_ref<C>-></C>B <Y>=</Y> <LG>...</LG>
+<G>// If it's a type-reference,</G>
+<G>//  you use "</G><C>-></C><G>"</G>
 </pre>
 
 ### Fusions
-A fusion-type is always as big as the largest internal type, but all elements of a fusion use the same bytes:
+A fusion-type is always as big as the largest internal type, and all elements of a fusion use the same bytes:
 <pre>
 <M>fusion</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
 <C>{</C>
 	<LG>TYPE A</LG><C>;</C>
 	<LG>TYPE B</LG><C>;</C>
 	<LG>...</LG>
-<C>}</C><C>;</C>
+<C>};</C>
 <G>// NAME has elements A, B, (etc...),</G>
 <G>//  editing one edits the others</G>
 
@@ -239,16 +255,18 @@ A fusion-type is always as big as the largest internal type, but all elements of
 <C>{</C>
 	<M>anon_type</M>
 	<C>{</C>
-		<LG>TYPE X</LG>;
-		<LG>TYPE Y</LG>;
-	<C>}</C>;
+		<LG>TYPE X</LG><C>;</C>
+		<LG>TYPE Y</LG><C>;</C>
+		<LG>...</LG>
+	<C>};</C>
 	
 	<M>anon_type</M>
 	<C>{</C>
-		<LG>TYPE W</LG>;
-		<LG>TYPE H</LG>;
-	<C>}</C>;
-<C>}</C>;
+		<LG>TYPE W</LG><C>;</C>
+		<LG>TYPE H</LG><C>;</C>
+		<LG>...</LG>
+	<C>};</C>
+<C>};</C>
 <G>// NAME.X and NAME.W read the same value,</G>
 <G>//  same as NAME.Y and NAME.H</G>
 <G>// Both anon_types take the same space</G>
@@ -257,34 +275,34 @@ A fusion-type is always as big as the largest internal type, but all elements of
 ### Groups
 A group allows you to define Natural/Integer constant-values under a name:
 <pre>
-<M>group</M><Y>(</Y> <LG>NAME</LG>, <LG>OPTIONAL_TYPE</LG> <Y>)</Y>
+<M>group</M><Y>(</Y> <LG>NAME</LG><C>,</C> <LG>OPTIONAL_TYPE</LG> <Y>)</Y>
 <C>{</C>
-	<LG>NAME_A</LG>, <G>// starts at 0</G>
-	<LG>NAME_B</LG>, <G>// 1</G>
-	<LG>NAME_C</LG>, <G>// 2</G>
+	<LG>NAME_A</LG><C>,</C> <G>// starts at 0</G>
+	<LG>NAME_B</LG><C>,</C> <G>// 1</G>
+	<LG>NAME_C</LG><C>,</C> <G>// 2</G>
 	<LG>...</LG>
-<C>}</C>;
-<G>// OPTIONAL_TYPE can be [n/i][1/2/4/8]<G>
+<C>};</C>
+<G>// OPTIONAL_TYPE can be [n/i][1/2/4/8]</G>
 
 <G>// You can explicitly define the value</G>
 <G>//  if it's within the type-range:</G>
-<M>group</M><Y>(</Y> <LG>NAME</LG>, <Y>i2 )</Y>
+<M>group</M><Y>(</Y> <LG>NAME</LG><C>,</C> <Y>i2 )</Y>
 <C>{</C>
-	<LG>NAME_A</LG> <Y>=</Y> <C>-7</C>,
-	<LG>NAME_B</LG>, <G>// is -6</G>
-	<LG>NAME_C</LG> <Y>=</Y> <C>777</C>,
-	<LG>NAME_D</LG>, <G>// is 778
-<C>}</C>;
+	<LG>NAME_A</LG> <Y>=</Y> <C>-7,</C>
+	<LG>NAME_B</LG><C>,</C> <G>// is -6</G>
+	<LG>NAME_C</LG> <Y>=</Y> <C>777,</C>
+	<LG>NAME_D</LG><C>,</C> <G>// is 778
+<C>};</C>
 </pre>
 <br>
 If there's going to be less than 256 elements, the default group-type is a <H>byte</H>:
 <pre>
 <M>group</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
 <C>{</C>
-    <LG>NAME_A</LG>,
-    <LG>NAME_B</LG>,
+    <LG>NAME_A</LG><C>,</C>
+    <LG>NAME_B</LG><C>,</C>
     <LG>...</LG>
-<C>}</C>;
+<C>};</C>
 </pre>
 
 ### Objects with Methods
