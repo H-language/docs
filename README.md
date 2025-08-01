@@ -174,7 +174,7 @@ With ref/const_ref too:
 <G>// or</G>
 <C>no</C>  <G>// 0</G>
 
-<M>flip</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y>; <G>// no to yes, yes to no</G>
+<M>flip</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y> <G>// no to yes, yes to no</G>
 <G>// flag is_ready = no;</G>
 <G>// flip( is_ready );</G>
 <G>// is_ready is now yes</G>
@@ -204,15 +204,15 @@ or a <H>group</H> <LG>(elements are the same type, and are ordered)</LG>.
 ### Types
 New types are made with one or more types:
 <pre>
-<M>type_from</M><Y>(</Y> <LG>TYPE</LG>, <LG>NAME</LG>LG> <Y>)</Y>;
+<M>type_from</M><Y>(</Y> <LG>TYPE</LG><C>,</C> <LG>NAME</LG> <Y>)</Y><C>;</C>
 <G>// Defines an alias of TYPE, called NAME</G>
 
 <M>type</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
 <C>{</C>
-	<LG>TYPE NAME_A</LG>;
-	<LG>TYPE</LG> <Y>ref</Y> <LG>NAME_B</LG>;
-	<Y>const</Y> <LG>TYPE NAME_C</LG>;
-<C>}</C>;
+	<LG>TYPE NAME_A</LG><C>;</C>
+	<LG>TYPE</LG> <Y>ref</Y> <LG>NAME_B</LG><C>;</C>
+	<Y>const</Y> <LG>TYPE NAME_C</LG><C>;</C>
+<C>}</C><C>;</C>
 <G>// Defines a type made of multiple types</G>
 
 <G>// You can now access the elements like:</G>
@@ -225,10 +225,10 @@ A fusion-type is always as big as the largest internal type, but all elements of
 <pre>
 <M>fusion</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
 <C>{</C>
-	<LG>TYPE A</LG>;
-	<LG>TYPE B</LG>;
+	<LG>TYPE A</LG><C>;</C>
+	<LG>TYPE B</LG><C>;</C>
 	<LG>...</LG>
-<C>}</C>;
+<C>}</C><C>;</C>
 <G>// NAME has elements A, B, (etc...),</G>
 <G>//  editing one edits the others</G>
 
@@ -809,8 +809,8 @@ Saving:
 
 <M>start</M>
 <C>{</C>
-	<M>print</M><Y>(</Y> <C>"Hello, World!\n"</C> <Y>)</Y>;
-	<M>out executable_success</M>;
+	<M>print</M><Y>(</Y> <C>"Hello, World!\n"</C> <Y>)</Y><C>;</C>
+	<M>out executable_success</M><C>;</C>
 <C>}</C>
 </pre>
 
@@ -820,52 +820,52 @@ Saving:
 
 <M>start</M>
 <C>{</C>
-	<Y>file</Y> f <Y>=</Y> <M>open_file</M><Y>(</Y> input_bytes<C>[</C> <C>1</C> <C>]</C> <Y>)</Y>;
-	<M>if_nothing</M><Y>(</Y> f.handle <Y>)</Y>
+	<Y>file</Y> f <Y>=</Y> <M>open_file</M><Y>(</Y> input_bytes<M>[</M> <C>1</C> <M>]</M> <Y>)</Y><C>;</C>
+	<M>if_nothing</M><Y>(</Y> f<C>.</C>handle <Y>)</Y>
 	<C>{</C>
-		<M>print</M><Y>(</Y> <C>"Failed to open file\n"</C> <Y>)</Y>;
-		<M>out</M> <M>executable_failure</M>;
+		<M>print</M><Y>(</Y> <C>"Failed to open file\n"</C> <Y>)</Y><C>;</C>
+		<M>out</M> <M>executable_failure</M><C>;</C>
 	<C>}</C>
 	
-	<Y>byte</Y> input<C>[</C> <M>KB</M><Y>(</Y> <C>100</C> <Y>)</Y> <C>]</C>;
-	<M>temp</M> <Y>byte</Y> <Y>ref</Y> input_ref <Y>=</Y> input;
-	<M>file_load</M><Y>(</Y> f, input <Y>)</Y>;
+	<Y>byte</Y> input<M>[</M> <M>KB</M><Y>(</Y> <C>100</C> <Y>)</Y> <M>]</M><C>;</C>
+	<M>temp</M> <Y>byte</Y> <Y>ref</Y> input_ref <Y>=</Y> input<C>;</C>
+	<M>file_load</M><Y>(</Y> f<C>,</C> input <Y>)</Y><C>;</C>
 	
-	<Y>byte</Y> output<C>[</C> <M>KB</M><Y>(</Y> <C>100</C> <Y>)</Y> <C>]</C>;
-	<M>temp</M> <Y>byte</Y> <Y>ref</Y> output_ref <Y>=</Y> output;
+	<Y>byte</Y> output<M>[</M> <M>KB</M><Y>(</Y> <C>100</C> <Y>)</Y> <M>]</M><C>;</C>
+	<M>temp</M> <Y>byte</Y> <Y>ref</Y> output_ref <Y>=</Y> output<C>;</C>
 	
-	<Y>check_input</Y>:
+	<Y>check_input</Y><C>:</C>
 	<C>{</C>
-		<M>temp</M> <Y>byte</Y> val <Y>=</Y> <M>val_of</M><Y>(</Y> input_ref <Y>)</Y>;
+		<M>temp</M> <Y>byte</Y> val <Y>=</Y> <M>val_of</M><Y>(</Y> input_ref <Y>)</Y><C>;</C>
 		<M>with</M><Y>(</Y> val <Y>)</Y>
 		<C>{</C>
-			<M>when</M><Y>(</Y> <C>'\0'</C> <Y>)</Y> <M>jump</M> <Y>input_eof</Y>;
+			<M>when</M><Y>(</Y> <C>'\0'</C> <Y>)</Y> <M>jump</M> <Y>input_eof</Y><C>;</C>
 
-			<M>when</M><Y>(</Y> <C>' '</C>, <C>'\t'</C>, <C>'\n'</C>, <C>'\r'</C> <Y>)</Y> <M>skip</M>;
+			<M>when</M><Y>(</Y> <C>' ', '\t', '\n', '\r'</C> <Y>)</Y> <M>skip</M><C>;</C>
 
-			<M>when</M><Y>(</Y> <C>'E'</C>, <C>'e'</C> <Y>)</Y>
+			<M>when</M><Y>(</Y> <C>'E', 'e'</C> <Y>)</Y>
 			<C>{</C>
-				<M>val_of</M><Y>(</Y> output_ref <Y>)</Y> <Y>=</Y> <C>'3'</C>;
-				output_ref <Y>=</Y> output_ref <Y>+</Y> <C>1</C>;
-				<M>skip</M>;
+				<M>val_of</M><Y>(</Y> output_ref <Y>)</Y> <Y>=</Y> <C>'3';</C>
+				output_ref <Y>=</Y> output_ref <Y>+</Y> <C>1;</C>
+				<M>skip</M><C>;</C>
 			<C>}</C>
 
 			<M>other</M>
 			<C>{</C>
-				<M>val_of</M><Y>(</Y> output_ref <Y>)</Y> <Y>=</Y> val;
-				output_ref <Y>=</Y> output_ref <Y>+</Y> <C>1</C>;
-				<M>skip</M>;
+				<M>val_of</M><Y>(</Y> output_ref <Y>)</Y> <Y>=</Y> val<C>;</C>
+				output_ref <Y>=</Y> output_ref <Y>+</Y> <C>1;</C>
+				<M>skip</M><C>;</C>
 			<C>}</C>
 		<C>}</C>
-		input_ref <Y>=</Y> input_ref <Y>+</Y> <C>1</C>;
-		<M>jump</M> <Y>check_input</Y>;
+		input_ref <Y>=</Y> input_ref <Y>+</Y> <C>1;</C>
+		<M>jump</M> <Y>check_input</Y><C>;</C>
 	<C>}</C>
 
-	<Y>input_eof</Y>:
-	<M>file_close</M><Y>(</Y> f <Y>)</Y>;
-	<M>print</M><Y>(</Y> output <Y>)</Y>;
-	<M>print_newline</M><Y>()</Y>;
-	<M>out</M> <M>executable_success</M>;
+	<Y>input_eof</Y><C>:</C>
+	<M>file_close</M><Y>(</Y> f <Y>)</Y><C>;</C>
+	<M>print</M><Y>(</Y> output <Y>)</Y><C>;</C>
+	<M>print_newline</M><Y>()</Y><C>;</C>
+	<M>out</M> <M>executable_success</M><C>;</C>
 <C>}</C>
 </pre>
 
