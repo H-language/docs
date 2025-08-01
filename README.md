@@ -140,8 +140,11 @@ With ref/const_ref too:
 
 ### Number Types
 - <H>N</H>atural <LG>(cannot be less than zero)</LG>
+	- <C>0, 1, 2, 3, ...</C>
 - <H>I</H>nteger <LG>(can be negative)</LG>
+	- <C>-3, -2, -1, 0, 1, 2, 3, ...</C>
 - <H>R</H>ational <LG>(has a fractional part)</LG>
+	- <C>-777/1.23, -1.5, 0.002, 1./2., 7.777/3.21, ...</C>
 
 <pre>
 <LG>[</LG><Y>n</Y><LG>/</LG><Y>i</Y><LG>/</LG><Y>r</Y><LG>][</LG><Y>size</Y><LG>]</LG>
