@@ -61,7 +61,7 @@ If the reference will be changed:
 <G>// A reference to a TYPE</G>
 <G>// Can be changed</G>
 </pre>
-<br>
+
 Otherwise, make it constant:
 <pre>
 <LG>TYPE</LG> <Y>const_ref</Y> <LG>NAME</LG>
@@ -213,10 +213,10 @@ New types are made with one or more types:
 	<LG>TYPE</LG> <Y>ref</Y> <LG>NAME</LG><C>;</C>
 	<Y>const</Y> <LG>TYPE NAME</LG><C>;</C>
 	<LG>...</LG>
-<C>};</C> <G><- the semicolon is required!</G>
+<C>};</C> <DG><- the semicolon is required!</DG>
 <G>// Defines a type made of multiple types</G>
 </pre>
-<br>
+
 Accessing elements from a type:
 <pre>
 <M>type</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
@@ -244,7 +244,7 @@ A fusion-type is always as big as the largest internal type, and all elements of
 	<LG>TYPE A</LG><C>;</C>
 	<LG>TYPE B</LG><C>;</C>
 	<LG>...</LG>
-<C>};</C> <G><- the semicolon is required!</G>
+<C>};</C> <DG><- the semicolon is required!</DG>
 <G>// NAME has elements A, B, (etc...),</G>
 <G>//  editing one edits the others</G>
 
@@ -281,7 +281,7 @@ A group allows you to define Natural/Integer constant-values under a name:
 	<LG>NAME_B</LG><C>,</C> <G>// 1</G>
 	<LG>NAME_C</LG><C>,</C> <G>// 2</G>
 	<LG>...</LG>
-<C>};</C> <G><- the semicolon is required!</G>
+<C>};</C> <DG><- the semicolon is required!</DG>
 <G>// OPTIONAL_TYPE can be [n/i][1/2/4/8]</G>
 
 <G>// You can explicitly define the value</G>
@@ -294,7 +294,7 @@ A group allows you to define Natural/Integer constant-values under a name:
 	<LG>NAME_D</LG><C>,</C> <G>// is 778
 <C>};</C>
 </pre>
-<br>
+
 If there's going to be less than 256 elements, the default group-type is a <H>byte</H>:
 <pre>
 <M>group</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
@@ -311,16 +311,18 @@ An object is a reference to a type, that's often created to exist outside of sco
 	<LG>TYPE NAME_A</LG><C>;</C>
 	<LG>TYPE NAME_B</LG><C>;</C>
 	<LG>...</LG>
-<C>};</C> <G><- the semicolon is required!</G>
+<C>};</C> <DG><- the semicolon is required!</DG>
 
-<M>object_fn</M><Y>(</Y> <LG>OBJECT</LG><C>,</C> <LG>FN_NAME</LG><C>,</C> <LG>OPTIONAL_ARGS...</LG> <Y>)</Y>
+<M>object_fn</M><Y>(</Y> <LG>NAME</LG><C>,</C> <LG>FN</LG><C>,</C> <LG>OPTIONAL_ARGS...</LG> <Y>)</Y>
 <C>{</C>
 	<G>// "this" is available to access OBJECT</G>
 	<LG>this</LG><C>-></C><LG>NAME_A</LG> <Y>=</Y> <LG>...</LG><C>;</C>
 <C>}</C>
-<G>// The object-fn made is:</G>
-<G>//  OBJECT_FN_NAME( OBJECT this, ... )</G>
+<G>// The object-function made is:</G>
+<G>//  NAME_FN( NAME this, OPTIONAL_ARGS... )</G>
+</pre>
 
+<pre>
 <G>// Usage:</G>
 <LG>Entity</LG> <LG>e</LG> = <C>{0}</C>;
 <M>call</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>e</LG><Y>)</Y>, <LG>update</LG><Y>)</Y>; <G>// Calls if not nothing</G>
@@ -339,7 +341,7 @@ If the function doesn't output anything:
 	<M>out</M>; <G>// exits the function</G>
 <C>}</C>
 </pre>
-<br>
+
 If the function does output something:
 <pre>
 <LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG>, <LG>TYPE B</LG>, <LG>TYPE C</LG>, <LG>...</LG> <Y>)</Y>
