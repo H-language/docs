@@ -221,16 +221,17 @@ Accessing elements from a type:
 <pre>
 <M>type</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
 <C>{</C>
-	<LG>TYPE1 A</LG><C>;</C>
-	<LG>TYPE2 B</LG><C>;</C>
+	<LG>TYPE A</LG><C>;</C>
+	<LG>TYPE B</LG><C>;</C>
+	<LG>...</LG>
 <C>};</C>
 
-<Y>NAME</Y> t<C>;</C>
+<LG>NAME</LG> t<C>;</C>
 t<C>.</C>A <Y>=</Y> <LG>...</LG>
 <G>// If it's a type-value,</G>
 <G>//  you use "</G><C>.</C><G>"</G>
 
-<Y>NAME ref</Y> t_ref <Y>=</Y> <M>ref_of</M><Y>(</Y> t <Y>)</Y><C>;</C>
+<LG>NAME</LG> <Y>ref</Y> t_ref <Y>=</Y> <M>ref_of</M><Y>(</Y> t <Y>)</Y><C>;</C>
 t_ref<C>-></C>B <Y>=</Y> <LG>...</LG>
 <G>// If it's a type-reference,</G>
 <G>//  you use "</G><C>-></C><G>"</G>
@@ -273,7 +274,8 @@ A fusion-type is always as big as the largest internal type, and all elements of
 </pre>
 
 ### Groups
-A group allows you to define Natural/Integer constant-values under a name:
+A group allows you to define Natural/Integer constant-values under a name.
+The group elements are separated by a <G>"</G><C>,</C><G>"</G> instead:
 <pre>
 <M>group</M><Y>(</Y> <LG>NAME</LG><C>,</C> <LG>OPTIONAL_TYPE</LG> <Y>)</Y>
 <C>{</C>
@@ -291,7 +293,8 @@ A group allows you to define Natural/Integer constant-values under a name:
 	<LG>NAME_A</LG> <Y>=</Y> <C>-7,</C>
 	<LG>NAME_B</LG><C>,</C> <G>// is -6</G>
 	<LG>NAME_C</LG> <Y>=</Y> <C>777,</C>
-	<LG>NAME_D</LG><C>,</C> <G>// is 778
+	<LG>NAME_D</LG><C>,</C> <G>// is 778</G>
+	<LG>...</LG>
 <C>};</C>
 </pre>
 
@@ -315,11 +318,40 @@ An object is a reference to a type, that's often created to exist outside of sco
 
 <M>object_fn</M><Y>(</Y> <LG>NAME</LG><C>,</C> <LG>FN</LG><C>,</C> <LG>OPTIONAL_ARGS...</LG> <Y>)</Y>
 <C>{</C>
-	<G>// "this" is available to access OBJECT</G>
+	<G>// "this" is available to access elements</G>
+	<G>//  from within the object:</G>
 	<LG>this</LG><C>-></C><LG>NAME_A</LG> <Y>=</Y> <LG>...</LG><C>;</C>
 <C>}</C>
 <G>// The object-function made is:</G>
 <G>//  NAME_FN( NAME this, OPTIONAL_ARGS... )</G>
+</pre>
+
+Usage example:
+<pre>
+<M>object</M><Y>(</Y> player <Y>)</Y>
+<C>{</C>
+	<Y>i2</Y> hp<C>;</C>
+	<Y>r8</Y> x<C>;</C>
+	<Y>r8</Y> y<C>;</C>
+<C>};</C>
+<Y>global player</Y> main_player <Y>=</Y> <C>nothing;</C>
+<G>// It needs to be nothing, then made after
+
+<M>object_fn</M><Y>( player</Y><C>,</C> <M>move</M><C>,</C> x<C>,</C> y <Y>)</Y>
+<C>{</C>
+	this<C>-></C>x <Y>+=</Y> x<C>;</C>
+	this<C>-></C>y <Y>+=</Y> y<C>;</C>
+<C>}</C>
+
+<C>{</C> <G>// In a scope somewhere</G>
+	main_player <Y>=</Y> <M>new_object</M><Y>( player )</Y><C>;</C>
+	main_player<C>-></C>hp <Y>=</Y> <C>100;</C>
+	main_player<C>-></C>x <Y>=</Y> <C>-20.5;</C>
+	main_player<C>-></C>y <Y>=</Y> <C>77.0;</C>
+	<M>player_move</M><Y>(</Y> main_player<C>, 1.25, -5.1</C> <Y>)</Y><C>;</C>
+	<G>// main_player->x is now -19.25, and</G>
+	<G>// main_player->y is now 71.9</G>
+<C>}</C>
 </pre>
 
 <pre>
