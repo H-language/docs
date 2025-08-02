@@ -73,8 +73,8 @@ Otherwise, make it constant:
 |----------|-------------|
 | <code><M>ref_of</M><Y>(</Y> <LG>VAR</LG> <Y>)</Y></code> | Reference-of VAR |
 | <code><M>val_of</M><Y>(</Y> <LG>REF</LG> <Y>)</Y></code> | Value-of REF |
-| <code><M>to</M><Y>(</Y> <LG>TYPE</LG>, <LG>VAL</LG> <Y>)</Y></code> | Changes VAL to TYPE |
-| <code><M>cast</M><Y>(</Y> <LG>TYPE</LG>, <LG>VAR</LG> <Y>)</Y></code> | Reinterpret VAR to TYPE |
+| <code><M>to</M><Y>(</Y> <LG>TYPE</LG><Y>,</Y> <LG>VAL</LG> <Y>)</Y></code> | Changes VAL to TYPE |
+| <code><M>cast</M><Y>(</Y> <LG>TYPE</LG><Y>,</Y> <LG>VAR</LG> <Y>)</Y></code> | Reinterpret VAR to TYPE |
 
 If the reference type is unknown:
 <pre>
@@ -353,7 +353,7 @@ Usage example:
 <Y>global player</Y> main_player <Y>=</Y> <C>nothing;</C>
 <G>// It needs to be nothing, then made after</G>
 
-<M>object_fn</M><Y>( player</Y><Y>,</Y> <M>move</M><Y>,</Y> x<Y>,</Y> y <Y>)</Y>
+<M>object_fn</M><Y>( player,</Y> <M>move</M><Y>,</Y> x<Y>,</Y> y <Y>)</Y>
 <C>{</C>
 	this<C>-></C>x <Y>+=</Y> x<C>;</C>
 	this<C>-></C>y <Y>+=</Y> y<C>;</C>
@@ -747,10 +747,10 @@ Saving:
 <G>// Memory mapped files</G>
 <Y>file</Y> <LG>f</LG> = <M>map_file</M><Y>(</Y><C>"large.dat"</C>, <LG>PATH_SIZE</LG><Y>)</Y>;
 <G>// Access via f.mapped_bytes</G>
-<M>file_unmap</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>f</LG><Y>)</Y><Y>)</Y>;
+<M>file_unmap</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>f</LG><Y>))</Y>;
 
 <G>// Cleanup</G>
-<M>file_close</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>f</LG><Y>)</Y><Y>)</Y>;
+<M>file_close</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>f</LG><Y>))</Y>;
 <M>file_delete</M><Y>(</Y><C>"path.txt"</C><Y>)</Y>;
 </pre>
 
@@ -848,8 +848,8 @@ Saving:
 	<Y>arg_list</Y> args;
 	<M>args_init</M><Y>(</Y>args, format<Y>)</Y>;
 	
-	<Y>i4</Y> num <Y>=</Y> <M>args_next</M><Y>(</Y>args, <Y>i4</Y><Y>)</Y>;
-	<Y>byte</Y> <Y>ref</Y> str <Y>=</Y> <M>args_next</M><Y>(</Y>args, <Y>ref</Y><Y>)</Y>;
+	<Y>i4</Y> num <Y>=</Y> <M>args_next</M><Y>(</Y>args, <Y>i4)</Y>;
+	<Y>byte</Y> <Y>ref</Y> str <Y>=</Y> <M>args_next</M><Y>(</Y>args, <Y>ref)</Y>;
 	
 	<M>args_end</M><Y>(</Y>args<Y>)</Y>;
 <C>}</C>
