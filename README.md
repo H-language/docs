@@ -179,7 +179,7 @@ With ref/const_ref too:
 <G>// flip( is_ready );</G>
 <G>// is_ready is now yes</G>
 
-<M>pick</M><Y>(</Y> <LG>FLAG</LG>, <LG>A</LG>, <LG>B</LG> <Y>)</Y> <G>// Ternary operator</G>
+<M>pick</M><Y>(</Y> <LG>FLAG</LG><C>,</C> <LG>A</LG><C>,</C> <LG>B</LG> <Y>)</Y> <G>// Ternary operator</G>
 <G>// If FLAG is yes, pick A, else pick B</G>
 </pre>
 
@@ -204,7 +204,7 @@ or a <H>group</H> <LG>(elements are the same type, and are ordered)</LG>.
 ### Types
 New types are made with one or more types:
 <pre>
-<M>type_from</M><Y>(</Y> <LG>TYPE</LG><C>,</C> <LG>NAME</LG> <Y>)</Y><C>;</C>
+<M>type_from</M><Y>(</Y> <LG>TYPE</LG> <Y>)</Y> <LG>NAME</LG><C>;</C>
 <G>// Defines an alias of TYPE, called NAME</G>
 
 <M>type</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
