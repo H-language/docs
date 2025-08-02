@@ -179,7 +179,7 @@ With ref/const_ref too:
 <G>// flip( is_ready );</G>
 <G>// is_ready is now yes</G>
 
-<M>pick</M><Y>(</Y> <LG>FLAG</LG><C>,</C> <LG>A</LG><C>,</C> <LG>B</LG> <Y>)</Y> <G>// Ternary operator</G>
+<M>pick</M><Y>(</Y> <LG>FLAG</LG><Y>,</Y> <LG>A</LG><Y>,</Y> <LG>B</LG> <Y>)</Y> <G>// Ternary operator</G>
 <G>// If FLAG is yes, pick A, else pick B</G>
 </pre>
 
@@ -275,25 +275,25 @@ A fusion-type is always as big as the largest internal type, and all elements of
 
 ### Groups
 A group allows you to define Natural/Integer constant-values under a name.
-The group elements are separated by a <G>"</G><C>,</C><G>"</G> instead:
+The group elements are separated by a <G>"</G><Y>,</Y><G>"</G> instead:
 <pre>
-<M>group</M><Y>(</Y> <LG>NAME</LG><C>,</C> <LG>OPTIONAL_TYPE</LG> <Y>)</Y>
+<M>group</M><Y>(</Y> <LG>NAME</LG><Y>,</Y> <LG>OPTIONAL_TYPE</LG> <Y>)</Y>
 <C>{</C>
-	<LG>NAME_A</LG><C>,</C> <G>// starts at 0</G>
-	<LG>NAME_B</LG><C>,</C> <G>// 1</G>
-	<LG>NAME_C</LG><C>,</C> <G>// 2</G>
+	<LG>NAME_A</LG><Y>,</Y> <G>// starts at 0</G>
+	<LG>NAME_B</LG><Y>,</Y> <G>// 1</G>
+	<LG>NAME_C</LG><Y>,</Y> <G>// 2</G>
 	<LG>...</LG>
 <C>};</C> <DG><- the semicolon is required!</DG>
 <G>// OPTIONAL_TYPE can be [n/i][1/2/4/8]</G>
 
 <G>// You can explicitly define the value</G>
 <G>//  if it's within the type-range:</G>
-<M>group</M><Y>(</Y> <LG>NAME</LG><C>,</C> <Y>i2 )</Y>
+<M>group</M><Y>(</Y> <LG>NAME</LG><Y>,</Y> <Y>i2 )</Y>
 <C>{</C>
-	<LG>NAME_A</LG> <Y>=</Y> <C>-7,</C>
-	<LG>NAME_B</LG><C>,</C> <G>// is -6</G>
-	<LG>NAME_C</LG> <Y>=</Y> <C>777,</C>
-	<LG>NAME_D</LG><C>,</C> <G>// is 778</G>
+	<LG>NAME_A</LG> <Y>=</Y> <C>-7</C><Y>,</Y>
+	<LG>NAME_B</LG><Y>,</Y> <G>// is -6</G>
+	<LG>NAME_C</LG> <Y>=</Y> <C>777</C><Y>,</Y>
+	<LG>NAME_D</LG><Y>,</Y> <G>// is 778</G>
 	<LG>...</LG>
 <C>};</C>
 </pre>
@@ -312,8 +312,8 @@ for example:
 <C>{</C> <G>// Some scope</G>
 	<M>group</M><Y>( entity_type )</Y>
 	<C>{</C>
-		entity_player<C>,</C>
-		entity_enemy<C>,</C>
+		entity_player<Y>,</Y>
+		entity_enemy<Y>,</Y>
 		entity_projectile
 	<C>}</C>
 	<Y>entity_type</Y> t <Y>=</Y> entity_enemy<C>;</C>
@@ -332,7 +332,7 @@ An object is a reference to a type, that's often created to exist outside of sco
 	<LG>...</LG>
 <C>};</C> <DG><- the semicolon is required!</DG>
 
-<M>object_fn</M><Y>(</Y> <LG>NAME</LG><C>,</C> <LG>FN</LG><C>,</C> <LG>OPTIONAL_ARGS...</LG> <Y>)</Y>
+<M>object_fn</M><Y>(</Y> <LG>NAME</LG><Y>,</Y> <LG>FN</LG><Y>,</Y> <LG>OPTIONAL_ARGS...</LG> <Y>)</Y>
 <C>{</C>
 	<G>// "this" is available to access elements</G>
 	<G>//  from within the object:</G>
@@ -353,7 +353,7 @@ Usage example:
 <Y>global player</Y> main_player <Y>=</Y> <C>nothing;</C>
 <G>// It needs to be nothing, then made after</G>
 
-<M>object_fn</M><Y>( player</Y><C>,</C> <M>move</M><C>,</C> x<C>,</C> y <Y>)</Y>
+<M>object_fn</M><Y>( player</Y><Y>,</Y> <M>move</M><Y>,</Y> x<Y>,</Y> y <Y>)</Y>
 <C>{</C>
 	this<C>-></C>x <Y>+=</Y> x<C>;</C>
 	this<C>-></C>y <Y>+=</Y> y<C>;</C>
@@ -377,7 +377,7 @@ Usage example:
 
 If the function doesn't output anything:
 <pre>
-<M>fn</M> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG><C>,</C> <LG>TYPE B</LG><C>,</C> <LG>TYPE C</LG><C>,</C> <LG>...</LG> <Y>)</Y>
+<M>fn</M> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG><Y>,</Y> <LG>TYPE B</LG><Y>,</Y> <LG>TYPE C</LG><Y>,</Y> <LG>...</LG> <Y>)</Y>
 <C>{</C>
 	<G>// function code</G>
 	<M>out</M><C>;</C> <G>// exits the function</G>
@@ -386,7 +386,7 @@ If the function doesn't output anything:
 
 If the function does output something:
 <pre>
-<LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG><C>,</C> <LG>TYPE B</LG><C>,</C> <LG>TYPE C</LG><C>,</C> <LG>...</LG> <Y>)</Y>
+<LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG><Y>,</Y> <LG>TYPE B</LG><Y>,</Y> <LG>TYPE C</LG><Y>,</Y> <LG>...</LG> <Y>)</Y>
 <C>{</C>
 	<G>// function code</G>
 	<M>out</M> <LG>VAL</LG><C>;</C> <G>// outputs a value of TYPE</G>
@@ -436,33 +436,33 @@ If the function does output something:
 
 <pre>
 <G>// Range functions include from and to</G>
-<M>range</M><Y>(</Y> <LG>VAR</LG><C>,</C> <LG>FROM</LG><C>,</C> <LG>TO</LG> <Y>)</Y>
+<M>range</M><Y>(</Y> <LG>VAR</LG><Y>,</Y> <LG>FROM</LG><Y>,</Y> <LG>TO</LG> <Y>)</Y>
 <C>{</C>
 	<G>// Iterates VAR in a FROM-TO range</G>
 	<G>// Progresses 1 at a time</G>
 	<G>// ( i, 2, 7 ) makes i go from 2 to 7</G>
 <C>}</C>
 
-<M>range_step</M><Y>(</Y> <LG>VAR</LG><C>,</C> <LG>FROM</LG><C>,</C> <LG>TO</LG><C>,</C> <LG>STEP</LG> <Y>)</Y>
+<M>range_step</M><Y>(</Y> <LG>VAR</LG><Y>,</Y> <LG>FROM</LG><Y>,</Y> <LG>TO</LG><Y>,</Y> <LG>STEP</LG> <Y>)</Y>
 <C>{</C>
 	<G>// Iterates VAR in a FROM-TO range,</G>
 	<G>//  but progresses with STEP</G>
 <C>}</C>
 
 <G>// Iter functions always start from 0</G>
-<M>iter</M><Y>(</Y> <LG>VAR</LG><C>,</C> <LG>SIZE</LG> <Y>)</Y>
+<M>iter</M><Y>(</Y> <LG>VAR</LG><Y>,</Y> <LG>SIZE</LG> <Y>)</Y>
 <C>{</C>
 	<G>// Iterates VAR from 0 to SIZE-1</G>
 	<G>// Progresses 1 at a time</G>
 <C>}</C>
 
-<M>iter_step</M><Y>(</Y> <LG>VAR</LG><C>,</C> <LG>SIZE</LG><C>,</C> <LG>STEP</LG> <Y>)</Y>
+<M>iter_step</M><Y>(</Y> <LG>VAR</LG><Y>,</Y> <LG>SIZE</LG><Y>,</Y> <LG>STEP</LG> <Y>)</Y>
 <C>{</C>
 	<G>// Iterates VAR from 0 to SIZE-1,</G>
 	<G>//  but progresses with STEP</G>
 <C>}</C>
 
-<M>iter_grid</M><Y>(</Y> <LG>X</LG><C>,</C> <LG>Y</LG><C>,</C> <LG>WIDTH</LG><C>,</C> <LG>HEIGHT</LG> <Y>)</Y>
+<M>iter_grid</M><Y>(</Y> <LG>X</LG><Y>,</Y> <LG>Y</LG><Y>,</Y> <LG>WIDTH</LG><Y>,</Y> <LG>HEIGHT</LG> <Y>)</Y>
 <C>{</C>
 	<G>// Iterates X from 0 to WIDTH-1,</G>
 	<G>//  and Y from 0 to HEIGHT-1</G>
@@ -546,6 +546,7 @@ In iteration-scopes you often want to "go to the next iteration", if it be for d
 		<M>next</M><C>;</C>
 		<G>// jumps back up to the while</G>
 	<C>}</C>
+	<G>// This code is ran if x >= 5:</G>
 	<LG>...</LG>
 <C>}</C>
 </pre>
@@ -561,7 +562,7 @@ There's also <LG>*</LG><M>_if</M> forms of these that can often be easier to rea
 <M>next_if</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y><C>;</C>
 <G>// Jump to next iteration if FLAG is yes</G>
 
-<M>out_if</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y> VAL<C>;</C>
+<M>out_if</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y> <LG>VAL</LG><C>;</C>
 <G>// Output VAL if FLAG is yes</G>
 <G>// Can be empty if fn doesn't output:</G>
 <G>// out_if( FLAG );</G>
@@ -572,7 +573,7 @@ There's also <LG>*</LG><M>_if</M> forms of these that can often be easier to rea
 <G>// Jump to a when() depending on what it is</G>
 <M>with</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y>
 <C>{</C>
-	<M>when</M><Y>(</Y> <C>1</C>, <C>2</C>, <C>3</C> <Y>)</Y>
+	<M>when</M><Y>(</Y> <C>1</C><Y>,</Y> <C>2</C><Y>,</Y> <C>3</C> <Y>)</Y>
 	<C>{</C>
 		<G>// Code only if val is 1, 2, or 3</G>
 		<M>skip</M>; <G>// Skip the rest</G>
@@ -605,17 +606,17 @@ There's also <LG>*</LG><M>_if</M> forms of these that can often be easier to rea
 	<G>// If REF is not nothing</G>
 <C>}</C>
 
-<M>if_any</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C...</LG> <Y>)</Y>
+<M>if_any</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>C...</LG> <Y>)</Y>
 <C>{</C>
 	<G>// If any arguments are yes</G>
 <C>}</C>
 
-<M>if_all</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C...</LG> <Y>)</Y>
+<M>if_all</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>C...</LG> <Y>)</Y>
 <C>{</C>
 	<G>// If all arguments are yes</G>
 <C>}</C>
 
-<M>if_none</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C...</LG> <Y>)</Y>
+<M>if_none</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>C...</LG> <Y>)</Y>
 <C>{</C>
 	<G>// If none of the arguments are yes</G>
 <C>}</C>
@@ -626,19 +627,19 @@ There's also <LG>*</LG><M>_if</M> forms of these that can often be easier to rea
 
 ### Byte Reference Operations
 <pre>
-<M>bytes_copy</M><Y>(</Y> <LG>FROM</LG><C>,</C> <LG>SIZE</LG><C>,</C> <LG>TO</LG> <Y>)</Y>
+<M>bytes_copy</M><Y>(</Y> <LG>FROM</LG><Y>,</Y> <LG>SIZE</LG><Y>,</Y> <LG>TO</LG> <Y>)</Y>
 <G>// Copy SIZE bytes from FROM to TO</G>
 
-<M>bytes_copy_internal</M><Y>(</Y> <LG>FROM</LG><C>,</C> <LG>SIZE</LG><C>,</C> <LG>TO</LG> <Y>)</Y>
+<M>bytes_copy_internal</M><Y>(</Y> <LG>FROM</LG><Y>,</Y> <LG>SIZE</LG><Y>,</Y> <LG>TO</LG> <Y>)</Y>
 <G>// Copy SIZE bytes, handles overlapping</G>
 
-<M>bytes_fill</M><Y>(</Y> <LG>PTR</LG><C>,</C> <LG>VALUE</LG><C>,</C> <LG>SIZE</LG> <Y>)</Y>
+<M>bytes_fill</M><Y>(</Y> <LG>PTR</LG><Y>,</Y> <LG>VALUE</LG><Y>,</Y> <LG>SIZE</LG> <Y>)</Y>
 <G>// Fill SIZE bytes with VALUE</G>
 
-<M>bytes_clear</M><Y>(</Y> <LG>PTR</LG><C>,</C> <LG>SIZE</LG> <Y>)</Y>
+<M>bytes_clear</M><Y>(</Y> <LG>PTR</LG><Y>,</Y> <LG>SIZE</LG> <Y>)</Y>
 <G>// Clear SIZE bytes to zero</G>
 
-<M>bytes_compare</M><Y>(</Y> <LG>A</LG><C>,</C> <LG>B</LG><C>,</C> <LG>SIZE</LG> <Y>)</Y>
+<M>bytes_compare</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>SIZE</LG> <Y>)</Y>
 <G>// Compare SIZE bytes</G>
 <G>// Outputs 0 if equal,</G>
 <G>//  negative if A < B, positive if A > B</G>
@@ -649,7 +650,7 @@ There's also <LG>*</LG><M>_if</M> forms of these that can often be easier to rea
 <M>bytes_measure</M><Y>(</Y> <LG>STR</LG> <Y>)</Y>
 <G>// Count bytes until '\0'</G>
 
-<M>bytes_paste</M><Y>(</Y> <LG>FROM</LG><C>,</C> <LG>TO</LG> <Y>)</Y>
+<M>bytes_paste</M><Y>(</Y> <LG>FROM</LG><Y>,</Y> <LG>TO</LG> <Y>)</Y>
 <G>// Copy bytes until '\0'</G>
 
 <M>bytes_end</M><Y>(</Y> <LG>REF</LG> <Y>)</Y>
@@ -659,15 +660,15 @@ There's also <LG>*</LG><M>_if</M> forms of these that can often be easier to rea
 
 ### Advanced Copy Operations
 <pre>
-<M>bytes_copy_move</M><Y>(</Y> <LG>FROM</LG><C>,</C> <LG>SIZE</LG><C>,</C> <LG>TO</LG> <Y>)</Y>
+<M>bytes_copy_move</M><Y>(</Y> <LG>FROM</LG><Y>,</Y> <LG>SIZE</LG><Y>,</Y> <LG>TO</LG> <Y>)</Y>
 <G>// Copy SIZE bytes then</G>
 <G>//  moves the TO ref by SIZE</G>
 
-<M>bytes_paste_move</M><Y>(</Y> <LG>FROM</LG><C>,</C> <LG>TO</LG> <Y>)</Y>
+<M>bytes_paste_move</M><Y>(</Y> <LG>FROM</LG><Y>,</Y> <LG>TO</LG> <Y>)</Y>
 <G>// Pastes null-terminated FROM to TO</G>
 <G>//  moves the TO ref by FROM size</G>
 
-<M>bytes_set_move</M><Y>(</Y> <LG>BYTE</LG><C>,</C> <LG>TO</LG> <Y>)</Y>
+<M>bytes_set_move</M><Y>(</Y> <LG>BYTE</LG><Y>,</Y> <LG>TO</LG> <Y>)</Y>
 <G>// Set single byte and move the TO ref by 1</G>
 </pre>
 
@@ -955,7 +956,7 @@ Saving:
 	
 	<Y>byte</Y> input<M>[</M> <M>KB</M><Y>(</Y> <C>100</C> <Y>)</Y> <M>]</M><C>;</C>
 	<M>temp</M> <Y>byte</Y> <Y>ref</Y> input_ref <Y>=</Y> input<C>;</C>
-	<M>file_load</M><Y>(</Y> f<C>,</C> input <Y>)</Y><C>;</C>
+	<M>file_load</M><Y>(</Y> f<Y>,</Y> input <Y>)</Y><C>;</C>
 	
 	<Y>byte</Y> output<M>[</M> <M>KB</M><Y>(</Y> <C>100</C> <Y>)</Y> <M>]</M><C>;</C>
 	<M>temp</M> <Y>byte</Y> <Y>ref</Y> output_ref <Y>=</Y> output<C>;</C>
