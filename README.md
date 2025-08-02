@@ -1,5 +1,5 @@
 # <H>H</H>ydrogen <H>Lang</H>uage Documentation
-<i><G>created by </G><a href="https://x.com/ENDESGA" class="EDG">ENDESGA</a><G> - started in 2020 - made in NZ - CC0 - FOSS forever</G></i>
+### <i><G>created by </G><a href="https://x.com/ENDESGA" class="EDG">ENDESGA</a><G> - started in 2020 - made in NZ - CC0 - FOSS forever</G></i>
 
 -------
 ## <G>a quick overview</G>
@@ -224,7 +224,7 @@ To convert a value into a different type, changing it to align with the type, us
 <G>// y is now -2 (r* to i* truncates)</G>
 </pre>
 
-But if you want to keep the bits the same, but change how it's read, you can use a reinterpret-cast:
+If you want to keep the bits the same, but change how it's read, you can use a reinterpret-cast:
 <pre>
 <M>cast</M><Y>(</Y> <LG>TYPE</LG><Y>,</Y> <LG>VAR</LG> <Y>)</Y>
 <G>// Reinterpret VAR to TYPE</G>
@@ -317,7 +317,7 @@ A fusion-type is always as big as the largest internal type, and all elements of
 
 ### Groups
 A group allows you to define Natural/Integer constant-values under a name.
-The group elements are separated by a <G>"</G><Y>,</Y><G>"</G> instead:
+The group elements are separated by a <G>"</G><C>,</C><G>"</G> instead:
 <pre>
 <M>group</M><Y>(</Y> <LG>NAME</LG><Y>,</Y> <LG>OPTIONAL_TYPE</LG> <Y>)</Y>
 <C>{</C>
@@ -576,7 +576,7 @@ Jumping <b>backwards</b> is the typical use-case, since jumping forwards can pot
 </pre>
 
 #### next
-In iteration-scopes you often want to "go to the next iteration", if it be for dealing with objects, or processing bytes.
+In iteration-scopes you often want to have control as to when it jumps to the next iteration:
 <pre>
 <M>next</M> <G>// Jump up to next iteration</G>
 <G>// "skip the rest, go to the next", like:</G>
@@ -648,17 +648,17 @@ There's also <LG>*</LG><M>_if</M> forms of these that can often be easier to rea
 	<G>// If REF is not nothing</G>
 <C>}</C>
 
-<M>if_any</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>C...</LG> <Y>)</Y>
+<M>if_any</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>C</LG><Y>,</Y> <LG>...</LG> <Y>)</Y>
 <C>{</C>
 	<G>// If any arguments are yes</G>
 <C>}</C>
 
-<M>if_all</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>C...</LG> <Y>)</Y>
+<M>if_all</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>C</LG><Y>,</Y> <LG>...</LG> <Y>)</Y>
 <C>{</C>
 	<G>// If all arguments are yes</G>
 <C>}</C>
 
-<M>if_none</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>C...</LG> <Y>)</Y>
+<M>if_none</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>C</LG><Y>,</Y> <LG>...</LG> <Y>)</Y>
 <C>{</C>
 	<G>// If none of the arguments are yes</G>
 <C>}</C>
