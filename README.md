@@ -335,7 +335,7 @@ Usage example:
 	<Y>r8</Y> y<C>;</C>
 <C>};</C>
 <Y>global player</Y> main_player <Y>=</Y> <C>nothing;</C>
-<G>// It needs to be nothing, then made after
+<G>// It needs to be nothing, then made after</G>
 
 <M>object_fn</M><Y>( player</Y><C>,</C> <M>move</M><C>,</C> x<C>,</C> y <Y>)</Y>
 <C>{</C>
@@ -352,12 +352,6 @@ Usage example:
 	<G>// main_player->x is now -19.25, and</G>
 	<G>// main_player->y is now 71.9</G>
 <C>}</C>
-</pre>
-
-<pre>
-<G>// Usage:</G>
-<LG>Entity</LG> <LG>e</LG> = <C>{0}</C>;
-<M>call</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>e</LG><Y>)</Y>, <LG>update</LG><Y>)</Y>; <G>// Calls if not nothing</G>
 </pre>
 
 -------
