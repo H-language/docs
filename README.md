@@ -369,7 +369,38 @@ for example:
 <G>//  not accessible outside the scope</G>
 </pre>
 
-### Objects
+-------
+## Functions
+
+### Function Declaration
+
+If the function doesn't output anything:
+<pre>
+<M>fn</M> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG><Y>,</Y> <LG>TYPE B</LG><Y>,</Y> <LG>TYPE C</LG><Y>,</Y> <LG>...</LG> <Y>)</Y>
+<C>{</C>
+	<G>// function code</G>
+	<M>out</M><C>;</C> <G>// exits the function</G>
+<C>}</C>
+</pre>
+
+If the function does output something:
+<pre>
+<LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG><Y>,</Y> <LG>TYPE B</LG><Y>,</Y> <LG>TYPE C</LG><Y>,</Y> <LG>...</LG> <Y>)</Y>
+<C>{</C>
+	<G>// function code</G>
+	<M>out</M> <LG>VAL</LG><C>;</C> <G>// outputs a value of TYPE</G>
+<C>}</C>
+</pre>
+
+### Embed Function Prefix
+<pre>
+<M>embed</M> <LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>...</LG> <Y>)</Y>
+<G>// This will force the compiler to embed</G>
+<G>//  the function code in where it's called</G>
+</pre>
+
+-------
+## Objects
 An object is a reference to a type, that's often created to exist outside of scopes.
 <pre>
 <M>object</M><Y>(</Y> <LG>NAME</LG> <Y>)</Y>
@@ -415,36 +446,6 @@ Usage example:
 	<G>// main_player->x is now -19.25, and</G>
 	<G>// main_player->y is now 71.9</G>
 <C>}</C>
-</pre>
-
--------
-## Functions
-
-### Function Declaration
-
-If the function doesn't output anything:
-<pre>
-<M>fn</M> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG><Y>,</Y> <LG>TYPE B</LG><Y>,</Y> <LG>TYPE C</LG><Y>,</Y> <LG>...</LG> <Y>)</Y>
-<C>{</C>
-	<G>// function code</G>
-	<M>out</M><C>;</C> <G>// exits the function</G>
-<C>}</C>
-</pre>
-
-If the function does output something:
-<pre>
-<LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG><Y>,</Y> <LG>TYPE B</LG><Y>,</Y> <LG>TYPE C</LG><Y>,</Y> <LG>...</LG> <Y>)</Y>
-<C>{</C>
-	<G>// function code</G>
-	<M>out</M> <LG>VAL</LG><C>;</C> <G>// outputs a value of TYPE</G>
-<C>}</C>
-</pre>
-
-### Embed Function Prefix
-<pre>
-<M>embed</M> <LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>...</LG> <Y>)</Y>
-<G>// This will force the compiler to embed</G>
-<G>//  the function code in where it's called</G>
 </pre>
 
 -------
