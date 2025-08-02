@@ -306,6 +306,22 @@ If there's going to be less than 256 elements, the default group-type is a <H>by
 <C>};</C>
 </pre>
 
+The elements inside the group are available in the scope,
+for example:
+<pre>
+<C>{</C> <G>// Some scope</G>
+	<M>group</M><Y>( entity_type )</Y>
+	<C>{</C>
+		entity_player<C>,</C>
+		entity_enemy<C>,</C>
+		entity_projectile
+	<C>}</C>
+	<Y>entity_type</Y> t <Y>=</Y> entity_enemy<C>;</C>
+<C>}</C>
+<G>// entity_type and the elements are</G>
+<G>//  not accessible outside the scope</G>
+</pre>
+
 ### Objects
 An object is a reference to a type, that's often created to exist outside of scopes.
 <pre>
@@ -361,19 +377,19 @@ Usage example:
 
 If the function doesn't output anything:
 <pre>
-<M>fn</M> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG>, <LG>TYPE B</LG>, <LG>TYPE C</LG>, <LG>...</LG> <Y>)</Y>
+<M>fn</M> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG><C>,</C> <LG>TYPE B</LG><C>,</C> <LG>TYPE C</LG><C>,</C> <LG>...</LG> <Y>)</Y>
 <C>{</C>
 	<G>// function code</G>
-	<M>out</M>; <G>// exits the function</G>
+	<M>out</M><C>;</C> <G>// exits the function</G>
 <C>}</C>
 </pre>
 
 If the function does output something:
 <pre>
-<LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG>, <LG>TYPE B</LG>, <LG>TYPE C</LG>, <LG>...</LG> <Y>)</Y>
+<LG>TYPE</LG> <LG>NAME</LG><Y>(</Y> <LG>TYPE A</LG><C>,</C> <LG>TYPE B</LG><C>,</C> <LG>TYPE C</LG><C>,</C> <LG>...</LG> <Y>)</Y>
 <C>{</C>
 	<G>// function code</G>
-	<M>out</M> <LG>VAL</LG>; <G>// outputs a value of TYPE</G>
+	<M>out</M> <LG>VAL</LG><C>;</C> <G>// outputs a value of TYPE</G>
 <C>}</C>
 </pre>
 
@@ -385,7 +401,7 @@ If the function does output something:
 </pre>
 
 -------
-## Control Flow
+## Scope Structures
 
 ### Loops
 <pre>
@@ -406,20 +422,68 @@ If the function does output something:
 	<G>// Run this code</G>
 	<G>// While FLAG is yes</G>
 <C>}</C>
-<M>while</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y>;
+<M>while</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y><C>;</C>
 
 <M>do</M>
 <C>{</C>
 	<G>// Run this code</G>
 	<G>// Until FLAG is yes</G>
 <C>}</C>
-<M>until</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y>;
+<M>until</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y><C>;</C>
+</pre>
 
-<M>skip</M> <G>// Skip the rest of the scope</G>
+### Execution Control
+The program is "read" by the computer in a downwards flow, as if it's reading a book.
+To move where it's "reading", you can use:
+<H>skip</H> <LG>(skips the rest of the scope)</LG>,
+<H>jump</H> <LG>(jumps to a POINT)</LG>,
+or <H>next</H> <LG>(next scope-iteration)</LG>
 
-<LG>POINT</LG>: <G>// Set jump point</G>
-<M>jump</M> <LG>POINT</LG>; <G>// Jump to POINT</G>
+#### skip
+When used inside a scope-structure like <H>loop</H>, <H>range</H>, <H>iter</H>, etc,
+it skips the code below it and the program goes to the point after the <G>"</G><C>}</C><G>"</G>
+<pre>
+<M>loop</M>
+<C>{</C>
+	<M>if</M><Y>(</Y> <LG>x</LG> <Y>)</Y>
+	<C>{</C>
+		<M>skip</M><C>;</C>
+	<C>}</C>
+	<G>// The code below is skipped if x is yes</G>
+	<LG>...</LG>
+<C>}</C>
+<G>// The skip takes us here</G>
+<LG>...</LG>
+</pre>
 
+#### jump
+The program is able to jump to any point in the code that is defined.
+Jumping <b>backwards</b> is the typical use-case, since jumping forwards can potentially skip important code.
+<pre>
+<LG>POINT</LG><C>:</C> <G>// Set jump point</G>
+<G>// This can often act as pseudo-function, like:
+<Y>do_thing</Y><C>:</C>
+<C>{</C> <LG>...</LG>
+
+<M>jump</M> <LG>POINT</LG><C>;</C> <G>// Jump to POINT</G>
+<G>// When the program reaches this,</G>
+<G>//  it immediately jumps to where POINT: is</G>
+<G>// For example:</G>
+<Y>do_thing</Y><C>:</C>
+<C>{</C>
+	<LG>...</LG>
+	<M>if</M><Y>(</Y> <LG>x</LG> <Y>)</Y>
+	<C>{</C>
+		<LG>...</LG>
+		<M>jump</M> <Y>thing_finished</Y><C>;</C>
+	<C>}</C>
+	<M>jump</M> <Y>do_thing</Y><C>;</C>
+<C>}</C>
+<Y>thing_finished</Y><C>:</C>
+</pre>
+
+#### next
+<pre>
 <M>next</M> <G>// Jump up to next iteration</G>
 <G>// while( x < 10 )</G>
 <G>// {</G>
