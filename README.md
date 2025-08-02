@@ -69,12 +69,13 @@ Otherwise, make it constant:
 <G>// Cannot be changed!</G>
 </pre>
 
-| H Syntax | Definition |
-|----------|-------------|
-| <code><M>ref_of</M><Y>(</Y> <LG>VAR</LG> <Y>)</Y></code> | Reference-of VAR |
-| <code><M>val_of</M><Y>(</Y> <LG>REF</LG> <Y>)</Y></code> | Value-of REF |
-| <code><M>to</M><Y>(</Y> <LG>TYPE</LG><Y>,</Y> <LG>VAL</LG> <Y>)</Y></code> | Changes VAL to TYPE |
-| <code><M>cast</M><Y>(</Y> <LG>TYPE</LG><Y>,</Y> <LG>VAR</LG> <Y>)</Y></code> | Reinterpret VAR to TYPE |
+<pre>
+<M>ref_of</M><Y>(</Y> <LG>VAR</LG> <Y>)</Y>
+<G>// Reference-of VAR</G>
+
+<M>val_of</M><Y>(</Y> <LG>REF</LG> <Y>)</Y>
+<G>// Value-of REF</G>
+</pre>
 
 If the reference type is unknown:
 <pre>
@@ -194,6 +195,40 @@ With ref/const_ref too:
 | <code><M>is</M></code> | Equality |
 | <code><M>isnt</M></code> | Inequality |
 
+### Type Control
+If you want to get the type of a value or variable, you can use:
+<pre>
+<M>type_of</M><Y>(</Y> <LG>VAR</LG> <Y>)</Y>
+<G>// Deduces the type of VAR</G>
+<G>// Which can be used in interesting ways:</G>
+<Y>#define</Y> <M>SWAP</M><Y>(</Y> A<Y>,</Y> B <Y>)</Y><G>\</G>
+	<M>DEF_START</M>
+	<C>{</C>
+		<M>type_of</M><Y>(</Y> A <Y>)</Y> _temp <Y>=</Y> A<C>;</C>
+		A <Y>=</Y> B<C>;</C>
+		B <Y>=</Y> _temp<C>;</C>
+	<C>}</C>
+	<M>DEF_END</M>
+<G>// Which automatically deduces the type</G>
+<G>//  for swapping any 2 same-type variables</G>
+</pre>
+
+To convert a value into a different type, changing it to align with the type, use:
+<pre>
+<M>to</M><Y>(</Y> <LG>TYPE</LG><Y>,</Y> <LG>VAL</LG> <Y>)</Y>
+<G>// Changes VAL to TYPE</G>
+
+<G>// Can be used like:</G>
+<Y>r4</Y> x <Y>=</Y> <C>-1.234;</C>
+<Y>i2</Y> y <Y>=</Y> <M>to</M><Y>( i2,</Y> x <Y>)</Y><C>;</C>
+<G>// </G>
+</pre>
+
+But if you want to keep the bits the same, but change how it's read, you can use a reinterpret-cast:
+<M>cast</M><Y>(</Y> <LG>TYPE</LG><Y>,</Y> <LG>VAR</LG> <Y>)</Y>
+<G>// Reinterpret VAR to TYPE</G>
+</pre>
+
 -------
 ## Defining New Types
 Types can be an <H>alias</H> <LG>(a renamed type)</LG>,
@@ -279,9 +314,9 @@ The group elements are separated by a <G>"</G><Y>,</Y><G>"</G> instead:
 <pre>
 <M>group</M><Y>(</Y> <LG>NAME</LG><Y>,</Y> <LG>OPTIONAL_TYPE</LG> <Y>)</Y>
 <C>{</C>
-	<LG>NAME_A</LG><Y>,</Y> <G>// starts at 0</G>
-	<LG>NAME_B</LG><Y>,</Y> <G>// 1</G>
-	<LG>NAME_C</LG><Y>,</Y> <G>// 2</G>
+	<LG>NAME_A</LG><C>,</C> <G>// starts at 0</G>
+	<LG>NAME_B</LG><C>,</C> <G>// 1</G>
+	<LG>NAME_C</LG><C>,</C> <G>// 2</G>
 	<LG>...</LG>
 <C>};</C> <DG><- the semicolon is required!</DG>
 <G>// OPTIONAL_TYPE can be [n/i][1/2/4/8]</G>
@@ -290,10 +325,10 @@ The group elements are separated by a <G>"</G><Y>,</Y><G>"</G> instead:
 <G>//  if it's within the type-range:</G>
 <M>group</M><Y>(</Y> <LG>NAME</LG><Y>, i2 )</Y>
 <C>{</C>
-	<LG>NAME_A</LG> <Y>=</Y> <C>-7</C><Y>,</Y>
-	<LG>NAME_B</LG><Y>,</Y> <G>// is -6</G>
-	<LG>NAME_C</LG> <Y>=</Y> <C>777</C><Y>,</Y>
-	<LG>NAME_D</LG><Y>,</Y> <G>// is 778</G>
+	<LG>NAME_A</LG> <Y>=</Y> <C>-7</C><C>,</C>
+	<LG>NAME_B</LG><C>,</C> <G>// is -6</G>
+	<LG>NAME_C</LG> <Y>=</Y> <C>777</C><C>,</C>
+	<LG>NAME_D</LG><C>,</C> <G>// is 778</G>
 	<LG>...</LG>
 <C>};</C>
 </pre>
@@ -312,8 +347,8 @@ for example:
 <C>{</C> <G>// Some scope</G>
 	<M>group</M><Y>( entity_type )</Y>
 	<C>{</C>
-		entity_player<Y>,</Y>
-		entity_enemy<Y>,</Y>
+		entity_player<C>,</C>
+		entity_enemy<C>,</C>
 		entity_projectile
 	<C>}</C>
 	<Y>entity_type</Y> t <Y>=</Y> entity_enemy<C>;</C>
@@ -955,15 +990,15 @@ Saving:
 	<C>}</C>
 	
 	<Y>byte</Y> input<M>[ KB</M><Y>(</Y> <C>100</C> <Y>)</Y> <M>]</M><C>;</C>
-	<M>temp</M> <Y>byte ref</Y> input_ref <Y>=</Y> input<C>;</C>
+	<Y>temp</Y> <Y>byte ref</Y> input_ref <Y>=</Y> input<C>;</C>
 	<M>file_load</M><Y>(</Y> f<Y>,</Y> input <Y>)</Y><C>;</C>
 	
 	<Y>byte</Y> output<M>[ KB</M><Y>(</Y> <C>100</C> <Y>)</Y> <M>]</M><C>;</C>
-	<M>temp</M> <Y>byte ref</Y> output_ref <Y>=</Y> output<C>;</C>
+	<Y>temp</Y> <Y>byte ref</Y> output_ref <Y>=</Y> output<C>;</C>
 	
 	<Y>check_input</Y><C>:</C>
 	<C>{</C>
-		<M>temp</M> <Y>byte</Y> val <Y>=</Y> <M>val_of</M><Y>(</Y> input_ref <Y>)</Y><C>;</C>
+		<Y>temp</Y> <Y>byte</Y> val <Y>=</Y> <M>val_of</M><Y>(</Y> input_ref <Y>)</Y><C>;</C>
 		<M>with</M><Y>(</Y> val <Y>)</Y>
 		<C>{</C>
 			<M>when</M><Y>(</Y> <C>'\0'</C> <Y>)</Y> <M>jump</M> <Y>input_eof</Y><C>;</C>
