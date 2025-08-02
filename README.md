@@ -288,7 +288,7 @@ The group elements are separated by a <G>"</G><Y>,</Y><G>"</G> instead:
 
 <G>// You can explicitly define the value</G>
 <G>//  if it's within the type-range:</G>
-<M>group</M><Y>(</Y> <LG>NAME</LG><Y>,</Y> <Y>i2 )</Y>
+<M>group</M><Y>(</Y> <LG>NAME</LG><Y>, i2 )</Y>
 <C>{</C>
 	<LG>NAME_A</LG> <Y>=</Y> <C>-7</C><Y>,</Y>
 	<LG>NAME_B</LG><Y>,</Y> <G>// is -6</G>
@@ -576,7 +576,7 @@ There's also <LG>*</LG><M>_if</M> forms of these that can often be easier to rea
 	<M>when</M><Y>(</Y> <C>1</C><Y>,</Y> <C>2</C><Y>,</Y> <C>3</C> <Y>)</Y>
 	<C>{</C>
 		<G>// Code only if val is 1, 2, or 3</G>
-		<M>skip</M>; <G>// Skip the rest</G>
+		<M>skip</M><C>;</C> <G>// Skip the rest</G>
 	<C>}</C>
 	
 	<M>when</M><Y>(</Y> <C>4</C> <Y>)</Y>
@@ -676,28 +676,28 @@ There's also <LG>*</LG><M>_if</M> forms of these that can often be easier to rea
 ## Math Operations
 
 <pre>
-<M>MIN</M><Y>(</Y> <LG>A</LG>, <LG>B</LG> <Y>)</Y>
+<M>MIN</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG> <Y>)</Y>
 <G>// Smaller of A or B</G>
 
-<M>MAX</M><Y>(</Y> <LG>A</LG>, <LG>B</LG> <Y>)</Y>
+<M>MAX</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG> <Y>)</Y>
 <G>// Larger of A or B</G>
 
-<M>MIN3</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG> <Y>)</Y>
+<M>MIN3</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>C</LG> <Y>)</Y>
 <G>// Smallest of three</G>
 
-<M>MIN4</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG>, <LG>D</LG> <Y>)</Y>
+<M>MIN4</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>C</LG><Y>,</Y> <LG>D</LG> <Y>)</Y>
 <G>// Smallest of four</G>
 
-<M>MAX3</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG> <Y>)</Y>
+<M>MAX3</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>C</LG> <Y>)</Y>
 <G>// Largest of three</G>
 
-<M>MAX4</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG>, <LG>D</LG> <Y>)</Y>
+<M>MAX4</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>C</LG><Y>,</Y> <LG>D</LG> <Y>)</Y>
 <G>// Largest of four</G>
 
-<M>MEAN</M><Y>(</Y> <LG>A</LG>, <LG>B</LG> <Y>)</Y>
+<M>MEAN</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG> <Y>)</Y>
 <G>// Average of A and B</G>
 
-<M>CLAMP</M><Y>(</Y> <LG>VAL</LG>, <LG>MIN</LG>, <LG>MAX</LG> <Y>)</Y>
+<M>CLAMP</M><Y>(</Y> <LG>VAL</LG><Y>,</Y> <LG>MIN</LG><Y>,</Y> <LG>MAX</LG> <Y>)</Y>
 <G>// Keep VAL between MIN and MAX</G>
 
 <M>ABS</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y>
@@ -715,7 +715,7 @@ There's also <LG>*</LG><M>_if</M> forms of these that can often be easier to rea
 <M>CUBE</M><Y>(</Y> <LG>VAL</LG> <Y>)</Y>
 <G>// VAL * VAL * VAL</G>
 
-<M>SNAP</M><Y>(</Y> <LG>VAL</LG>, <LG>MULTIPLE</LG> <Y>)</Y>
+<M>SNAP</M><Y>(</Y> <LG>VAL</LG><Y>,</Y> <LG>MULTIPLE</LG> <Y>)</Y>
 <G>// Round VAL to nearest MULTIPLE</G>
 </pre>
 
@@ -730,7 +730,7 @@ Loading:
 <G>//  outputs a file-type for loading</G>
 
 <Y>byte</Y> <LG>LOADED</LG><M>[ KB</M><Y>(</Y> <C>10</C> <Y>)</Y> <M>]</M>;
-<M>file_load</M><Y>(</Y> <LG>F</LG>, <LG>LOADED</LG> <Y>)</Y>;
+<M>file_load</M><Y>(</Y> <LG>F</LG><Y>,</Y> <LG>LOADED</LG> <Y>)</Y>;
 </pre>
 
 Saving:
@@ -741,11 +741,11 @@ Saving:
 
 <G>// Load/Save</G>
 <Y>byte</Y> <LG>buffer</LG><Y>[</Y><C>1024</C><Y>]</Y>;
-<M>file_load</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>f</LG><Y>)</Y>, <LG>buffer</LG><Y>)</Y>;
-<M>file_save</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>f</LG><Y>)</Y>, <LG>DATA</LG>, <LG>SIZE</LG><Y>)</Y>;
+<M>file_load</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>f</LG><Y>),</Y> <LG>buffer</LG><Y>)</Y>;
+<M>file_save</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>f</LG><Y>),</Y> <LG>DATA</LG><Y>,</Y> <LG>SIZE</LG><Y>)</Y>;
 
 <G>// Memory mapped files</G>
-<Y>file</Y> <LG>f</LG> = <M>map_file</M><Y>(</Y><C>"large.dat"</C>, <LG>PATH_SIZE</LG><Y>)</Y>;
+<Y>file</Y> <LG>f</LG> = <M>map_file</M><Y>(</Y><C>"large.dat"</C><Y>,</Y> <LG>PATH_SIZE</LG><Y>)</Y>;
 <G>// Access via f.mapped_bytes</G>
 <M>file_unmap</M><Y>(</Y><M>ref_of</M><Y>(</Y><LG>f</LG><Y>))</Y>;
 
@@ -770,19 +770,19 @@ Saving:
 <Y>n2</Y> <LG>count</LG>;
 
 <G>// Get all entries</G>
-<LG>count</LG> = <M>get_entries_in_folder</M><Y>(</Y><LG>DIR</LG>, <LG>entries</LG>, <C>100</C>, <LG>entry_any</LG><Y>)</Y>;
+<LG>count</LG> = <M>get_entries_in_folder</M><Y>(</Y><LG>DIR</LG><Y>,</Y> <LG>entries</LG><Y>,</Y> <C>100</C><Y>,</Y> <LG>entry_any</LG><Y>)</Y>;
 
 <G>// Get only files</G>
-<LG>count</LG> = <M>get_files</M><Y>(</Y><LG>DIR</LG>, <LG>entries</LG>, <C>100</C><Y>)</Y>;
+<LG>count</LG> = <M>get_files</M><Y>(</Y><LG>DIR</LG><Y>,</Y> <LG>entries</LG><Y>,</Y> <C>100</C><Y>)</Y>;
 
 <G>// Get only folders</G>
-<LG>count</LG> = <M>get_folders</M><Y>(</Y><LG>DIR</LG>, <LG>entries</LG>, <C>100</C><Y>)</Y>;
+<LG>count</LG> = <M>get_folders</M><Y>(</Y><LG>DIR</LG><Y>,</Y> <LG>entries</LG><Y>,</Y> <C>100</C><Y>)</Y>;
 </pre>
 
 ### Path Operations
 
 <pre>
-<M>path</M><Y>(</Y><C>"folder"</C>, <C>"subfolder"</C>, <C>"file.txt"</C><Y>)</Y>
+<M>path</M><Y>(</Y><C>"folder"</C><Y>,</Y> <C>"subfolder"</C><Y>,</Y> <C>"file.txt"</C><Y>)</Y>
 <G>// Makes "folder/subfolder/file.txt"</G>
 <M>path_up_folder</M><Y>(</Y><LG>PATH_BUFFER</LG><Y>)</Y> <G>// Remove last part</G>
 <Y>byte ref</Y> <LG>exe_path</LG> = <M>get_exe_path</M><Y>()</Y> <G>// Program location</G>
@@ -795,14 +795,14 @@ Saving:
 
 <pre>
 <M>print</M><Y>(</Y><C>"Hello, World!"</C><Y>)</Y> <G>// Output text</G>
-<M>print_size</M><Y>(</Y><LG>BUFFER</LG>, <C>100</C><Y>)</Y> <G>// Output exact bytes</G>
+<M>print_size</M><Y>(</Y><LG>BUFFER</LG><Y>,</Y> <C>100</C><Y>)</Y> <G>// Output exact bytes</G>
 <M>print_newline</M><Y>()</Y> <G>// Start new line</G>
 </pre>
 
 ### Formatted Output
 
 <pre>
-<M>print_format</M><Y>(</Y><C>"Value: &lt;c:g&gt;%d&lt;/c:g&gt;\n"</C>, <C>42</C><Y>)</Y>;
+<M>print_format</M><Y>(</Y><C>"Value: &lt;c:g&gt;%d&lt;/c:g&gt;\n"</C><Y>,</Y> <C>42</C><Y>)</Y>;
 
 <G>// Format tags:</G>
 <G>// &lt;c:r&gt; = red, &lt;c:g&gt; = green, &lt;c:b&gt; = blue</G>
@@ -815,11 +815,11 @@ Saving:
 <pre>
 <G>// Format to buffer with size tracking</G>
 <Y>byte</Y> <LG>buffer</LG><Y>[</Y><C>256</C><Y>]</Y>;
-<Y>n4</Y> <LG>size</LG> = <M>format_bytes</M><Y>(</Y><LG>buffer</LG>, <C>"Name: <c:b><></c:b>"</C>, <C>"John"</C><Y>)</Y>;
+<Y>n4</Y> <LG>size</LG> = <M>format_bytes</M><Y>(</Y><LG>buffer</LG><Y>,</Y> <C>"Name: <c:b><></c:b>"</C><Y>,</Y> <C>"John"</C><Y>)</Y>;
 
 <G>// Format and advance pointer</G>
 <Y>byte ref</Y> <LG>ptr</LG> = <LG>buffer</LG>;
-<M>format_bytes_move</M><Y>(</Y><LG>ptr</LG>, <C>"Value: <c:g>%d</c:g>\n"</C>, <C>42</C><Y>)</Y>;
+<M>format_bytes_move</M><Y>(</Y><LG>ptr</LG><Y>,</Y> <C>"Value: <c:g>%d</c:g>\n"</C><Y>,</Y> <C>42</C><Y>)</Y>;
 </pre>
 
 ### Terminal Colors
@@ -843,13 +843,13 @@ Saving:
 ## Variadic Functions
 
 <pre>
-<M>fn</M> <M>foo</M><Y>(</Y> <Y>const</Y> <Y>byte</Y> <Y>ref</Y> format, ... <Y>)</Y>
+<M>fn foo</M><Y>( const byte ref</Y> format<Y>,</Y> <LG>...</LG> <Y>)</Y>
 <C>{</C>
 	<Y>arg_list</Y> args;
-	<M>args_init</M><Y>(</Y>args, format<Y>)</Y>;
+	<M>args_init</M><Y>(</Y>args<Y>,</Y> format<Y>)</Y>;
 	
-	<Y>i4</Y> num <Y>=</Y> <M>args_next</M><Y>(</Y>args, <Y>i4)</Y>;
-	<Y>byte</Y> <Y>ref</Y> str <Y>=</Y> <M>args_next</M><Y>(</Y>args, <Y>ref)</Y>;
+	<Y>i4</Y> num <Y>=</Y> <M>args_next</M><Y>(</Y>args<Y>, i4)</Y>;
+	<Y>byte ref</Y> str <Y>=</Y> <M>args_next</M><Y>(</Y>args<Y>, ref)</Y>;
 	
 	<M>args_end</M><Y>(</Y>args<Y>)</Y>;
 <C>}</C>
@@ -888,10 +888,10 @@ Saving:
 <M>DEFAULT</M><Y>(</Y> <LG>VAL</LG>, <LG>ARG</LG> <Y>)</Y>
 <G>// Becomes ARG if provided, otherwise VAL</G>
 
-<M>DEFAULTS</M><Y>(</Y> <Y>(</Y> <LG>TUPLE</LG> <Y>)</Y>, <LG>ARGS...</LG> <Y>)</Y>
+<M>DEFAULTS</M><Y>( (</Y> <LG>TUPLE</LG> <Y>),</Y> <LG>ARGS...</LG> <Y>)</Y>
 <G>// Used like:</G>
-<C>#define</C> <M>foo</M><Y>(</Y> <LG>NAME</LG>, <LG>ARGS...</LG> <Y>)\</Y>
-	<LG>NAME</LG><Y>(</Y> <M>DEFAULTS</M><Y>(</Y> <Y>(</Y> <C>1</C>, <C>2</C>, <C>3</C> <Y>)</Y>, <LG>ARGS</LG> <Y>)</Y> <Y>)</Y>
+<C>#define</C> <M>foo</M><Y>(</Y> <LG>NAME</LG><Y>,</Y> <LG>ARGS...</LG> <Y>)\</Y>
+	<LG>NAME</LG><Y>(</Y> <M>DEFAULTS</M><Y>( (</Y> <C>1</C><Y>,</Y> <C>2</C><Y>,</Y> <C>3</C> <Y>),</Y> <LG>ARGS</LG> <Y>) )</Y>
 <G>// foo( test ) -> test( 1, 2, 3 )</G>
 <G>// foo( test, 7 ) -> test( 7, 2, 3 )</G>
 <G>// foo( test, 7, 8 ) -> test( 7, 8, 3 )</G>
@@ -901,23 +901,23 @@ Saving:
 
 ### Compile-Time Helpers
 <pre>
-<M>COUNT_ARGS</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>C</LG> <Y>)</Y> <G>// Returns 3</G>
+<M>COUNT_ARGS</M><Y>(</Y> <LG>A</LG><Y>,</Y> <LG>B</LG><Y>,</Y> <LG>C</LG> <Y>)</Y> <G>// Returns 3</G>
 <M>STRINGIFY</M><Y>(</Y> <LG>hello</LG> <Y>)</Y> <G>// Converts to "hello"</G>
-<M>CHAIN</M><Y>(</Y> <LG>L</LG>, <LG>R</LG>, <LG>MID</LG>, <LG>ARGS...</LG> <Y>)</Y> <G>// L arg1 R MID L arg2 R</G>
+<M>CHAIN</M><Y>(</Y> <LG>L</LG><Y>,</Y> <LG>R</LG><Y>,</Y> <LG>MID</LG><Y>,</Y> <LG>ARGS...</LG> <Y>)</Y> <G>// L arg1 R MID L arg2 R</G>
 </pre>
 
 ### Byte Array Declaration
 <pre>
-<M>declare_bytes</M><Y>(</Y> <LG>buffer</LG>, <M>KB</M><Y>(</Y> <C>1</C> <Y>)</Y> <Y>)</Y>;
+<M>declare_bytes</M><Y>(</Y> <LG>buffer</LG><Y>,</Y> <M>KB</M><Y>(</Y> <C>1</C> <Y>) )</Y>;
 <G>// Creates empty buffer[1000]</G>
 <G>// And buffer_ref that's at [0]</G>
 
-<M>declare_bytes</M><Y>(</Y> <LG>msg</LG>, <C>32</C>, <C>"Hello"</C> <Y>)</Y>;
+<M>declare_bytes</M><Y>(</Y> <LG>msg</LG><Y>,</Y> <C>32</C><Y>,</Y> <C>"Hello"</C> <Y>)</Y>;
 <G>// Creates msg[32] = "Hello"</G>
 <G>// And msg_ref that's after the 'o'</G>
 
-<LG>msg</LG><Y>[</Y><C>0</C><Y>]</Y> = <C>'7'</C>; <G>// msg is now "7ello"</G>
-<LG>msg_ref</LG><Y>[</Y><C>0</C><Y>]</Y> = <C>'E'</C>; <G>// msg is now "7elloE"</G>
+<LG>msg</LG><Y>[</Y><C>0</C><Y>]</Y> = <C>'7';</C> <G>// msg is now "7ello"</G>
+<LG>msg_ref</LG><Y>[</Y><C>0</C><Y>]</Y> = <C>'E';</C> <G>// msg is now "7elloE"</G>
 </pre>
 
 ### Character Classification
@@ -951,15 +951,15 @@ Saving:
 	<M>if_nothing</M><Y>(</Y> f<C>.</C>handle <Y>)</Y>
 	<C>{</C>
 		<M>print</M><Y>(</Y> <C>"Failed to open file\n"</C> <Y>)</Y><C>;</C>
-		<M>out</M> <M>executable_failure</M><C>;</C>
+		<M>out executable_failure</M><C>;</C>
 	<C>}</C>
 	
-	<Y>byte</Y> input<M>[</M> <M>KB</M><Y>(</Y> <C>100</C> <Y>)</Y> <M>]</M><C>;</C>
-	<M>temp</M> <Y>byte</Y> <Y>ref</Y> input_ref <Y>=</Y> input<C>;</C>
+	<Y>byte</Y> input<M>[ KB</M><Y>(</Y> <C>100</C> <Y>)</Y> <M>]</M><C>;</C>
+	<M>temp</M> <Y>byte ref</Y> input_ref <Y>=</Y> input<C>;</C>
 	<M>file_load</M><Y>(</Y> f<Y>,</Y> input <Y>)</Y><C>;</C>
 	
-	<Y>byte</Y> output<M>[</M> <M>KB</M><Y>(</Y> <C>100</C> <Y>)</Y> <M>]</M><C>;</C>
-	<M>temp</M> <Y>byte</Y> <Y>ref</Y> output_ref <Y>=</Y> output<C>;</C>
+	<Y>byte</Y> output<M>[ KB</M><Y>(</Y> <C>100</C> <Y>)</Y> <M>]</M><C>;</C>
+	<M>temp</M> <Y>byte ref</Y> output_ref <Y>=</Y> output<C>;</C>
 	
 	<Y>check_input</Y><C>:</C>
 	<C>{</C>
@@ -972,14 +972,14 @@ Saving:
 
 			<M>when</M><Y>(</Y> <C>'E'</C><Y>,</Y> <C>'e'</C> <Y>)</Y>
 			<C>{</C>
-				<M>val_of</M><Y>(</Y> output_ref <Y>)</Y> <Y>=</Y> <C>'3';</C>
+				<M>val_of</M><Y>(</Y> output_ref <Y>) =</Y> <C>'3';</C>
 				output_ref <Y>=</Y> output_ref <Y>+</Y> <C>1;</C>
 				<M>skip</M><C>;</C>
 			<C>}</C>
 
 			<M>other</M>
 			<C>{</C>
-				<M>val_of</M><Y>(</Y> output_ref <Y>)</Y> <Y>=</Y> val<C>;</C>
+				<M>val_of</M><Y>(</Y> output_ref <Y>) =</Y> val<C>;</C>
 				output_ref <Y>=</Y> output_ref <Y>+</Y> <C>1;</C>
 				<M>skip</M><C>;</C>
 			<C>}</C>
@@ -992,7 +992,7 @@ Saving:
 	<M>file_close</M><Y>(</Y> f <Y>)</Y><C>;</C>
 	<M>print</M><Y>(</Y> output <Y>)</Y><C>;</C>
 	<M>print_newline</M><Y>()</Y><C>;</C>
-	<M>out</M> <M>executable_success</M><C>;</C>
+	<M>out executable_success</M><C>;</C>
 <C>}</C>
 </pre>
 
