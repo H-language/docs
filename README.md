@@ -196,9 +196,9 @@ With ref/const_ref too:
 
 -------
 ## Defining New Types
-Types can be an <H>alias</H> <LG>(a renamed type)</LG>,<br>
-<H>multi-typed</H> <LG>(contains elements)</LG>,<br>
-a <H>fusion</H> <LG>(elements use the same bytes)</LG>,<br>
+Types can be an <H>alias</H> <LG>(a renamed type)</LG>,
+<H>multi-typed</H> <LG>(contains elements)</LG>,
+a <H>fusion</H> <LG>(elements use the same bytes)</LG>,
 or a <H>group</H> <LG>(elements are the same type, and are ordered)</LG>.
 
 ### Types
@@ -403,7 +403,7 @@ If the function does output something:
 -------
 ## Scope Structures
 
-### Loops
+### Loop Scopes
 <pre>
 <M>loop</M>
 <C>{</C>
@@ -430,6 +430,56 @@ If the function does output something:
 	<G>// Until FLAG is yes</G>
 <C>}</C>
 <M>until</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y><C>;</C>
+</pre>
+
+### Iteration Scopes
+
+<pre>
+<G>// Range functions include from and to</G>
+<M>range</M><Y>(</Y> <LG>VAR</LG><C>,</C> <LG>FROM</LG><C>,</C> <LG>TO</LG> <Y>)</Y>
+<C>{</C>
+	<G>// Iterates VAR in a FROM-TO range</G>
+	<G>// Progresses 1 at a time</G>
+	<G>// ( i, 2, 7 ) makes i go from 2 to 7</G>
+<C>}</C>
+
+<M>range_step</M><Y>(</Y> <LG>VAR</LG><C>,</C> <LG>FROM</LG><C>,</C> <LG>TO</LG><C>,</C> <LG>STEP</LG> <Y>)</Y>
+<C>{</C>
+	<G>// Iterates VAR in a FROM-TO range,</G>
+	<G>//  but progresses with STEP</G>
+<C>}</C>
+
+<G>// Iter functions always start from 0</G>
+<M>iter</M><Y>(</Y> <LG>VAR</LG><C>,</C> <LG>SIZE</LG> <Y>)</Y>
+<C>{</C>
+	<G>// Iterates VAR from 0 to SIZE-1</G>
+	<G>// Progresses 1 at a time</G>
+<C>}</C>
+
+<M>iter_step</M><Y>(</Y> <LG>VAR</LG><C>,</C> <LG>SIZE</LG><C>,</C> <LG>STEP</LG> <Y>)</Y>
+<C>{</C>
+	<G>// Iterates VAR from 0 to SIZE-1,</G>
+	<G>//  but progresses with STEP</G>
+<C>}</C>
+
+<M>iter_grid</M><Y>(</Y> <LG>X</LG><C>,</C> <LG>Y</LG><C>,</C> <LG>WIDTH</LG><C>,</C> <LG>HEIGHT</LG> <Y>)</Y>
+<C>{</C>
+	<G>// Iterates X from 0 to WIDTH-1,</G>
+	<G>//  and Y from 0 to HEIGHT-1</G>
+	<G>// Left-to-right, top-to-bottom</G>
+	<G>// For things like pixel images</G>
+<C>}</C>
+
+<M>repeat</M><Y>(</Y> <LG>N</LG> <Y>)</Y>
+<C>{</C>
+	<G>// Repeats this scope N-times</G>
+<C>}</C>
+
+<M>once</M>
+<C>{</C>
+	<G>// This scope runs only once</G>
+	<G>// Used for testing or initializing</G>
+<C>}</C>
 </pre>
 
 ### Execution Control
@@ -461,7 +511,7 @@ The program is able to jump to any point in the code that is defined.
 Jumping <b>backwards</b> is the typical use-case, since jumping forwards can potentially skip important code.
 <pre>
 <LG>POINT</LG><C>:</C> <G>// Set jump point</G>
-<G>// This can often act as pseudo-function, like:
+<G>// This can act as a pseudo-function, like:
 <Y>do_thing</Y><C>:</C>
 <C>{</C> <LG>...</LG>
 
@@ -472,85 +522,49 @@ Jumping <b>backwards</b> is the typical use-case, since jumping forwards can pot
 <Y>do_thing</Y><C>:</C>
 <C>{</C>
 	<LG>...</LG>
-	<M>if</M><Y>(</Y> <LG>x</LG> <Y>)</Y>
+	<M>if</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y>
 	<C>{</C>
 		<LG>...</LG>
 		<M>jump</M> <Y>thing_finished</Y><C>;</C>
 	<C>}</C>
+	
 	<M>jump</M> <Y>do_thing</Y><C>;</C>
 <C>}</C>
 <Y>thing_finished</Y><C>:</C>
 </pre>
 
 #### next
+In iteration-scopes you often want to "go to the next iteration", if it be for dealing with objects, or processing bytes.
 <pre>
 <M>next</M> <G>// Jump up to next iteration</G>
-<G>// while( x < 10 )</G>
-<G>// {</G>
-<G>// 	x = x + 1;</G>
-<G>// 	if( x < 5 )</G>
-<G>// 	{</G>
-<G>// 		next; // jumps back up to while</G>
-<G>// 	}</G>
-<G>// 	...</G>
-<G>// }</G>
-
-<M>skip_if</M><Y>(</Y> <LG>F</LG> <Y>)</Y>; <G>// Skip if F is yes</G>
-<M>jump_if</M><Y>(</Y> <LG>F</LG> <Y>)</Y> <LG>P</LG>; <G>// Jump to P if F is yes</G>
-<M>next_if</M><Y>(</Y> <LG>F</LG> <Y>)</Y>; <G>// Jump to next if F is yes</G>
-<M>out_if</M><Y>(</Y> <LG>F</LG> <Y>)</Y> v; <G>// Output v if F is yes</G>
-<G>// Can be empty if fn doesn't output:</G>
-<G>// out_if( F );</G>
+<G>// "skip the rest, go to the next", like:</G>
+<M>while</M><Y>(</Y> x <Y><</Y> <C>10</C> <Y>)</Y>
+<C>{</C>
+	x <Y>=</Y> x <Y>+</Y> <C>1;</C>
+	<M>if</M><Y>(</Y> x <Y><</Y> <C>5</C> <Y>)</Y>
+	<C>{</C>
+		<M>next</M><C>;</C>
+		<G>// jumps back up to the while</G>
+	<C>}</C>
+	<LG>...</LG>
+<C>}</C>
 </pre>
 
-### Iteration Helpers
-
+There's also <LG>*</LG><M>_if</M> forms of these that can often be easier to read:
 <pre>
-<G>// Range functions include from and to</G>
-<M>range</M><Y>(</Y> <LG>VAR</LG>, <LG>FROM</LG>, <LG>TO</LG> <Y>)</Y>
-<C>{</C>
-	<G>// Iterates VAR in a FROM-TO range</G>
-	<G>// Progresses 1 at a time</G>
-	<G>// ( i, 2, 7 ) makes i go from 2 to 7</G>
-<C>}</C>
+<M>skip_if</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y><C>;</C>
+<G>// Skip if FLAG is yes</G>
 
-<M>range_step</M><Y>(</Y> <LG>VAR</LG>, <LG>FROM</LG>, <LG>TO</LG>, <LG>STEP</LG> <Y>)</Y>
-<C>{</C>
-	<G>// Iterates VAR in a FROM-TO range,</G>
-	<G>//  but progresses with STEP</G>
-<C>}</C>
+<M>jump_if</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y> <LG>POINT</LG><C>;</C>
+<G>// Jump to POINT if FLAG is yes</G>
 
-<G>// Iter functions always start from 0</G>
-<M>iter</M><Y>(</Y> <LG>VAR</LG>, <LG>SIZE</LG> <Y>)</Y>
-<C>{</C>
-	<G>// Iterates VAR from 0 to SIZE-1</G>
-	<G>// Progresses 1 at a time</G>
-<C>}</C>
+<M>next_if</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y><C>;</C>
+<G>// Jump to next iteration if FLAG is yes</G>
 
-<M>iter_step</M><Y>(</Y> <LG>VAR</LG>, <LG>SIZE</LG>, <LG>STEP</LG> <Y>)</Y>
-<C>{</C>
-	<G>// Iterates VAR from 0 to SIZE-1,</G>
-	<G>//  but progresses with STEP</G>
-<C>}</C>
-
-<M>iter_grid</M><Y>(</Y> <LG>X</LG>, <LG>Y</LG>, <LG>WIDTH</LG>, <LG>HEIGHT</LG> <Y>)</Y>
-<C>{</C>
-	<G>// Iterates X from 0 to WIDTH-1,</G>
-	<G>//  and Y from 0 to HEIGHT-1</G>
-	<G>// Left-to-right, top-to-bottom</G>
-	<G>// For things like pixel images</G>
-<C>}</C>
-
-<M>repeat</M><Y>(</Y> <LG>N</LG> <Y>)</Y>
-<C>{</C>
-	<G>// Repeats this scope N-times</G>
-<C>}</C>
-
-<M>once</M>
-<C>{</C>
-	<G>// This scope runs only once</G>
-	<G>// Used for testing or initializing</G>
-<C>}</C>
+<M>out_if</M><Y>(</Y> <LG>FLAG</LG> <Y>)</Y> VAL<C>;</C>
+<G>// Output VAL if FLAG is yes</G>
+<G>// Can be empty if fn doesn't output:</G>
+<G>// out_if( FLAG );</G>
 </pre>
 
 ### with/when Statements
@@ -612,19 +626,19 @@ Jumping <b>backwards</b> is the typical use-case, since jumping forwards can pot
 
 ### Byte Reference Operations
 <pre>
-<M>bytes_copy</M><Y>(</Y> <LG>FROM</LG>, <LG>SIZE</LG>, <LG>TO</LG> <Y>)</Y>
+<M>bytes_copy</M><Y>(</Y> <LG>FROM</LG><C>,</C> <LG>SIZE</LG><C>,</C> <LG>TO</LG> <Y>)</Y>
 <G>// Copy SIZE bytes from FROM to TO</G>
 
-<M>bytes_copy_internal</M><Y>(</Y> <LG>FROM</LG>, <LG>SIZE</LG>, <LG>TO</LG> <Y>)</Y>
+<M>bytes_copy_internal</M><Y>(</Y> <LG>FROM</LG><C>,</C> <LG>SIZE</LG><C>,</C> <LG>TO</LG> <Y>)</Y>
 <G>// Copy SIZE bytes, handles overlapping</G>
 
-<M>bytes_fill</M><Y>(</Y> <LG>PTR</LG>, <LG>VALUE</LG>, <LG>SIZE</LG> <Y>)</Y>
+<M>bytes_fill</M><Y>(</Y> <LG>PTR</LG><C>,</C> <LG>VALUE</LG><C>,</C> <LG>SIZE</LG> <Y>)</Y>
 <G>// Fill SIZE bytes with VALUE</G>
 
-<M>bytes_clear</M><Y>(</Y> <LG>PTR</LG>, <LG>SIZE</LG> <Y>)</Y>
+<M>bytes_clear</M><Y>(</Y> <LG>PTR</LG><C>,</C> <LG>SIZE</LG> <Y>)</Y>
 <G>// Clear SIZE bytes to zero</G>
 
-<M>bytes_compare</M><Y>(</Y> <LG>A</LG>, <LG>B</LG>, <LG>SIZE</LG> <Y>)</Y>
+<M>bytes_compare</M><Y>(</Y> <LG>A</LG><C>,</C> <LG>B</LG><C>,</C> <LG>SIZE</LG> <Y>)</Y>
 <G>// Compare SIZE bytes</G>
 <G>// Outputs 0 if equal,</G>
 <G>//  negative if A < B, positive if A > B</G>
@@ -635,7 +649,7 @@ Jumping <b>backwards</b> is the typical use-case, since jumping forwards can pot
 <M>bytes_measure</M><Y>(</Y> <LG>STR</LG> <Y>)</Y>
 <G>// Count bytes until '\0'</G>
 
-<M>bytes_paste</M><Y>(</Y> <LG>FROM</LG>, <LG>TO</LG> <Y>)</Y>
+<M>bytes_paste</M><Y>(</Y> <LG>FROM</LG><C>,</C> <LG>TO</LG> <Y>)</Y>
 <G>// Copy bytes until '\0'</G>
 
 <M>bytes_end</M><Y>(</Y> <LG>REF</LG> <Y>)</Y>
@@ -645,15 +659,15 @@ Jumping <b>backwards</b> is the typical use-case, since jumping forwards can pot
 
 ### Advanced Copy Operations
 <pre>
-<M>bytes_copy_move</M><Y>(</Y> <LG>FROM</LG>, <LG>SIZE</LG>, <LG>TO</LG> <Y>)</Y>
+<M>bytes_copy_move</M><Y>(</Y> <LG>FROM</LG><C>,</C> <LG>SIZE</LG><C>,</C> <LG>TO</LG> <Y>)</Y>
 <G>// Copy SIZE bytes then</G>
 <G>//  moves the TO ref by SIZE</G>
 
-<M>bytes_paste_move</M><Y>(</Y> <LG>FROM</LG>, <LG>TO</LG> <Y>)</Y>
+<M>bytes_paste_move</M><Y>(</Y> <LG>FROM</LG><C>,</C> <LG>TO</LG> <Y>)</Y>
 <G>// Pastes null-terminated FROM to TO</G>
 <G>//  moves the TO ref by FROM size</G>
 
-<M>bytes_set_move</M><Y>(</Y> <LG>BYTE</LG>, <LG>TO</LG> <Y>)</Y>
+<M>bytes_set_move</M><Y>(</Y> <LG>BYTE</LG><C>,</C> <LG>TO</LG> <Y>)</Y>
 <G>// Set single byte and move the TO ref by 1</G>
 </pre>
 
