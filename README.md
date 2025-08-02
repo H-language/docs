@@ -70,10 +70,14 @@ Otherwise, make it constant:
 <G>// Cannot be changed!</G>
 </pre>
 
+To get the reference for a declared variable:
 <pre>
 <M>ref_of</M><Y>(</Y> <LG>VAR</LG> <Y>)</Y>
 <G>// Reference-of VAR</G>
+</pre>
 
+And to get the value that a reference points to:
+<pre>
 <M>val_of</M><Y>(</Y> <LG>REF</LG> <Y>)</Y>
 <G>// Value-of REF</G>
 </pre>
