@@ -968,9 +968,9 @@ Saving:
 		<C>{</C>
 			<M>when</M><Y>(</Y> <C>'\0'</C> <Y>)</Y> <M>jump</M> <Y>input_eof</Y><C>;</C>
 
-			<M>when</M><Y>(</Y> <C>' ', '\t', '\n', '\r'</C> <Y>)</Y> <M>skip</M><C>;</C>
+			<M>when</M><Y>(</Y> <C>' '</C><Y>,</Y> <C>'\t'</C><Y>,</Y> <C>'\n'</C><Y>,</Y> <C>'\r'</C> <Y>)</Y> <M>skip</M><C>;</C>
 
-			<M>when</M><Y>(</Y> <C>'E', 'e'</C> <Y>)</Y>
+			<M>when</M><Y>(</Y> <C>'E'</C><Y>,</Y> <C>'e'</C> <Y>)</Y>
 			<C>{</C>
 				<M>val_of</M><Y>(</Y> output_ref <Y>)</Y> <Y>=</Y> <C>'3';</C>
 				output_ref <Y>=</Y> output_ref <Y>+</Y> <C>1;</C>
