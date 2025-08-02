@@ -202,12 +202,12 @@ If you want to get the type of a value or variable, you can use:
 <G>// Deduces the type of VAR</G>
 <G>// Which can be used in interesting ways:</G>
 <Y>#define</Y> <M>SWAP</M><Y>(</Y> A<Y>,</Y> B <Y>)</Y><G>\</G>
-	<M>DEF_START</M>
-	<C>{</C>
-		<M>type_of</M><Y>(</Y> A <Y>)</Y> _temp <Y>=</Y> A<C>;</C>
-		A <Y>=</Y> B<C>;</C>
-		B <Y>=</Y> _temp<C>;</C>
-	<C>}</C>
+	<M>DEF_START</M><G>\</G>
+	<C>{</C><G>\</G>
+		<M>type_of</M><Y>(</Y> A <Y>)</Y> _temp <Y>=</Y> A<C>;</C><G>\</G>
+		A <Y>=</Y> B<C>;</C><G>\</G>
+		B <Y>=</Y> _temp<C>;</C><G>\</G>
+	<C>}</C><G>\</G>
 	<M>DEF_END</M>
 <G>// Which automatically deduces the type</G>
 <G>//  for swapping any 2 same-type variables</G>
@@ -219,14 +219,21 @@ To convert a value into a different type, changing it to align with the type, us
 <G>// Changes VAL to TYPE</G>
 
 <G>// Can be used like:</G>
-<Y>r4</Y> x <Y>=</Y> <C>-1.234;</C>
+<Y>r4</Y> x <Y>=</Y> <C>-2.345;</C>
 <Y>i2</Y> y <Y>=</Y> <M>to</M><Y>( i2,</Y> x <Y>)</Y><C>;</C>
-<G>// </G>
+<G>// y is now -2 (r* to i* truncates)</G>
 </pre>
 
 But if you want to keep the bits the same, but change how it's read, you can use a reinterpret-cast:
+<pre>
 <M>cast</M><Y>(</Y> <LG>TYPE</LG><Y>,</Y> <LG>VAR</LG> <Y>)</Y>
 <G>// Reinterpret VAR to TYPE</G>
+
+<G>// Can be used like:</G>
+<Y>r4</Y> x <Y>=</Y> <C>-2.345;</C>
+<Y>i2</Y> y <Y>=</Y> <M>cast</M><Y>( i2,</Y> x <Y>)</Y><C>;</C>
+<G>// y is now 5243 since the bits</G>
+<G>//  are the same, but read differently</G>
 </pre>
 
 -------
